@@ -1,0 +1,75 @@
+Loaded 24576 rows; target=obs
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (G_Model, segments=48, outputs=1, seg_width=2): 21/1128 cross-segment channel pairs exceed |cos|>0.95 (worst seg 5/out 0 ↔ seg 37/out 0 |cos|=0.9930). Grouped segment pairs: 21/1128 exceed |cos|>0.95 (worst seg 5 ↔ seg 37 |cos|=0.9930). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=4), so channel-level directional crowding can appear before whole segments overlap.[0m
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=384, output_major=False, id=4877600224, primary=base_model
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=384, output_major=False, id=4877600224, primary=base_model
+[nestynet.optimizer] [LM] num_params: 384
+[NestyNet][param_refresh] discovered 2 base model(s):
+  #0: wrapper=SegmentedAdaptor, base=G_Model, params=384, output_major=False, id=4877600224
+  #1: wrapper=SegmentedAdaptor, base=G_Model, params=384, output_major=False, id=4877600224
+[LM][bucket] solving P=384 (trivially separable union)
+[nestynet.optimizer] [LM] Iter 0, chisq: 1625.858983153384, improvement: 1e+30, val-set chisq: 1621.8673352380283, nacc: 1, nacc_lin: 0, skipped_Quad: 0, acc_frac: 1.0, lambda: 33.333333333333336, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 100, chisq: 0.000252677516017127, improvement: 1625.858730475868, val-set chisq: 0.0002602479954253594, nacc: 72, nacc_lin: 71, skipped_Quad: 0, acc_frac: 0.71, lambda: 2.9783531898449348e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 200, chisq: 0.00025200000246487184, improvement: 6.77513552255172e-07, val-set chisq: 0.00025985753070316094, nacc: 132, nacc_lin: 131, skipped_Quad: 0, acc_frac: 0.6, lambda: 6.390003378973852e-10, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 300, chisq: 0.0002512294925088488, improvement: 7.705099560230281e-07, val-set chisq: 0.000260367153646682, nacc: 191, nacc_lin: 190, skipped_Quad: 0, acc_frac: 0.59, lambda: 2.835763320973971e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 400, chisq: 0.00025061753007172237, improvement: 6.119624371264394e-07, val-set chisq: 0.00026127544834818843, nacc: 251, nacc_lin: 250, skipped_Quad: 0, acc_frac: 0.6, lambda: 9.452544403246574e-10, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 500, chisq: 0.00025004693027892656, improvement: 5.705997927958097e-07, val-set chisq: 0.00026241436039571006, nacc: 312, nacc_lin: 311, skipped_Quad: 0, acc_frac: 0.61, lambda: 2.777777777777778e-10, lbfgs: 0
+[nestynet.optimizer] [LM] Maximum iterations reached (600); halting.
+  seed 0: val 2.60e-04, gradient rel-RMS 7.92e-02
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (G_Model, segments=48, outputs=1, seg_width=2): 14/1128 cross-segment channel pairs exceed |cos|>0.95 (worst seg 36/out 0 ↔ seg 37/out 0 |cos|=0.9926). Grouped segment pairs: 14/1128 exceed |cos|>0.95 (worst seg 36 ↔ seg 37 |cos|=0.9926). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=4), so channel-level directional crowding can appear before whole segments overlap.[0m
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=384, output_major=False, id=5144697808, primary=base_model
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=384, output_major=False, id=5144697808, primary=base_model
+[nestynet.optimizer] [LM] num_params: 384
+[nestynet.optimizer] [LM] Iter 0, chisq: 607.546744280547, improvement: 1e+30, val-set chisq: 607.0762605148461, nacc: 1, nacc_lin: 0, skipped_Quad: 0, acc_frac: 1.0, lambda: 33.333333333333336, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 100, chisq: 0.00025310434390205455, improvement: 607.5464911762032, val-set chisq: 0.0002559539593236249, nacc: 72, nacc_lin: 71, skipped_Quad: 0, acc_frac: 0.71, lambda: 1.787011913906961e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 200, chisq: 0.0002522151828375494, improvement: 8.891610645051689e-07, val-set chisq: 0.00025745741837386143, nacc: 129, nacc_lin: 127, skipped_Quad: 0, acc_frac: 0.57, lambda: 1.293975684242204e-06, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 300, chisq: 0.000252113422508515, improvement: 1.0176032903439717e-07, val-set chisq: 0.00025771985676342806, nacc: 189, nacc_lin: 162, skipped_Quad: 0, acc_frac: 0.6, lambda: 2.7762016347860244e-07, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 400, chisq: 0.00025201163031764574, improvement: 1.017921908692365e-07, val-set chisq: 0.00025835185719975316, nacc: 249, nacc_lin: 173, skipped_Quad: 0, acc_frac: 0.6, lambda: 5.956290841355531e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 500, chisq: 0.00025149743861145146, improvement: 5.141917061942834e-07, val-set chisq: 0.00025903907855871435, nacc: 310, nacc_lin: 234, skipped_Quad: 0, acc_frac: 0.61, lambda: 1.7014579925843827e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Maximum iterations reached (600); halting.
+  seed 1: val 2.56e-04, gradient rel-RMS 1.14e-01
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (G_Model, segments=48, outputs=1, seg_width=2): 8/1128 cross-segment channel pairs exceed |cos|>0.95 (worst seg 14/out 0 ↔ seg 17/out 0 |cos|=0.9920). Grouped segment pairs: 8/1128 exceed |cos|>0.95 (worst seg 14 ↔ seg 17 |cos|=0.9920). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=4), so channel-level directional crowding can appear before whole segments overlap.[0m
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=384, output_major=False, id=5156841424, primary=base_model
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=384, output_major=False, id=5156841424, primary=base_model
+[nestynet.optimizer] [LM] num_params: 384
+[nestynet.optimizer] [LM] Iter 0, chisq: 1170.0662174533702, improvement: 1e+30, val-set chisq: 1167.7084717674252, nacc: 1, nacc_lin: 0, skipped_Quad: 0, acc_frac: 1.0, lambda: 33.333333333333336, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 100, chisq: 0.0002548873481250747, improvement: 1170.065962566022, val-set chisq: 0.0002531246539878195, nacc: 73, nacc_lin: 72, skipped_Quad: 0, acc_frac: 0.72, lambda: 3.2166214450325323e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 200, chisq: 0.00025384354553534304, improvement: 1.0438025897316502e-06, val-set chisq: 0.00025384905640423204, nacc: 133, nacc_lin: 132, skipped_Quad: 0, acc_frac: 0.6, lambda: 7.716049382716051e-10, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 300, chisq: 0.00025334698455248007, improvement: 4.965609828629764e-07, val-set chisq: 0.0002544506827914909, nacc: 194, nacc_lin: 193, skipped_Quad: 0, acc_frac: 0.61, lambda: 2.777777777777778e-10, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 400, chisq: 0.00025297470425113494, improvement: 3.722803013451255e-07, val-set chisq: 0.0002551846825471258, nacc: 254, nacc_lin: 253, skipped_Quad: 0, acc_frac: 0.6, lambda: 5e-10, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 500, chisq: 0.00025247093042048705, improvement: 5.037738306478941e-07, val-set chisq: 0.0002559586459214771, nacc: 321, nacc_lin: 320, skipped_Quad: 0, acc_frac: 0.67, lambda: 1e-10, lbfgs: 0
+[nestynet.optimizer] [LM] Maximum iterations reached (600); halting.
+  seed 2: val 2.53e-04, gradient rel-RMS 8.21e-02
+surrogate: best val loss 2.531e-04; y rel-RMS vs true q 2.50e-03; gradient rel-RMS 6.63e-02  (probe envelope: accept <=1e-3)
+  [strict]     translation/axis                       acc=True  conf=0.831 res=1.01e-02 xi=(1.0,)
+  [strict]     translation/diagonal_plus              acc=True  conf=0.653 res=2.08e-02 xi=(1.0, 1.0)
+  [strict]     translation/axis                       acc=False conf=0.496 res=3.05e-02 xi=(1.0,)
+  [strict]     translation/diagonal_minus             acc=False conf=0.425 res=4.04e-02 xi=(1.0, -1.0)
+  [strict]  general_affine/affine_translation_pair    acc=False conf=0.203 res=7.15e-02 xi=(0.3325, 1.0)
+  [strict]  general_affine/affine_translation_pair    acc=False conf=0.176 res=7.54e-02 xi=(0.2767, 1.0)
+  [strict]         scaling/axis                       acc=False conf=0.000 res=1.12e+00 xi=(1.0,)
+  [strict]         scaling/common_pair                acc=False conf=0.000 res=2.13e+00 xi=(1.0, 1.0)
+  [strict]         lorentz/boost_pair                 acc=False conf=0.000 res=2.73e+00 xi=(1.0, 1.0)
+  [strict]         scaling/axis                       acc=False conf=0.000 res=3.14e+00 xi=(1.0,)
+  [strict]         scaling/opposite_pair              acc=False conf=0.000 res=4.00e+00 xi=(1.0, -1.0)
+  [strict]        rotation/so2_pair                   acc=False conf=0.000 res=4.00e+00 xi=(-1.0, 1.0)
+  [  full]     translation/axis                       acc=True  conf=0.831 res=1.01e-02 xi=(1.0,)
+  [  full]     translation/diagonal_plus              acc=True  conf=0.653 res=2.08e-02 xi=(1.0, 1.0)
+  [  full]     translation/axis                       acc=False conf=0.496 res=3.05e-02 xi=(1.0,)
+  [  full]     translation/diagonal_minus             acc=False conf=0.425 res=4.04e-02 xi=(1.0, -1.0)
+  [  full]  general_affine/affine_translation_pair    acc=False conf=0.203 res=7.15e-02 xi=(0.3325, 1.0)
+  [  full]  general_affine/affine_translation_pair    acc=False conf=0.176 res=7.54e-02 xi=(0.2767, 1.0)
+  [  full]         scaling/common_pair                acc=False conf=0.000 res=1.98e-01 xi=(1.0, 1.0)
+  [  full]         scaling/axis                       acc=False conf=0.000 res=6.69e-01 xi=(1.0,)
+  [  full]         scaling/opposite_pair              acc=False conf=0.000 res=9.98e-01 xi=(1.0, -1.0)
+  [  full]         scaling/axis                       acc=False conf=0.000 res=1.12e+00 xi=(1.0,)
+  [  full]         lorentz/boost_pair                 acc=False conf=0.000 res=1.19e+00 xi=(1.0, 1.0)
+  [  full]        rotation/so2_pair                   acc=False conf=0.000 res=1.25e+00 xi=(-1.0, 1.0)
+
+GATE: FAIL -- see rows above
+Summary: <WORKSPACE>/NestyNet_SR/examples/jacobi_tidal/results/tidal_carrier_gs_obs.json

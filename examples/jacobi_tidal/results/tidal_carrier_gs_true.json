@@ -1,0 +1,323 @@
+{
+  "target": "true",
+  "n": 24576,
+  "segments": 48,
+  "epochs": 600,
+  "seed": 0,
+  "surrogate_best_val_loss": 3.2882699027028354e-11,
+  "y_rel_rms_vs_true_q": 3.123414788677247e-05,
+  "gradient_rel_rms_vs_truth": 0.0002906774318246541,
+  "gate_pass": true,
+  "specs": [
+    {
+      "objective": "strict",
+      "family": "translation",
+      "kind": "axis",
+      "accepted": true,
+      "confidence": 0.8312426910463464,
+      "residual_rel": 0.010125438537219218,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "translation",
+      "kind": "diagonal_plus",
+      "accepted": true,
+      "confidence": 0.6530554681247605,
+      "residual_rel": 0.020816671912514368,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "general_affine",
+      "kind": "affine_offdiag_pair",
+      "accepted": true,
+      "confidence": 0.9914440702560964,
+      "residual_rel": 0.0005133557846342161,
+      "xi_coeffs": [
+        -0.2483201605941871,
+        -1.0
+      ],
+      "output_beta": 0.0,
+      "implied_quadratic": "+4.027059*Omega^2 - kappa^2",
+      "implied_a": 4.02705925127937,
+      "corr_with_target": 0.9999986995962356
+    },
+    {
+      "objective": "strict",
+      "family": "translation",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.49562326212450053,
+      "residual_rel": 0.030612743302569925,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "translation",
+      "kind": "diagonal_minus",
+      "accepted": false,
+      "confidence": 0.4244938038404229,
+      "residual_rel": 0.040570867462340794,
+      "xi_coeffs": [
+        1.0,
+        -1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "general_affine",
+      "kind": "affine_translation_pair",
+      "accepted": false,
+      "confidence": 0.268143988019272,
+      "residual_rel": 0.062459841677301925,
+      "xi_coeffs": [
+        0.3307589403909848,
+        1.0
+      ],
+      "output_beta": -0.0
+    },
+    {
+      "objective": "strict",
+      "family": "scaling",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 1.119104367653374,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "scaling",
+      "kind": "common_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 2.136671443791714,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "lorentz",
+      "kind": "boost_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 2.7411362327626767,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "scaling",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 3.161062453556093,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "scaling",
+      "kind": "opposite_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 4.0,
+      "xi_coeffs": [
+        1.0,
+        -1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "rotation",
+      "kind": "so2_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 4.0,
+      "xi_coeffs": [
+        -1.0,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "translation",
+      "kind": "axis",
+      "accepted": true,
+      "confidence": 0.8312426910463464,
+      "residual_rel": 0.010125438537219218,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "translation",
+      "kind": "diagonal_plus",
+      "accepted": true,
+      "confidence": 0.6530554681247605,
+      "residual_rel": 0.020816671912514368,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "general_affine",
+      "kind": "affine_offdiag_pair",
+      "accepted": true,
+      "confidence": 0.9914440702560964,
+      "residual_rel": 0.0005133557846342161,
+      "xi_coeffs": [
+        -0.2483201605941871,
+        -1.0
+      ],
+      "output_beta": 0.0,
+      "implied_quadratic": "+4.027059*Omega^2 - kappa^2",
+      "implied_a": 4.02705925127937,
+      "corr_with_target": 0.9999986995962356
+    },
+    {
+      "objective": "full",
+      "family": "scaling",
+      "kind": "common_pair",
+      "accepted": true,
+      "confidence": 0.9878829021240422,
+      "residual_rel": 0.0007270258725574683,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 1.9999612711101924
+    },
+    {
+      "objective": "full",
+      "family": "translation",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.49562326212450053,
+      "residual_rel": 0.030612743302569925,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "translation",
+      "kind": "diagonal_minus",
+      "accepted": false,
+      "confidence": 0.4244938038404229,
+      "residual_rel": 0.040570867462340794,
+      "xi_coeffs": [
+        1.0,
+        -1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "general_affine",
+      "kind": "affine_translation_pair",
+      "accepted": false,
+      "confidence": 0.268143988019272,
+      "residual_rel": 0.062459841677301925,
+      "xi_coeffs": [
+        0.3307589403909848,
+        1.0
+      ],
+      "output_beta": -0.0
+    },
+    {
+      "objective": "full",
+      "family": "scaling",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 0.6090439204091841,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 2.8235911183465596
+    },
+    {
+      "objective": "full",
+      "family": "scaling",
+      "kind": "opposite_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 0.9094553275078605,
+      "xi_coeffs": [
+        1.0,
+        -1.0
+      ],
+      "output_beta": 3.6472209655829277
+    },
+    {
+      "objective": "full",
+      "family": "scaling",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 1.119104367653374,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "rotation",
+      "kind": "so2_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 1.1855653461634068,
+      "xi_coeffs": [
+        -1.0,
+        1.0
+      ],
+      "output_beta": -3.789590632937405
+    },
+    {
+      "objective": "full",
+      "family": "lorentz",
+      "kind": "boost_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 1.1857410634094723,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 2.273657796618346
+    }
+  ]
+}

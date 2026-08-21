@@ -1,0 +1,1916 @@
+Running on fragarach-2-1.home with device cpu
+enforce_units=True, factorized symbolic search=OFF, continuous skeleton refinement=ON, outer-peel-autorun(deprecated)=ON
+[GS] Stage-A symmetry layer enabled (mode=propose, policy=augment, known=True, affine=True, unit_torus=False)
+[Data] Overrides: batch_size=2000, ndata_train=20000, ndata_val=4000, data_slice=0
+Median of y values: 0.11048863000693729
+Median absolute deviation of y values: 0.06888620195283074
+Number of x variables: 3
+MAD^2 of y values: 0.004745308819486181
+RMS of y values: 0.25269601114923845
+Log-space dynamic range of |y|: 2.59 decades
+[Units] Loaded basis=('L', 'T', 'M'); y_units=[1, 0, 0]; x_units=[[3, -2, 0], [0, -1, 0], [0, -1, 0]]
+[PhaseScan] Found 4 phase-coordinate hint(s) from the identity training split.
+[PhaseScan]   ((x1)**-2 * (x2)**2): omega_obs=169.458, score=0.00103, R2_phase=0.00199, R2_trend=0.000471, cycles=66.8, unit=dimensionless, split_R2=0.00313, null_R2=0.000431
+[PhaseScan]   (sqrt(x1) * 1/sqrt(x2)): omega_obs=789.293, score=0.000896, R2_phase=0.00134, R2_trend=8.34e-05, cycles=40.9, unit=dimensionless, split_R2=0.00364, null_R2=-0.00576
+[PhaseScan]   (1/sqrt(x1) * sqrt(x2)): omega_obs=322.781, score=0.000671, R2_phase=0.00128, R2_trend=0.000337, cycles=20.9, unit=dimensionless, split_R2=0.00118, null_R2=-0.00233
+[PhaseScan]   ((x1)**2 * (x2)**-2): omega_obs=591.254, score=0.000161, R2_phase=0.000238, R2_trend=-0.000345, cycles=94.8, unit=dimensionless, split_R2=-0.000749, null_R2=-0.00454
+[PhaseScan Context] No contextual phase hints found.
+[OuterLinkScan] No inverse-link hints found.
+
+Criteria (base, in units of MAD(φ(y))^2): loss acceptable: 1.000000e-03, loss target: 1.000000e-07, chisq_tol: 1.000000e-10, precision derivs d2y: 1.000000e-03
+
+[Units] Skipping y-transforms incompatible with y units (L): log, logneg, sqrt1p, exp, expneg, arctan, arcsin, arccos, sin, cos, tan
+[Stage A] Running standard separability search on pure NN expression
+
+
+Size of datasets: training: 20000, val: 4000
+Using MAD-normalised LM thresholds for y_op None: MAD(φ(y))≈0.0672, scale=0.00452
+Initial model (AST): NN[x0, x1, x2]
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:1 (full), number of leaves: 1, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() (NN[x0, x1, x2]), parameters: 960
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: wrapper=ASTCompositeAdaptor, base=_Composite, params=960, output_major=False, id=5078159408
+[LM][bucket] solving P=960 (trivially separable union)
+Stopping at epoch 901/2500, lm_opt.state['halt']=True, loss=3.5462e-10, loss_val=7.8424e-07
+acceptable losses (raw) target=4.5217e-10, acceptable=4.5217e-06 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+[32mADOPTING[0m best val-loss 7.8424e-07 (trial 1/1, dual_layer=True)
+Saving initial model which converged with loss 0.000001
+Discovering approximate invariance features from gradients...
+Discovered 1 candidate features:
+  feat_0_0_1       kind=integer_linear  coeffs=[+0.00, +0.00, +1.00]
+Discovering approximate scaling / homogeneity features...
+Discovered 3 scaling candidates:
+  S=[0]  k≈  0.333  rel_std= 0.005  n=16000
+  S=[1,2]  k≈ -0.667  rel_std= 0.006  n=16000
+  S=[0,1,2]  k≈ -0.333  rel_std= 0.012  n=16000
+    [x1] reciprocal probe (negative-k singularity detected)
+    [x1] reciprocal: rel_std=0.1421>0.08, no gradient fallback available
+[Oracle Probe] No scaling verified by direct evaluation.
+  [Trig Scaling] Sampled 5000 points, probing 3 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=1.273e-02)
+  [Trig Scaling] x0: no viable ω candidates (span=43)
+  [Trig Scaling] x1: no viable ω candidates (span=204)
+  [Trig Scaling] x2: no viable ω candidates (span=181)
+  [Trig Scaling] No monomial-in-trig detected.
+[Early Compound] Checked 1 single-var scaling specs, 0 qualify (need ≥2 for compound)
+[Early PureDiff] No valid power-difference proposals found.
+Checking for low-degree polynomial fit in x (degree 2)...
+Poly-in-x (deg 2) fit: rms_abs=1.019e-01, rms_rel=5.093e-01, n_terms=10, n=16000
+Checking for low-degree polynomial fit in f(x)^2 (degree 2)...
+Poly-in-f^2 (deg 2) fit: rms_abs=1.410e-01, rms_rel=7.223e-01, n_terms=10, n=16000
+Checking for rational poly/poly fit f(x) ≈ P(x)/Q(x)...
+Rational fit rat_degN2_degD2: deg_num=2, deg_den=2, rms_abs=5.869e-02, rms_rel=2.933e-01, n_terms_num=5, n_terms_den=6, n=16000, sigma_min=5.778e-02, sigma_ratio=3.405e-03
+Checking for trig-like behaviour along coordinate axes...
+  [FFT hint] axis 1: omega~0.0637, strength=109, span=[2.97,101]
+  [FFT hint] axis 0: omega~0.218, strength=104, span=[0.0201,28.8]
+No oracle-derived trig axis.
+Discovering K-based preferred directions...
+Found 3 preferred directions from K:
+  dir 0: u=[+1.000, +0.000, +0.000]
+  dir 1: u=[+0.000, +1.000, +0.000]
+  dir 2: u=[+0.000, +0.000, +1.000]
+  dir 0: omega≈0.219, trig_strength≈100.8
+  dir 1: omega≈0.0451, trig_strength≈112.8
+  dir 2: omega≈0.0457, trig_strength≈5.5
+Checking for approximate even/odd parity along coordinate axes...
+Detected parity candidates on 3 axes:
+  axis= 0  origin≈   0.783  kind=none  rms_rel_even=5.01e+04  rms_rel_odd=5.01e+04  n=16000
+  axis= 1  origin≈    18.3  kind=none  rms_rel_even=3.92e+04  rms_rel_odd=3.92e+04  n=16000
+  axis= 2  origin≈    24.3  kind=none  rms_rel_even=9.15e+03  rms_rel_odd=9.15e+03  n=16000
+Checking for approximately radial dependence over small variable groups...
+No clear radial structure detected.
+Checking for preferred origins / translation structure along axes...
+No strong translation structure detected.
+Checking for saturating / sigmoidal behaviour along coordinate axes...
+No clear saturating behaviour detected along single axes.
+Checking for near-constant directions (parameter-like variables)...
+No strongly parameter-like directions detected.
+Initial separability check with precision 0.1
+symb: [0, 1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Trying transformation identity
+Median of model: 0.10519632803297202, median absolute deviation: 0.06724321760934898, precision: 0.1, 0.1
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=1.79e-02
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=1.92e-02
+  overlapping candidate: x[0, 2] + x[1, 2], shared=1, max-metric=5.41e-02
+Found separability candidate separability for op identity, 0
+
+Trying transformation square
+Median of model: 0.011066267431620655, median absolute deviation: 0.010204671206529617, precision: 0.1, 0.1
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=3.02e-02
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=6.43e-02
+Found separability candidate separability for op square, 1
+
+Trying transformation reciprocal
+Median of model: 9.502795835482281, median absolute deviation: 6.053825179496727, precision: 0.1, 0.1
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=7.63e-03
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=1.69e-02
+  overlapping candidate: x[0, 2] + x[1, 2], shared=1, max-metric=5.11e-02
+Found separability candidate separability for op reciprocal, 2
+
+Trying transformation sqrt
+Median of model: 0.32433983417547096, median absolute deviation: 0.11561258567562388, precision: 0.1, 0.1
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=7.97e-03
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=1.40e-02
+  overlapping candidate: x[0, 2] + x[1, 2], shared=1, max-metric=2.34e-02
+Found separability candidate separability for op sqrt, 3
+
+Recap:
+Transformation identity is a candidate for separability: True
+Transformation square is a candidate for separability: True
+Transformation reciprocal is a candidate for separability: True
+Transformation sqrt is a candidate for separability: True
+
+Initial fit suggests separability candidates for y_op None.
+
+======================================================================
+  [Stage A] SEPARABILITY SEARCH
+======================================================================
+All multiplicative for x[0], complement x[1, 2] (in NN[0, 1, 2])
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=4.74e-03
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=8.91e-03
+[Variable Extension] Detecting compound structure for NN[0, 1, 2]...
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=720, output_major=False, id=5323428320, primary=base_model
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=720, output_major=False, id=5323428320, primary=base_model
+[nestynet.optimizer] [LM] num_params: 720
+[LM][bucket] solving P=720 (trivially separable union)
+[nestynet.optimizer] [LM] Iter 0, chisq: 1588.2468825568928, improvement: 16577.988271122987, val-set chisq: 1568.4947081792511, nacc: 1, nacc_lin: 0, skipped_Quad: 0, acc_frac: 1.0, lambda: 33.333333333333336, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 100, chisq: 2.646342977609224e-07, improvement: 1588.2468822922585, val-set chisq: 3.5263517429681753e-07, nacc: 70, nacc_lin: 69, skipped_Quad: 0, acc_frac: 0.69, lambda: 5.580891235628568e-10, lbfgs: 1
+[nestynet.optimizer] [LM] Iter 200, chisq: 1.0046466336517716e-07, improvement: 1.6416963439574524e-07, val-set chisq: 1.7183940702045084e-07, nacc: 129, nacc_lin: 128, skipped_Quad: 0, acc_frac: 0.59, lambda: 1.796055315481681e-09, lbfgs: 1
+[nestynet.optimizer] [LM] Iter 300, chisq: 6.105897604103549e-08, improvement: 3.9405687324141673e-08, val-set chisq: 1.272918638638929e-07, nacc: 188, nacc_lin: 152, skipped_Quad: 15, acc_frac: 0.59, lambda: 5.7801067250268346e-09, lbfgs: 1
+[nestynet.optimizer] [LM] Iter 400, chisq: 6.030670269652656e-08, improvement: 7.52273344508923e-10, val-set chisq: 1.261818633132495e-07, nacc: 247, nacc_lin: 152, skipped_Quad: 40, acc_frac: 0.59, lambda: 1.8601673046879603e-08, lbfgs: 1
+[nestynet.optimizer] [LM] Convergence achieved: chisq improvement (7.522733e-10) < tolerance (1.000000e-08); halting.
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:540: RuntimeWarning: divide by zero encountered in matmul
+  fields = x @ A_phys.T + b_phys
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:540: RuntimeWarning: overflow encountered in matmul
+  fields = x @ A_phys.T + b_phys
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:540: RuntimeWarning: invalid value encountered in matmul
+  fields = x @ A_phys.T + b_phys
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:238: RuntimeWarning: divide by zero encountered in matmul
+  col_residuals = np.linalg.norm(D_train @ basis, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:238: RuntimeWarning: overflow encountered in matmul
+  col_residuals = np.linalg.norm(D_train @ basis, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:238: RuntimeWarning: invalid value encountered in matmul
+  col_residuals = np.linalg.norm(D_train @ basis, axis=0)
+[Stage A GS] audited=29, accepted=4, proposals=0
+    [x1] reciprocal probe (negative-k singularity detected)
+    [x1] reciprocal: rel_std=0.1421>0.08, no gradient fallback available
+  [Trig Scaling] Sampled 5000 points, probing 3 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=1.273e-02)
+  [Trig Scaling] x0: no viable ω candidates (span=43)
+  [Trig Scaling] x1: no viable ω candidates (span=204)
+  [Trig Scaling] x2: no viable ω candidates (span=181)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_core/separability_math.py:2778: RuntimeWarning: divide by zero encountered in matmul
+  coeff = (V @ a_vec) / den
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_core/separability_math.py:2778: RuntimeWarning: overflow encountered in matmul
+  coeff = (V @ a_vec) / den
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_core/separability_math.py:2778: RuntimeWarning: invalid value encountered in matmul
+  coeff = (V @ a_vec) / den
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-3) * x2) with extra x0
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-3) * x2) with extra x1
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-3) * x2) with extra x2
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-4) * x2) with extra x0
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-4) * x2) with extra x1
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-4) * x2) with extra x2
+[Compound DiffProd] Gradient-ratio found x1^1 - x2^1, ratio_conf=0.880, trying multiplier variables...
+[Compound DiffProd] Testing (x1^1 - x2^1) * x0: conf=0.4094, threshold=0.90, outer_power=0
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x1 * (x2)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x1 * (x2)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x2 * (x1)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x2 * (x1)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Compound Exhaustion] High-confidence proposal (conf=0.981), trying...
+[Compound] Preserving 6 arity-2 backup proposal(s) beyond primary compound shortlist.
+[Compound] Normalized proposal shortlist:
+[Compound]   1. kind=monomial, conf=0.912, support=3, z=((x0 * (x1)**-3) * x2)
+[Compound]   2. kind=monomial, conf=0.909, support=3, z=((x0 * (x1)**-4) * x2)
+[Compound]   3. kind=monomial, conf=0.908, support=3, z=((x0 * (x1)**-3) * x2)
+[Compound]   4. kind=monomial, conf=0.908, support=3, z=((x0 * (x1)**-3) * x2)
+[Compound]   5. kind=monomial, conf=0.908, support=3, z=((x0 * (x1)**-3) * x2)
+[Compound]   6. kind=monomial, conf=0.905, support=3, z=((x0 * (x1)**-4) * x2)
+[Compound]   7. kind=monomial, conf=0.981, support=2, z=(x1 * (x2)**-1)
+[Compound]   8. kind=monomial, conf=0.932, support=2, z=(x1 * (x2)**-1)
+[Compound]   9. kind=monomial, conf=0.899, support=2, z=(x0 * x2)
+[Compound]   10. kind=monomial, conf=0.899, support=2, z=(x0 * (x1)**-3)
+[Compound]   11. kind=monomial, conf=0.899, support=2, z=((x1)**-3 * x2)
+[Compound]   12. kind=monomial, conf=0.896, support=2, z=(x0 * (x1)**-4)
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound before screening: compound reduces dimensional rank: 2 -> 1; remaining variables cannot span output dimension
+[Units/Buckingham] Skipping compound before screening: compound reduces dimensional rank: 2 -> 1; remaining variables cannot span output dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+Checking separability of None(y) in input space with precision 0.001
+All multiplicative for x[0], complement x[1, 2] (in NN[0, 1, 2])
+Setting number of segments: 16 (variant: no_offset)
+[Teacher init] Training left factor on 2000 profile samples...
+[Teacher init] Left factor trained, final loss: 3.210e-01
+[Teacher init] Training right factor on 2000 profile samples...
+[Teacher init] Right factor trained, final loss: 5.031e+02
+[Teacher init] Scale check: left_rms=7.936e-01, right_rms=2.245e+01, ratio=28.29
+[rescale_leaf] left: leaf type=DualSegmentedAdaptor, factor=5.3191
+[rescale_leaf] left: scaled a_fit via base_model
+[rescale_leaf] left: scaled a_pieces_fixed[15] via base_model
+[rescale_leaf] right: leaf type=DualSegmentedAdaptor, factor=0.1880
+[rescale_leaf] right: scaled a_fit via base_model
+[rescale_leaf] right: scaled a_pieces_fixed[15] via base_model
+[Teacher init] Final gauge norm: left x5.32, right x0.19
+***Training candidate separable model (variant: no_offset)***, acceptance threshold (raw) 7.8424e-05 (base 1.0000e-03)
+    Proposed: (NN[x0] * NN[x1, x2])
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1024 (trivially separable union)
+[trial] Stopping at epoch 601/2500, lm_opt.state['halt']=True, loss=7.9752e-11, loss_val=6.7458e-07
+[32mAccepted[0m separation (variant: no_offset), val-loss 6.7458e-07
+[Stage A]   Current: [35mIdentity()(nn0(x0) * nn1(x1, x2))[0m
+[Shadow] pruned stale coordinate evidence after separation: parents=1, shadows=4, consumed=0
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:2 (full), number of leaves: 2, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() ((NN[x0] * NN[x1, x2])), parameters: 1024
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 1/2500, lm_opt.state['halt']=True, loss=7.9751e-11, loss_val=6.7457e-07
+acceptable losses (raw) target=4.5217e-10, acceptable=4.5217e-06 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+[32mADOPTING[0m best val-loss 6.7457e-07 (trial 1/1, dual_layer=True)
+
+======================================================================
+  [Stage A] SEPARABILITY SEARCH — restart (pass 2)
+======================================================================
+All additive for x[1], complement x[2] (in NN[1, 2])
+[Stage A Monomial] Trying monomial_deg1 on NN[0] as rpoly (k≈0.333, rel=1.58e-05); accept_threshold=6.7457e-05
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 431/1920 cross-segment channel pairs exceed |cos|>0.95 (worst seg 1/out 0 ↔ seg 14/out 3 |cos|=1.0000). Grouped segment pairs: 0/120 exceed |cos|>0.95 (worst seg 3 ↔ seg 11 |cos|=0.9095). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=2), so channel-level directional crowding can appear before whole segments overlap.[0m
+[LM][bucket] solving P=640 (trivially separable union)
+[trial] Validation patience exceeded at epoch 501/2500, nval_worse=500
+[Variable Extension] Detecting compound structure for NN[1, 2]...
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (G_Model, segments=48, outputs=1, seg_width=2): 21/1128 cross-segment channel pairs exceed |cos|>0.95 (worst seg 5/out 0 ↔ seg 37/out 0 |cos|=0.9930). Grouped segment pairs: 21/1128 exceed |cos|>0.95 (worst seg 5 ↔ seg 37 |cos|=0.9930). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=4), so channel-level directional crowding can appear before whole segments overlap.[0m
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=384, output_major=False, id=5336134704, primary=base_model
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=384, output_major=False, id=5336134704, primary=base_model
+[nestynet.optimizer] [LM] num_params: 384
+[LM][bucket] solving P=384 (trivially separable union)
+[nestynet.optimizer] [LM] Iter 0, chisq: 1621.2703412876458, improvement: 9583.082707389063, val-set chisq: 1648.7690163222533, nacc: 1, nacc_lin: 0, skipped_Quad: 0, acc_frac: 1.0, lambda: 33.333333333333336, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 100, chisq: 2.5898674608273844e-06, improvement: 1621.2703386977782, val-set chisq: 2.0149658044360024e-06, nacc: 69, nacc_lin: 68, skipped_Quad: 0, acc_frac: 0.68, lambda: 2.7904456178142827e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 200, chisq: 1.0031860116618975e-06, improvement: 1.5866814491654869e-06, val-set chisq: 9.558258031123656e-07, nacc: 127, nacc_lin: 86, skipped_Quad: 10, acc_frac: 0.58, lambda: 1.3470414866112604e-07, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 300, chisq: 7.708184483781909e-07, improvement: 2.3236756328370665e-07, val-set chisq: 7.521661205339089e-07, nacc: 187, nacc_lin: 86, skipped_Quad: 50, acc_frac: 0.6, lambda: 2.8900533625134166e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 400, chisq: 6.507420347698608e-07, improvement: 1.2007641360833007e-07, val-set chisq: 6.306764250489126e-07, nacc: 246, nacc_lin: 86, skipped_Quad: 60, acc_frac: 0.59, lambda: 9.300836523439806e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 500, chisq: 5.633722187450305e-07, improvement: 8.736981602483034e-08, val-set chisq: 5.463216637561978e-07, nacc: 306, nacc_lin: 86, skipped_Quad: 80, acc_frac: 0.6, lambda: 1.9954778034621897e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 600, chisq: 4.271112788502807e-07, improvement: 1.362609398947498e-07, val-set chisq: 4.135448116010254e-07, nacc: 365, nacc_lin: 86, skipped_Quad: 132, acc_frac: 0.59, lambda: 6.42189278471096e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 700, chisq: 3.564163072458494e-07, improvement: 7.069497160443126e-08, val-set chisq: 3.459602055893887e-07, nacc: 425, nacc_lin: 86, skipped_Quad: 167, acc_frac: 0.6, lambda: 1.377805585100781e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Maximum iterations reached (800); halting.
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:630: RuntimeWarning: divide by zero encountered in matmul
+  col_residuals = np.linalg.norm(D[idx] @ basis_b, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:630: RuntimeWarning: overflow encountered in matmul
+  col_residuals = np.linalg.norm(D[idx] @ basis_b, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:630: RuntimeWarning: invalid value encountered in matmul
+  col_residuals = np.linalg.norm(D[idx] @ basis_b, axis=0)
+[Stage A GS] audited=13, accepted=3, proposals=1
+    [x0] reciprocal probe (negative-k singularity detected)
+    [x0] reciprocal: rel_std=0.3429>0.08, no gradient fallback available
+  [Trig Scaling] Sampled 5000 points, probing 2 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=9.609e-04)
+  [Trig Scaling] x0: no viable ω candidates (span=204)
+  [Trig Scaling] x1: no viable ω candidates (span=181)
+[Compound LogDeriv] Recovered 1 proposal(s) (sigma_ratio=0.0030032919053736384) for vars=(1, 2)
+[Compound RetainAxis] Adding wrapper z=(x1 * (x2)**-1) with extra x1
+[Compound RetainAxis] Adding wrapper z=(x1 * (x2)**-1) with extra x2
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x2 * (x1)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x2 * (x1)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Compound Exhaustion] High-confidence proposal (conf=0.997), trying...
+[Compound] Normalized proposal shortlist:
+[Compound]   1. kind=monomial, conf=0.997, support=2, z=(x1 * (x2)**-1)
+[Compound]   2. kind=linear, conf=0.937, support=2, z=((-2 * x1) + x2)
+[Compound]   3. kind=gs_promoted_reduction, conf=0.578, support=2, z=((-0.798389 * x1) + (0.602142 * x2))
+[Compound]   4. kind=monomial, conf=0.992, support=2, z=(x1 * (x2)**-1)
+[Compound]   5. kind=monomial, conf=0.992, support=2, z=(x1 * (x2)**-1)
+[Units/Buckingham] Skipping compound before screening: compound reduces dimensional rank: 1 -> 0; remaining variables cannot span output dimension
+[Compound] 1D compound detected (all vars in z), boosting segments to 32
+[Compound] Proposal (linear) conf 0.937, screen=0.994; trying sq:(((-2 * x1) + x2))**2
+[Distill] epoch 1/2000: loss=9.4318e+10
+[Distill] epoch 1000/2000: loss=2.3792e+00
+[Distill] epoch 2000/2000: loss=4.7418e+01
+[Distill] Final: loss=4.7418e+01 (did not converge below 1.0000e-04)
+[Compound] Training candidate (sq); accept_threshold=6.7457e-05
+[Compound] Structural arity reduction target enabled: arity signature (1, 2, 1) → (0, 1, 0), target-quality threshold 6.7457e-05
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1152 (trivially separable union)
+[trial] Validation patience exceeded at epoch 601/2500, nval_worse=500
+[Compound] Rejected (sq) (linear) z=(((-2 * x1) + x2))**2, val-loss 4.5292e-02
+[Compound] Proposal (linear) conf 0.937, screen=0.994; trying abs:sqrt((((-2 * x1) + x2))**2)
+[Distill] epoch 1/2000: loss=1.3598e+07
+[Distill] epoch 1000/2000: loss=1.5425e+00
+[Distill] epoch 2000/2000: loss=1.1880e+00
+[Distill] Final: loss=1.1880e+00 (did not converge below 1.0000e-04)
+[Compound] Training candidate (abs); accept_threshold=6.7457e-05
+[Compound] Structural arity reduction target enabled: arity signature (1, 2, 1) → (0, 1, 0), target-quality threshold 6.7457e-05
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[trial] Validation patience exceeded at epoch 1001/2500, nval_worse=500
+[Compound] Rejected (abs) (linear) z=sqrt((((-2 * x1) + x2))**2), val-loss 4.5047e-02
+[Compound] Proposal (linear) conf 0.937, screen=0.994; trying z:((-2 * x1) + x2)
+[Distill] epoch 1/2000: loss=1.7777e+08
+[Distill] epoch 1000/2000: loss=1.4682e+03
+[Distill] epoch 2000/2000: loss=1.9425e+00
+[Distill] Final: loss=1.9425e+00 (did not converge below 1.0000e-04)
+[Compound] Training candidate (z); accept_threshold=6.7457e-05
+[Compound] Structural arity reduction target enabled: arity signature (1, 2, 1) → (0, 1, 0), target-quality threshold 6.7457e-05
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[trial] Validation patience exceeded at epoch 801/2500, nval_worse=500
+[Compound] Rejected (z) (linear) z=((-2 * x1) + x2), val-loss 4.4536e-02
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; could not infer target dimension
+[Compound] Trying same-arity wrapper: arity 2 → 2; will require confirmed separability payoff
+[Compound] Proposal (monomial) conf 0.992; trying z:(x1 * (x2)**-1), extras=[1]
+[Distill] epoch 1/2000: loss=1.7453e+06
+[Distill] epoch 1000/2000: loss=4.0185e+00
+[Distill] epoch 2000/2000: loss=1.2871e+00
+[Distill] Final: loss=1.2871e+00 (did not converge below 1.0000e-04)
+[Compound] Training candidate (z); accept_threshold=6.7457e-05
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1024 (trivially separable union)
+[trial] Stopping at epoch 301/2500, lm_opt.state['halt']=True, loss=1.2365e-10, loss_val=2.4548e-05
+[32m[Compound] LM fit passed[0m (z) (monomial) z=(x1 * (x2)**-1), val-loss 2.4548e-05
+All multiplicative for x['z'], complement x[1] (in NN['z', 1])
+All additive for x['z'], complement x[1] (in NN['z', 1])
+[Compound] Wrapper z enables separability (z separates from extras)
+[Compound] Retained-axis overlap confirmed for x1: retained-axis power-like factor k=-0.6667, rel_std=0.0002781, n=5000
+[Compound] Skipping rat_inv (redundant: z already accepted)
+[Compound] Skipping rat_z2 (redundant: z already accepted)
+[32m[Compound] Selected[0m best variant (z) (monomial) z=(x1 * (x2)**-1) (pattern=(1, -1)), val-loss 2.4548e-05
+[Stage A]   Current: [35mIdentity()(nn0(x0) * nn1(z=(x1 * x2^-1), x1))[0m
+[Stage A Monomial] Trying monomial_deg1 on NN[0] as rpoly (k≈0.333, rel=0.000103); accept_threshold=6.7457e-05
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 620/1920 cross-segment channel pairs exceed |cos|>0.95 (worst seg 10/out 1 ↔ seg 11/out 0 |cos|=1.0000). Grouped segment pairs: 0/120 exceed |cos|>0.95 (worst seg 2 ↔ seg 5 |cos|=0.9324). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=2), so channel-level directional crowding can appear before whole segments overlap.[0m
+[LM][bucket] solving P=640 (trivially separable union)
+[trial] Validation patience exceeded at epoch 901/2500, nval_worse=500
+All multiplicative for x['z'], complement x[1] (in NN['z', 1])
+All additive for x['z'], complement x[1] (in NN['z', 1])
+[Compound] Existing compound separates from extras [1], but checking only extensions that consume the separated coordinate.
+[Variable Extension] Checking iterative extension for compound atom NN[1, 2]...
+    [x0] reciprocal probe (negative-k singularity detected)
+    [x0] reciprocal: ratio test failed (n_valid_k=0<100), no gradient fallback
+    [x1] reciprocal probe (negative-k singularity detected)
+  [Trig Scaling] Sampled 5000 points, probing 2 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=9.025e-03)
+  [Trig Scaling] x0: span=0.389, 15 ω candidates
+  [Trig Scaling] x0 ACCEPTED: sin(4·z)^0.790  rel_std=0.0687
+  [Trig Scaling] x1: no viable ω candidates (span=204)
+[Local Oracle] Fresh path: 1 scaling, 1 trig specs
+  [Local Oracle] x[1]: k≈-0.714, rel_std=0.0671
+  [Local Oracle] leaf z: sin, ω=4, k=0.79, rel_std=0.0687
+[Shadow] recorded sin((4 * (x1 * (x2)**-1))) for parent=('tag', 'A0_R') source=local_oracle_trig conf=0.931 unit=unit_valid
+[Mixed Compound] Local trig detection found: [(1, 'ω=0.06', 'str=111.9')]
+[Mixed Compound] FFT found trig specs but oracle disagrees; skipping trig proposals
+[Stage A LogExp] Shadowed dimless_input:log z=log((x1 * (x2)**-1)) (conf=0.900); coordinate lift is not committed in Stage A
+[Shadow] merged log((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_input:exp z=exp((x1 * (x2)**-1)) (conf=0.900); coordinate lift is not committed in Stage A
+[Shadow] merged exp((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Compound Exhaustion] High-confidence proposal (conf=0.900), trying...
+[Compound] Normalized proposal shortlist:
+[Compound]   1. kind=passthrough, conf=0.900, support=1, z=(x1 * (x2)**-1)
+[Compound] Skipping proposal: raw extra(s) x1 already appear inside compound (x1 * (x2)**-1); overlap coordinate splits are Stage-A gauge moves, not confirmed simplifications
+Checking separability of None(y) in input space with precision 0.001
+All multiplicative for x['z'], complement x[1] (in NN['z', 1])
+Setting number of segments: 16 (variant: no_offset)
+[Teacher init] Training left factor on 2000 profile samples...
+[Teacher init] Left factor trained, final loss: 8.442e-01
+[Teacher init] Training right factor on 2000 profile samples...
+[Teacher init] Right factor trained, final loss: 2.075e+02
+[Teacher init] Scale check: left_rms=9.527e-01, right_rms=1.440e+01, ratio=15.11
+[rescale_leaf] left: leaf type=DualSegmentedAdaptor, factor=3.8871
+[rescale_leaf] left: scaled a_fit via base_model
+[rescale_leaf] left: scaled a_pieces_fixed[15] via base_model
+[rescale_leaf] right: leaf type=DualSegmentedAdaptor, factor=0.2573
+[rescale_leaf] right: scaled a_fit via base_model
+[rescale_leaf] right: scaled a_pieces_fixed[15] via base_model
+[Teacher init] Final gauge norm: left x3.89, right x0.26
+***Training candidate separable model (variant: no_offset)***, acceptance threshold (raw) 6.7457e-05 (base 1.0000e-03)
+    Proposed: (NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1152 (trivially separable union)
+[trial] Stopping at epoch 701/2500, lm_opt.state['halt']=True, loss=3.8344e-09, loss_val=9.0181e-05
+Rejected separation (variant: no_offset), val-loss 9.0181e-05
+Setting number of segments: 16 (variant: no_offset)
+[Teacher init] Training left factor on 2000 profile samples...
+[Teacher init] Left factor trained, final loss: 1.125e+00
+[Teacher init] Training right factor on 2000 profile samples...
+[Teacher init] Right factor trained, final loss: 2.583e+01
+[Teacher init] Scale check: left_rms=1.097e+00, right_rms=5.057e+00, ratio=4.61
+[rescale_leaf] left: leaf type=DualSegmentedAdaptor, factor=2.1471
+[rescale_leaf] left: scaled a_fit via base_model
+[rescale_leaf] left: scaled a_pieces_fixed[15] via base_model
+[rescale_leaf] right: leaf type=DualSegmentedAdaptor, factor=0.4658
+[rescale_leaf] right: scaled a_fit via base_model
+[rescale_leaf] right: scaled a_pieces_fixed[15] via base_model
+[Teacher init] Final gauge norm: left x2.15, right x0.47
+***Training candidate separable model (variant: no_offset)***, acceptance threshold (raw) 6.7457e-05 (base 1.0000e-03)
+    Proposed: (NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[trial] Stopping at epoch 301/2500, lm_opt.state['halt']=True, loss=1.5013e-11, loss_val=5.1318e-05
+[32mAccepted[0m separation (variant: no_offset), val-loss 5.1318e-05
+[Stage A]   Current: [35mIdentity()(nn0(x0) * nn1(z=(x1 * x2^-1)) * nn2(x1))[0m
+[Shadow] pruned stale coordinate evidence after separation: parents=1, shadows=5, consumed=0
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:3 (full), number of leaves: 3, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() ((NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))), parameters: 1152
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 1/2500, lm_opt.state['halt']=True, loss=1.4943e-11, loss_val=5.1319e-05
+acceptable losses (raw) target=4.5217e-10, acceptable=4.5217e-06 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+Trial 1/1 with dual_layer=True [31mfailed[0m. best_val_loss=5.1319e-05 >= acceptable_raw=4.5217e-06
+Failed to fit model after 1 trials.
+[33m[Stage A] Full-refit failed after pending compound transaction (severe); rolling back structural move(s).[0m
+[33m[Stage A] Ending Stage A after rolling back the rejected compound transaction to avoid recommitting the same scaffold.[0m
+[Units] Stage A summary (identity): skipped 14 unit-incompatible proposal(s).
+[Units]   - compound_buckingham: 14
+[Units]       10× compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units]       2× compound reduces dimensional rank: 2 -> 1; remaining variables cannot span output dimension
+[Units]       1× compound reduces dimensional rank: 1 -> 0; remaining variables cannot span output dimension
+[Units]       1× compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; could not infer target dimension
+[Reference] Saved pre-separability model to <WORKSPACE>/NestyNet_SR/results_ref/jacobi_v1_full.mod
+[Stage A] Using identity separability results
+
+Saved Stage-A checkpoint to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.state.pkl
+[36mFinal model: Identity() ((NN[x0] * NN[x1, x2])), rest: None, None[0m
+[Stage B] y-transform adjudication shortlist:
+  - identity     source=baseline
+[Units] Enforcing units in Stage B (policy=free_const_only, y_transform=identity).
+
+======================================================================
+  [Stage B] ANALYTICAL REWRITING — identity(y)-space
+======================================================================
+
+
+Size of datasets: training: 20000, val: 4000
+[Stage B] Using MAD-normalised thresholds: MAD(y)≈0.0672, scale=0.00452
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1024 (trivially separable union)
+Stopping at epoch 1/2000, lm_opt.state['halt']=True, loss=7.9751e-11, loss_val=6.7457e-07
+
+[Stage B] Initial model: params=1024, val-loss=6.7457e-07
+[Stage B] Initial NN metrics: total=2, multivar=1, max_arity=2
+[Stage B] Found 3 scaling candidates:
+  axis 0: k≈0.333, rel_std=0.001, n=16000
+  joint [1,2]: k≈-0.667, rel_std=0.002, n=16000
+  joint [0,1,2]: k≈-0.333, rel_std=0.005, n=16000
+[Stage B] FFT trig-axis candidates (informational):
+[Stage B]   axis 2: omega≈0.052, strength=8670.4, span=[3.21,123]
+[Stage B]   axis 1: omega≈0.064, strength=1913.5, span=[2.97,101]
+[Stage B]   axis 0: omega≈0.218, strength=104.9, span=[0.0201,28.8]
+  [Trig Scaling] Sampled 5000 points, probing 2 trivial + 0 compound target(s) (skipping axes [0] as polynomial)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=1.273e-02)
+  [Trig Scaling] x1: no viable ω candidates (span=204)
+  [Trig Scaling] x2: no viable ω candidates (span=181)
+[Stage B] Oracle trig probe found no trig
+[Stage B]   Separability rules: ['nonsense_units_zero_prune', 'monomial_peel_priority', 'subtree_separability', 'last_hard_trig_square', 'univariate_nn', 'log_ratio', 'power_product', 'joint_product_monomial_closure', 'overlap_prefactor_peel', 'overlap_counterterm_peel', 'common_prefactor', 'additive_gauge_transfer', 'multiplicative_homogeneity_transfer', 'univariate_mono', 'nn_leaf_separability', 'counterterm_mul_split', 'counterfactor_add_split']
+[Stage B]   Specialized rules: ['compound_fn_macros', 'inverse_trig_outer_rational_closure', 'monomial_prefactor_compound', 'compound_planck', 'affine_decomp', 'nonlinear_substitution', 'univariate_oracle_invariants', 'homogeneity_peel', 'product_homogeneity', 'ratio_invariance', 'coupled_leaf_ratio', 'metric_distance', 'inverse_trig_outer_closure', 'phase_hint_trig_closure', 'phase_hint_reciprocal_trig_power', 'phase_context_trig_closure', 'barycentric', 'logexp_compound', 'r1_operator_certificate', 'univariate_mul_peel', 'outer_transform_split_nn', 'multid_nn', 'poly_split', 'preconditioner_fallback_nn', 'last_hard_trig_power', 'last_hard_atom_rescue']
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 1 targets
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1)]
+[Stage B] monomial_peel_priority shortlist: monomial_pow1_3@nn#leaf0 vars=(0,) (k=0.333, rel=1.58e-05); monomial_deg1[z_inv]@nn#leaf0 vars=(0,) (k=0.333, rel=1.58e-05); monomial_deg2[z_inv]@nn#leaf0 vars=(0,) (k=0.333, rel=1.58e-05); monomial_deg3[z_inv]@nn#leaf0 vars=(0,) (k=0.333, rel=1.58e-05)
+[Stage B] Rule monomial_peel_priority trying 4 globally ranked candidates
+[Stage B]  Greedy order (1 cands): monomial_pow1_3(999p)
+[Stage B]  Priority trying fixed third-power monomial (z^0.333, k≈0.333, rel=1.58e-05) on NN leaf vars (0,)
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 431/1920 cross-segment channel pairs exceed |cos|>0.95 (worst seg 1/out 0 ↔ seg 14/out 3 |cos|=1.0000). Grouped segment pairs: 0/120 exceed |cos|>0.95 (worst seg 3 ↔ seg 11 |cos|=0.9095). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=2), so channel-level directional crowding can appear before whole segments overlap.[0m
+[LM][bucket] solving P=640 (trivially separable union)
+Stopping at epoch 201/2000, lm_opt.state['halt']=True, loss=1.6445e-13, loss_val=3.6148e-08
+[Stage B]    Candidate (monomial_pow1_3): params=640, val-loss=3.6148e-08
+[Stage B]    [32mAccepted[0m rewrite (monomial_pow1_3, better-loss)
+[Stage B]    NN metrics: total=1, multivar=1, max_arity=2
+[Stage B]    Current: [35mx0^0.33 * nn0(x1, x2)[0m
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 0 targets
+[Stage B] Rule subtree_separability found 0 targets
+[Stage B] Rule last_hard_trig_square found 0 targets
+[Stage B] Rule univariate_nn found 0 targets
+[Stage B] Rule log_ratio found 0 targets
+[Stage B] Rule power_product found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]  power_product probe on NN vars=(1, 2): R²_log=0.999971, exponents=['-0.94', '0.27']
+[Stage B]  Greedy order (1 cands): power_product(1p)
+[Stage B]  Trying power_product on NN vars=(1, 2): exponents=['-0.94', '0.27'], R²_log=0.999971, c≈0.6951
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.367e-03, max: 2.022e+00, mean: 1.875e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.282e-03, max: 1.721e+00, mean: 1.981e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.412e-03, max: 1.371e+00, mean: 1.725e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.810e-02, true_median=9.826e-02, ratio=9.984e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 53
+Stopping at epoch 54/2000, lm_opt.state['halt']=True, loss=3.4825e-04, loss_val=5.6516e-03
+[Stage B]    Candidate (power_product): params=1, val-loss=5.6516e-03
+[Stage B]    Reject (power_product): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->5.652e-03 (Δ+5.65e-03) | params 640->1 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B] Rule joint_product_monomial_closure found 0 targets
+[Stage B] Rule overlap_prefactor_peel found 0 targets
+[Stage B] Rule overlap_counterterm_peel found 0 targets
+[Stage B] Rule common_prefactor found 0 targets
+[Stage B] Rule additive_gauge_transfer found 0 targets
+[Stage B] Rule multiplicative_homogeneity_transfer found 0 targets
+[Stage B] Rule univariate_mono found 0 targets
+[Stage B] Rule nn_leaf_separability found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[SubtreeSeparability] called on _SubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: 0.12041722774432001, median absolute deviation: 0.055779503506473815
+There is no multiplicativity (in NN[1, 2])
+[SubtreeSeparability] called on _OuterTransformedSubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: 0.014500308737627433, median absolute deviation: 0.011363630515696617
+There is no multiplicativity (in NN[1, 2])
+[SubtreeSeparability] called on _OuterTransformedSubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: -2.1167926687660588, median absolute deviation: 0.4808213193667703
+There is no multiplicativity (in NN[1, 2])
+[SubtreeSeparability] called on _OuterTransformedSubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: 0.3470118553368458, median absolute deviation: 0.08345981289873333
+There is no multiplicativity (in NN[1, 2])
+[SubtreeSeparability] called on _OuterTransformedSubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: 0.12071015770418117, median absolute deviation: 0.056179063232835946
+There is no multiplicativity (in NN[1, 2])
+[Stage B]  Greedy order (4 cands): nn_leaf_separability(1998p), nn_leaf_separability_sq(1998p), nn_leaf_separability_sqrt(1998p), nn_leaf_separability_arcsin(1998p)
+[Stage B]  Trying separability split on NN vars=(1, 2)
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=768 (trivially separable union)
+Validation patience exceeded at epoch 801/2000, nval_worse=500
+[Stage B]    Candidate (nn_leaf_separability): params=768, val-loss=1.9621e-03
+[Stage B]    Reject (nn_leaf_separability): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->1.962e-03 (Δ+1.96e-03) | params 640->768 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  NN-leaf separability split under square() vars=(1, 2)
+[transform_init] _adam_fit(L([1])): initial_loss=4.994e+06, final_loss=5.044e+02 after 80 steps
+[transform_init] _adam_fit(R([2])): initial_loss=1.143e+04, final_loss=1.356e+01 after 80 steps
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 2.389e-07, max: 1.511e+01, mean: 1.145e+00
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 2.393e-07, max: 1.651e+01, mean: 1.106e+00
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 2.404e-07, max: 1.948e+01, mean: 1.607e+00
+[Stage B] Prediction scale check (attempt 0): pred_median=1.851e-06, true_median=9.826e-02, ratio=1.884e-05
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (nn_leaf_separability_sq) rejected at init (non-finite loss); trying next.
+[Stage B]  NN-leaf separability split under sqrt() vars=(1, 2)
+[transform_init] _adam_fit(L([1])): initial_loss=7.063e+05, final_loss=9.841e+01 after 80 steps
+[transform_init] _adam_fit(R([2])): initial_loss=8.639e+06, final_loss=6.286e+02 after 80 steps
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 1.172e-05, max: 2.351e+06, mean: 9.647e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 3.528e-08, max: 2.442e+06, mean: 1.039e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 4.810e-04, max: 2.749e+06, mean: 1.267e+05
+[Stage B] Prediction scale check (attempt 0): pred_median=1.365e+04, true_median=9.826e-02, ratio=1.390e+05
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (nn_leaf_separability_sqrt) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=nn_leaf_separability cand=nn_leaf_separability_arcsin target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B] Rule counterterm_mul_split found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B] Probing counterterm mul split on NN vars=(1, 2)
+[counterterm] Gathered 4096 points for NN vars=(1, 2) (m=2)
+[counterterm] Trying 1 partitions (of 1 total) with progressive variants (sparse first; A_only, B_only, both) = 8 dense fits
+[counterterm]   New best (A_only_sparse_p+1): A=[0], B=[1], rel_err=1.0000e+00
+[counterterm]   New best (A_only_sparse_p-1): A=[0], B=[1], rel_err=6.3244e-01
+[counterterm]   New best (A_only_sparse_p-2): A=[0], B=[1], rel_err=6.1991e-01
+[counterterm]   New best (B_only_sparse_p+1): A=[0], B=[1], rel_err=7.3449e-02
+[counterterm] Sparse probe summary: tried=8, finite=8, tol=2.000e-02
+[counterterm]   sparse B_only_sparse_p+1: A=[0], B=[1], rel_err=7.3449e-02
+[counterterm]   sparse B_only_sparse_p+2: A=[0], B=[1], rel_err=3.3579e-01
+[counterterm]   sparse B_only_sparse_p-1: A=[0], B=[1], rel_err=3.6175e-01
+[counterterm]   sparse B_only_sparse_p-2: A=[0], B=[1], rel_err=5.7978e-01
+[counterterm]   sparse A_only_sparse_p-2: A=[0], B=[1], rel_err=6.1991e-01
+[counterterm]   New best (both_Ainv_deg3_3): A=[0], B=[1], rel_err=7.1644e-02
+[counterterm] Tried 28 fits, 28 succeeded
+[counterterm] Best rel_err=7.1644e-02 > tol=2.0000e-02, rejecting
+[Stage B] Rule counterfactor_add_split found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B] Probing counterfactor add split on NN vars=(1, 2)
+[Stage B]  Greedy order (1 cands): counterfactor_add_split(2003p)
+[Stage B]  Precheck reject (units: poly leaf with unitful inputs requires homogeneous basis (min_total=degree=1), but got min_total=0) rule=counterfactor_add_split cand=counterfactor_add_split target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 0 targets
+[Stage B] Rule subtree_separability found 0 targets
+[Stage B] Rule last_hard_trig_square found 0 targets
+[Stage B] Rule univariate_nn found 0 targets
+[Stage B] Rule log_ratio found 0 targets
+[Stage B] Rule power_product found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]  power_product probe on NN vars=(1, 2): R²_log=0.999971, exponents=['-0.94', '0.27']
+[Stage B]  Greedy order (1 cands): power_product(1p)
+[Stage B]  Skipping power_product (previously rejected on same target)
+[Stage B] Rule joint_product_monomial_closure found 0 targets
+[Stage B] Rule overlap_prefactor_peel found 0 targets
+[Stage B] Rule overlap_counterterm_peel found 0 targets
+[Stage B] Rule common_prefactor found 0 targets
+[Stage B] Rule additive_gauge_transfer found 0 targets
+[Stage B] Rule multiplicative_homogeneity_transfer found 0 targets
+[Stage B] Rule univariate_mono found 0 targets
+[Stage B] Rule nn_leaf_separability found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[SubtreeSeparability] called on _SubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: 0.12041722774432001, median absolute deviation: 0.055779503506473815
+There is no multiplicativity (in NN[1, 2])
+[SubtreeSeparability] called on _OuterTransformedSubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: 0.014500308737627433, median absolute deviation: 0.011363630515696617
+There is no multiplicativity (in NN[1, 2])
+[SubtreeSeparability] called on _OuterTransformedSubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: -2.1167926687660588, median absolute deviation: 0.4808213193667703
+There is no multiplicativity (in NN[1, 2])
+[SubtreeSeparability] called on _OuterTransformedSubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: 0.3470118553368458, median absolute deviation: 0.08345981289873333
+There is no multiplicativity (in NN[1, 2])
+[SubtreeSeparability] called on _OuterTransformedSubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: 0.12071015770418117, median absolute deviation: 0.056179063232835946
+There is no multiplicativity (in NN[1, 2])
+[Stage B]  Greedy order (4 cands): nn_leaf_separability(1998p), nn_leaf_separability_sq(1998p), nn_leaf_separability_sqrt(1998p), nn_leaf_separability_arcsin(1998p)
+[Stage B]  Skipping nn_leaf_separability (previously rejected on same target)
+[Stage B]  NN-leaf separability split under square() vars=(1, 2)
+[transform_init] _adam_fit(L([1])): initial_loss=3.287e+06, final_loss=9.715e+01 after 80 steps
+[transform_init] _adam_fit(R([2])): initial_loss=3.993e+05, final_loss=3.010e+01 after 80 steps
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 2.389e-07, max: 6.556e+01, mean: 1.937e+00
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 2.390e-07, max: 5.832e+01, mean: 2.093e+00
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 2.391e-07, max: 4.512e+01, mean: 7.415e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.439e-06, true_median=9.826e-02, ratio=1.464e-05
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (nn_leaf_separability_sq) rejected at init (non-finite loss); trying next.
+[Stage B]  NN-leaf separability split under sqrt() vars=(1, 2)
+[transform_init] _adam_fit(L([1])): initial_loss=3.782e+07, final_loss=2.983e+03 after 80 steps
+[transform_init] _adam_fit(R([2])): initial_loss=2.798e+04, final_loss=3.962e+00 after 80 steps
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 7.455e-04, max: 8.342e+05, mean: 2.671e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 1.886e-04, max: 8.034e+05, mean: 3.111e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 1.213e-04, max: 7.819e+05, mean: 3.307e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=8.741e+02, true_median=9.826e-02, ratio=8.896e+03
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (nn_leaf_separability_sqrt) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=nn_leaf_separability cand=nn_leaf_separability_arcsin target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B] Rule counterterm_mul_split found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B] Probing counterterm mul split on NN vars=(1, 2)
+[counterterm] Gathered 4096 points for NN vars=(1, 2) (m=2)
+[counterterm] Trying 1 partitions (of 1 total) with progressive variants (sparse first; A_only, B_only, both) = 8 dense fits
+[counterterm]   New best (A_only_sparse_p+1): A=[0], B=[1], rel_err=1.0000e+00
+[counterterm]   New best (A_only_sparse_p-1): A=[0], B=[1], rel_err=6.3244e-01
+[counterterm]   New best (A_only_sparse_p-2): A=[0], B=[1], rel_err=6.1991e-01
+[counterterm]   New best (B_only_sparse_p+1): A=[0], B=[1], rel_err=7.3449e-02
+[counterterm] Sparse probe summary: tried=8, finite=8, tol=2.000e-02
+[counterterm]   sparse B_only_sparse_p+1: A=[0], B=[1], rel_err=7.3449e-02
+[counterterm]   sparse B_only_sparse_p+2: A=[0], B=[1], rel_err=3.3579e-01
+[counterterm]   sparse B_only_sparse_p-1: A=[0], B=[1], rel_err=3.6175e-01
+[counterterm]   sparse B_only_sparse_p-2: A=[0], B=[1], rel_err=5.7978e-01
+[counterterm]   sparse A_only_sparse_p-2: A=[0], B=[1], rel_err=6.1991e-01
+[counterterm]   New best (both_Ainv_deg3_3): A=[0], B=[1], rel_err=7.1644e-02
+[counterterm] Tried 28 fits, 28 succeeded
+[counterterm] Best rel_err=7.1644e-02 > tol=2.0000e-02, rejecting
+[Stage B] Rule counterfactor_add_split found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B] Probing counterfactor add split on NN vars=(1, 2)
+[Stage B]  Greedy order (1 cands): counterfactor_add_split(2003p)
+[Stage B]  Precheck reject (units: poly leaf with unitful inputs requires homogeneous basis (min_total=degree=1), but got min_total=0) rule=counterfactor_add_split cand=counterfactor_add_split target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B] === Phase 1 complete: No more separabilities found ===
+[Stage B] === Phase 2: Trying specialized patterns (after exhausting separability) ===
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]  Greedy order (10 cands): cf_combo(3p), cf_combo(2p), cf_combo(3p), cf_combo(2p), cf_combo(3p), cf_combo(2p), cf_combo(3p), cf_combo(2p), cf_combo(3p), cf_combo(2p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B] RuleAffineDecomposition: screening NN vars=(1, 2), tag=leaf1
+[Stage B] AffineDecomp[jacobi_v1_full]: no decomposition found for NN vars=(1, 2)
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B] Homogeneity degree--0.67 detected for NN vars=(1, 2): euler_residual=0.0000
+[Stage B] homogeneity_peel candidate: vars=(1, 2), power_dim=1, ratio_dim=0, degree=-0.67, score=0.0000, collapse=0.0001, mode=plain
+[Stage B] homogeneity_peel candidate: vars=(1, 2), power_dim=0, ratio_dim=1, degree=-0.67, score=0.0000, collapse=0.0005, mode=plain
+[Stage B]  Greedy order (2 cands): homogeneity_peel(999p), homogeneity_peel(999p)
+[Stage B]  Trying homogeneity_peel on nn#leaf1 vars=(1, 2)
+[Stage B] homogeneity_peel init: tag=leaf1_H_1_0, loss=4.1078e-01, epochs=1000
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -1.788e+00, max: 2.759e+00, mean: 1.677e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -1.578e+00, max: 3.018e+00, mean: 1.814e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -1.164e+00, max: 4.167e+00, mean: 4.995e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.399e-01, true_median=9.826e-02, ratio=1.424e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 1080/1080 cross-segment channel pairs exceed |cos|>0.95 (worst seg 1/out 0 ↔ seg 7/out 2 |cos|=1.0000). Grouped segment pairs: 5/120 exceed |cos|>0.95 (worst seg 4 ↔ seg 13 |cos|=0.9915). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=1), so channel-level directional crowding can appear before whole segments overlap.[0m
+[LM][bucket] solving P=384 (trivially separable union)
+Stopping at epoch 201/2000, lm_opt.state['halt']=True, loss=4.6979e-12, loss_val=1.9088e-05
+[Stage B]    Candidate (homogeneity_peel): params=384, val-loss=1.9088e-05
+[Stage B]    Reject (homogeneity_peel): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->1.909e-05 (Δ+1.91e-05) | params 640->384 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Skipping homogeneity_peel (previously rejected on same target)
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+symb: [1, 2], index: 0, var_x: torch.Size([4096, 3]), y_vals: torch.Size([4096, 1]), dydx_vals: torch.Size([4096, 1, 3]), d2ydx2_vals: torch.Size([4096, 1, 3, 3])
+Median of sub-model: 0.10737169892775922, median absolute deviation: 0.07118919099831589
+symb: [1, 2], index: 0, var_x: torch.Size([4096, 3]), y_vals: torch.Size([4096, 1]), dydx_vals: torch.Size([4096, 1, 3]), d2ydx2_vals: torch.Size([4096, 1, 3, 3])
+Median of sub-model: -2.2314586425471927, median absolute deviation: 0.8165881564293183
+There is no multiplicativity (in NN[1, 2])
+All additive for x[1], complement x[2] (in NN[1, 2])
+symb: [1, 2], index: 0, var_x: torch.Size([4096, 3]), y_vals: torch.Size([4096, 1]), dydx_vals: torch.Size([4096, 1, 3]), d2ydx2_vals: torch.Size([4096, 1, 3, 3])
+Median of sub-model: 0.3276762105001814, median absolute deviation: 0.1259125929324175
+There is no multiplicativity (in NN[1, 2])
+All additive for x[1], complement x[2] (in NN[1, 2])
+[Stage B]  Greedy order (5 cands): outer_identity_mul(1998p), outer_log_mul(1998p), outer_log_add(1998p), outer_sqrt_mul(1998p), outer_sqrt_add(1998p)
+[Stage B]  Outer-transform split: T=identity, op=*, vars (1, 2) -> (1,) | (2,) (domain_ok=1.00)
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=768 (trivially separable union)
+Validation patience exceeded at epoch 1501/2000, nval_worse=500
+[Stage B]    Candidate (outer_identity_mul): params=768, val-loss=1.9612e-03
+[Stage B]    Reject (outer_identity_mul): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->1.961e-03 (Δ+1.96e-03) | params 640->768 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=outer_transform_split_nn cand=outer_log_mul target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=outer_transform_split_nn cand=outer_log_add target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Outer-transform split: T=sqrt, op=*, vars (1, 2) -> (1,) | (2,) (domain_ok=1.00)
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 701/2000, nval_worse=500
+[Stage B]    Candidate (outer_sqrt_mul): params=768, val-loss=2.6756e-03
+[Stage B]    Reject (outer_sqrt_mul): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->2.676e-03 (Δ+2.68e-03) | params 640->768 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Outer-transform split: T=sqrt, op=+, vars (1, 2) -> (1,) | (2,) (domain_ok=1.00)
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 701/2000, nval_worse=500
+[Stage B]    Candidate (outer_sqrt_add): params=768, val-loss=2.2945e-03
+[Stage B]    Reject (outer_sqrt_add): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->2.294e-03 (Δ+2.29e-03) | params 640->768 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[GenAdd] X_group=(1,), Y_group=(2,), best_pair=(i=1, j=2), rel_res_x=6.18, rel_res_y=8.07, ok=False
+[Stage B] Phase3 transform-hint on NN vars (1, 2): best=recip, Δscore≈1.25 (domain=1.00)
+[Stage B] ratpoly degree probe: no dimensionally valid pairs found, falling back to unconstrained grid, vars=(1, 2)
+[Stage B] ratpoly probe: 12 sub-threshold trial(s) for vars=(1, 2): rratpoly deg=(3,3)->(2,0) nnz=(1,1) rms=0.0008, ratpoly deg=(1,2)->(1,2) nnz=(3,6) rms=0.0076, ratpoly deg=(2,1)->(2,1) nnz=(6,3) rms=0.0146, ratpoly deg=(2,2)->(2,2) nnz=(6,6) rms=0.0026, ratpoly deg=(1,3)->(1,3) nnz=(3,10) rms=0.0031, ratpoly deg=(3,1)->(3,1) nnz=(10,3) rms=0.0069, ratpoly deg=(1,4)->(1,4) nnz=(3,10) rms=0.0082, rratpoly deg=(2,4)->(2,4) nnz=(4,10) rms=0.0024, ratpoly deg=(2,3)->(2,3) nnz=(6,10) rms=0.0005, ratpoly deg=(3,2)->(3,2) nnz=(10,6) rms=0.0021, ratpoly deg=(3,4)->(3,4) nnz=(7,10) rms=0.0002, ratpoly deg=(4,3)->(4,3) nnz=(14,8) rms=0.0091
+[Stage B] inv_poly rejected: best rel_rms=2.4021 > 0.001, degree=1, vars=(1, 2)
+[Stage B]  Greedy order (24 cands): quad_poly(lazy), highdeg_poly(lazy), sqrt_ratpoly(lazy), sqrt_poly(lazy), ratpoly(2p), ratpoly[1](9p), ratpoly[2](9p), ratpoly[3](12p), ratpoly[4](13p), ratpoly[5](13p), ratpoly[6](13p), ratpoly[7](14p), ratpoly[8](16p), ratpoly[9](16p), ratpoly[10](17p), ratpoly[11](22p), affine_split(lazy), rat_linear(4p), symexp_denom_rat(28p), exp_branch(lazy), pure_exp_branch(lazy), log_poly(lazy), log_ratpoly(lazy), log_poly(lazy)
+[Stage B] sqrt_ratpoly candidate rejected: rms_rel(f^2)=inf%, rms_rel(1/f^2)=inf%, threshold=0.1%, vars=(1, 2)
+[Stage B]  Trying rratpoly deg=(3,3)->(2,0) nnz=(1,1) on leaf1 vars=(1, 2)
+[Stage B custom_init rratpoly] Init on vars (1, 2): degN=2, degD=0, probe_rms_rel≈0.000789
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 1.368e-06, max: 2.134e-01, mean: 8.365e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 1.201e-06, max: 2.147e-01, mean: 9.401e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 3.608e-06, max: 1.977e-01, mean: 7.796e-03
+[Stage B] Prediction scale check (attempt 0): pred_median=7.268e-04, true_median=9.826e-02, ratio=7.397e-03
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=2 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 50
+Stopping at epoch 51/2000, lm_opt.state['halt']=True, loss=6.4805e-02, loss_val=5.0016e-02
+[Stage B]    Candidate (ratpoly): params=2, val-loss=5.0016e-02
+[Stage B]    Reject (ratpoly): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->5.002e-02 (Δ+5.00e-02) | params 640->2 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(1,2)->(1,2) nnz=(3,6) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=1, degD=2, probe_rms_rel≈0.00765
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.391e-03, max: 1.858e+00, mean: 1.868e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.217e-03, max: 1.653e+00, mean: 1.974e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.464e-03, max: 1.367e+00, mean: 1.743e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.856e-02, true_median=9.826e-02, ratio=1.003e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=9 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 83
+Stopping at epoch 84/2000, lm_opt.state['halt']=True, loss=8.4399e-06, loss_val=2.5781e-04
+[Stage B]    Candidate (ratpoly[1]): params=9, val-loss=2.5781e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 4.935e-03, max: 2.822e-01, mean: 7.020e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 4.528e-03, max: 2.917e-01, mean: 7.342e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 5.986e-03, max: 3.127e-01, mean: 7.935e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=5.250e-02, true_median=9.826e-02, ratio=5.343e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=8 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 88
+Stopping at epoch 89/2000, lm_opt.state['halt']=True, loss=6.4823e-05, loss_val=2.4895e+14
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 6.683e-03, max: 7.091e+00, mean: 8.020e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.861e-03, max: 6.994e+00, mean: 8.516e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 8.223e-03, max: 6.310e+00, mean: 6.845e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=3.087e-01, true_median=9.826e-02, ratio=3.142e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=7 (trivially separable union)
+Validation patience exceeded at epoch 501/2000, nval_worse=500
+[Stage B]    Reject (ratpoly[1]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->2.578e-04 (Δ+2.58e-04) | params 640->9 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(2,1)->(2,1) nnz=(6,3) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=2, degD=1, probe_rms_rel≈0.0146
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.411e-03, max: 1.807e+00, mean: 1.865e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.070e-03, max: 1.623e+00, mean: 1.971e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.428e-03, max: 1.357e+00, mean: 1.747e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.874e-02, true_median=9.826e-02, ratio=1.005e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=9 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 79
+Stopping at epoch 80/2000, lm_opt.state['halt']=True, loss=3.6799e-05, loss_val=1.1153e-03
+[Stage B]    Candidate (ratpoly[2]): params=9, val-loss=1.1153e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 2.432e-03, max: 1.287e-01, mean: 3.598e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 2.345e-03, max: 1.245e-01, mean: 3.733e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 2.719e-03, max: 1.357e-01, mean: 4.100e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=2.793e-02, true_median=9.826e-02, ratio=2.842e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=8 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 156
+Stopping at epoch 157/2000, lm_opt.state['halt']=True, loss=2.2473e-03, loss_val=1.4351e+14
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -8.099e-02, max: 1.882e+00, mean: 1.420e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -8.616e-02, max: 1.609e+00, mean: 1.506e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -8.333e-02, max: 1.291e+00, mean: 1.222e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=5.468e-02, true_median=9.826e-02, ratio=5.565e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=7 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 70
+Stopping at epoch 71/2000, lm_opt.state['halt']=True, loss=1.8564e-04, loss_val=9.2771e-04
+[Stage B]    ratpoly trim accept (num) drop degree 1: num=[0, 1, 2], den=[0, 1] -> num=[0, 2], den=[0, 1], loss 1.1153e-03->9.2771e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 2.746e-05, max: 1.001e-01, mean: 6.997e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 2.922e-05, max: 1.054e-01, mean: 7.442e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 5.253e-05, max: 9.844e-02, mean: 7.362e-03
+[Stage B] Prediction scale check (attempt 0): pred_median=2.518e-03, true_median=9.826e-02, ratio=2.562e-02
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=6 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 121
+Stopping at epoch 122/2000, lm_opt.state['halt']=True, loss=5.0973e-02, loss_val=7.9599e+13
+[Stage B]    ratpoly trim fixed-point: 1 accepted drop(s)
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (ratpoly[2]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->1.115e-03 (Δ+1.12e-03) | params 640->9 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(2,2)->(2,2) nnz=(6,6) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=2, degD=2, probe_rms_rel≈0.00262
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.389e-03, max: 1.947e+00, mean: 1.872e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.290e-03, max: 1.702e+00, mean: 1.978e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.458e-03, max: 1.376e+00, mean: 1.735e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.841e-02, true_median=9.826e-02, ratio=1.002e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 93
+Stopping at epoch 94/2000, lm_opt.state['halt']=True, loss=1.1531e-06, loss_val=1.1950e-04
+[Stage B]    Candidate (ratpoly[3]): params=12, val-loss=1.1950e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.265e-03, max: 4.888e-01, mean: 1.013e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.339e-03, max: 5.035e-01, mean: 1.065e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.654e-03, max: 5.266e-01, mean: 1.101e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=7.002e-02, true_median=9.826e-02, ratio=7.126e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=11 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 85
+Stopping at epoch 86/2000, lm_opt.state['halt']=True, loss=5.7464e-06, loss_val=5.5124e-06
+[Stage B]    ratpoly trim accept (num) drop degree 0: num=[0, 1, 2], den=[0, 1, 2] -> num=[1, 2], den=[0, 1, 2], loss 1.1950e-04->5.5124e-06
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 1.922e-03, max: 5.975e-02, mean: 1.595e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 1.840e-03, max: 6.080e-02, mean: 1.653e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 2.304e-03, max: 6.563e-02, mean: 1.902e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=1.253e-02, true_median=9.826e-02, ratio=1.275e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=9 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 98
+Stopping at epoch 99/2000, lm_opt.state['halt']=True, loss=2.1878e-03, loss_val=3.4411e+13
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 6.386e-03, max: 2.675e+08, mean: 2.990e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 6.540e-03, max: 2.170e+08, mean: 3.025e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 8.443e-03, max: 1.773e+01, mean: 3.095e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.228e-01, true_median=9.826e-02, ratio=1.250e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[Stage B]    ratpoly trim fixed-point: 1 accepted drop(s)
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (ratpoly[3]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->1.195e-04 (Δ+1.19e-04) | params 640->12 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(1,3)->(1,3) nnz=(3,10) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=1, degD=3, probe_rms_rel≈0.00309
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.386e-03, max: 1.938e+00, mean: 1.871e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.298e-03, max: 1.698e+00, mean: 1.977e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.455e-03, max: 1.376e+00, mean: 1.736e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.846e-02, true_median=9.826e-02, ratio=1.002e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=13 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 89
+Stopping at epoch 90/2000, lm_opt.state['halt']=True, loss=2.2357e-06, loss_val=2.3001e-04
+[Stage B]    Candidate (ratpoly[4]): params=13, val-loss=2.3001e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.086e-03, max: 4.134e-01, mean: 9.047e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.184e-03, max: 4.193e-01, mean: 9.505e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.396e-03, max: 4.344e-01, mean: 9.838e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=6.431e-02, true_median=9.826e-02, ratio=6.545e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 93
+Stopping at epoch 94/2000, lm_opt.state['halt']=True, loss=1.5221e-05, loss_val=9.9045e-05
+[Stage B]    ratpoly trim accept (num) drop degree 0: num=[0, 1], den=[0, 1, 2, 3] -> num=[1], den=[0, 1, 2, 3], loss 2.3001e-04->9.9045e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 6.848e-03, max: 2.360e+08, mean: 2.843e+06
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 7.260e-03, max: 2.494e+08, mean: 3.354e+06
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 8.406e-03, max: 1.805e+08, mean: 1.704e+05
+[Stage B] Prediction scale check (attempt 0): pred_median=1.313e-01, true_median=9.826e-02, ratio=1.336e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=10 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 212
+Stopping at epoch 213/2000, lm_opt.state['halt']=True, loss=5.3522e-02, loss_val=5.3860e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 1.353e-01, max: 2.444e+10, mean: 1.482e+09
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 1.334e-01, max: 2.581e+10, mean: 1.583e+09
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 1.357e-01, max: 2.488e+10, mean: 1.048e+09
+[Stage B] Prediction scale check (attempt 0): pred_median=1.362e+00, true_median=9.826e-02, ratio=1.386e+01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=9 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 65
+Stopping at epoch 66/2000, lm_opt.state['halt']=True, loss=5.5597e-02, loss_val=1.3222e-02
+[Stage B]    ratpoly trim fixed-point: 1 accepted drop(s)
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (ratpoly[4]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->2.300e-04 (Δ+2.30e-04) | params 640->13 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(3,1)->(3,1) nnz=(10,3) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=3, degD=1, probe_rms_rel≈0.00688
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.360e-03, max: 1.937e+00, mean: 1.883e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.395e-03, max: 1.720e+00, mean: 1.990e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.384e-03, max: 1.345e+00, mean: 1.717e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.835e-02, true_median=9.826e-02, ratio=1.001e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=13 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 93
+Stopping at epoch 94/2000, lm_opt.state['halt']=True, loss=1.9748e-05, loss_val=7.2351e-04
+[Stage B]    Candidate (ratpoly[5]): params=13, val-loss=7.2351e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 3.621e-03, max: 1.672e-01, mean: 4.535e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 3.716e-03, max: 1.702e-01, mean: 4.729e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 5.035e-03, max: 1.743e-01, mean: 4.925e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=3.424e-02, true_median=9.826e-02, ratio=3.485e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 184
+Stopping at epoch 185/2000, lm_opt.state['halt']=True, loss=8.8478e-04, loss_val=1.4077e+13
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -1.141e-01, max: 1.858e+00, mean: 1.240e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -1.124e-01, max: 1.568e+00, mean: 1.320e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -1.126e-01, max: 1.239e+00, mean: 1.033e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=5.128e-02, true_median=9.826e-02, ratio=5.219e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=11 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 89
+Stopping at epoch 90/2000, lm_opt.state['halt']=True, loss=9.0392e-05, loss_val=7.4602e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 1.933e-02, max: 1.992e+00, mean: 2.099e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 1.906e-02, max: 1.708e+00, mean: 2.216e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 2.150e-02, max: 1.410e+00, mean: 2.058e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.355e-01, true_median=9.826e-02, ratio=1.379e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=10 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 78
+Stopping at epoch 79/2000, lm_opt.state['halt']=True, loss=4.7868e-05, loss_val=1.2253e-03
+[Stage B]    Reject (ratpoly[5]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->7.235e-04 (Δ+7.23e-04) | params 640->13 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(1,4)->(1,4) nnz=(3,10) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=1, degD=4, probe_rms_rel≈0.00815
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.396e-03, max: 1.970e+00, mean: 1.872e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.271e-03, max: 1.715e+00, mean: 1.978e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.468e-03, max: 1.368e+00, mean: 1.730e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.831e-02, true_median=9.826e-02, ratio=1.001e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=13 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 85
+Stopping at epoch 86/2000, lm_opt.state['halt']=True, loss=1.3001e-06, loss_val=2.6140e-04
+[Stage B]    Candidate (ratpoly[6]): params=13, val-loss=2.6140e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 4.980e-03, max: 5.491e-01, mean: 1.070e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 4.709e-03, max: 5.622e-01, mean: 1.126e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.209e-03, max: 5.839e-01, mean: 1.147e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=7.255e-02, true_median=9.826e-02, ratio=7.383e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 84
+Stopping at epoch 85/2000, lm_opt.state['halt']=True, loss=7.3860e-06, loss_val=3.7960e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.678e-03, max: 9.533e+00, mean: 6.227e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.273e-03, max: 8.424e+00, mean: 6.598e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 8.515e-03, max: 6.502e+00, mean: 4.616e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.797e-01, true_median=9.826e-02, ratio=1.828e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=11 (trivially separable union)
+Stopping at epoch 201/2000, lm_opt.state['halt']=True, loss=7.5518e-05, loss_val=3.8646e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 6.580e-02, max: 1.655e+10, mean: 9.570e+08
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 6.339e-02, max: 1.729e+10, mean: 1.025e+09
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.249e-02, max: 1.700e+10, mean: 8.655e+08
+[Stage B] Prediction scale check (attempt 0): pred_median=5.916e-01, true_median=9.826e-02, ratio=6.021e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 152
+Stopping at epoch 153/2000, lm_opt.state['halt']=True, loss=5.8541e-03, loss_val=1.1746e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 2.435e-03, max: 2.029e+00, mean: 1.798e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 1.999e-03, max: 1.726e+00, mean: 1.902e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 3.287e-03, max: 1.376e+00, mean: 1.622e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=8.644e-02, true_median=9.826e-02, ratio=8.797e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=10 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 83
+Stopping at epoch 84/2000, lm_opt.state['halt']=True, loss=5.4004e-06, loss_val=2.0817e-04
+[Stage B]    ratpoly trim accept (den) drop degree 3: num=[0, 1], den=[0, 1, 2, 3, 4] -> num=[0, 1], den=[0, 1, 2, 4], loss 2.6140e-04->2.0817e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 7.013e-03, max: 8.997e+00, mean: 7.703e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 7.564e-03, max: 8.506e+00, mean: 8.171e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 9.201e-03, max: 6.857e+00, mean: 6.187e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=2.363e-01, true_median=9.826e-02, ratio=2.405e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=8 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 147
+Stopping at epoch 148/2000, lm_opt.state['halt']=True, loss=6.4722e-04, loss_val=2.6393e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 3.902e-02, max: 1.105e+10, mean: 2.307e+08
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 3.756e-02, max: 1.157e+10, mean: 3.009e+08
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 4.291e-02, max: 1.144e+10, mean: 1.891e+08
+[Stage B] Prediction scale check (attempt 0): pred_median=2.470e-01, true_median=9.826e-02, ratio=2.514e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 66
+Stopping at epoch 67/2000, lm_opt.state['halt']=True, loss=9.6539e-03, loss_val=2.5652e-03
+[Stage B]    ratpoly trim fixed-point: 1 accepted drop(s)
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (ratpoly[6]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->2.614e-04 (Δ+2.61e-04) | params 640->13 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying rratpoly deg=(2,4)->(2,4) nnz=(4,10) on leaf1 vars=(1, 2)
+[Stage B custom_init rratpoly] Init on vars (1, 2): degN=2, degD=4, probe_rms_rel≈0.0024
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.392e-03, max: 1.993e+00, mean: 1.874e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.277e-03, max: 1.736e+00, mean: 1.980e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.464e-03, max: 1.345e+00, mean: 1.720e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.830e-02, true_median=9.826e-02, ratio=1.000e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=14 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 339
+Stopping at epoch 340/2000, lm_opt.state['halt']=True, loss=4.9605e-07, loss_val=1.1721e-04
+[Stage B]    Candidate (ratpoly[7]): params=14, val-loss=1.1721e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.315e-03, max: 1.179e+00, mean: 1.554e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.424e-03, max: 1.096e+00, mean: 1.641e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.589e-03, max: 1.068e+00, mean: 1.562e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.208e-02, true_median=9.826e-02, ratio=9.372e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=13 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 102
+Stopping at epoch 103/2000, lm_opt.state['halt']=True, loss=6.7240e-07, loss_val=1.0672e-04
+[Stage B]    ratpoly trim accept (num) drop degree 0: num=[0, 1, 2], den=[0, 1, 2, 3, 4] -> num=[1, 2], den=[0, 1, 2, 3, 4], loss 1.1721e-04->1.0672e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.188e-03, max: 2.890e-01, mean: 7.042e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.418e-03, max: 2.870e-01, mean: 7.375e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 6.964e-03, max: 2.837e-01, mean: 7.669e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=5.219e-02, true_median=9.826e-02, ratio=5.311e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=11 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 83
+Stopping at epoch 84/2000, lm_opt.state['halt']=True, loss=1.3204e-05, loss_val=1.3647e-05
+[Stage B]    ratpoly trim accept (num) drop degree 1: num=[1, 2], den=[0, 1, 2, 3, 4] -> num=[2], den=[0, 1, 2, 3, 4], loss 1.0672e-04->1.3647e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.032e-03, max: 8.177e-01, mean: 1.392e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.392e-03, max: 8.345e-01, mean: 1.472e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.443e-03, max: 8.585e-01, mean: 1.484e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=8.684e-02, true_median=9.826e-02, ratio=8.838e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=10 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 82
+Stopping at epoch 83/2000, lm_opt.state['halt']=True, loss=4.4506e-05, loss_val=2.7241e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.328e-03, max: 2.953e+08, mean: 6.884e+06
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.704e-03, max: 2.694e+08, mean: 6.745e+06
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.904e-03, max: 3.083e+08, mean: 2.551e+06
+[Stage B] Prediction scale check (attempt 0): pred_median=1.470e-01, true_median=9.826e-02, ratio=1.496e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=9 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 89
+Stopping at epoch 90/2000, lm_opt.state['halt']=True, loss=5.5689e-02, loss_val=5.3860e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 1.103e-01, max: 1.457e+12, mean: 4.750e+10
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 1.093e-01, max: 1.347e+12, mean: 5.423e+10
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 1.121e-01, max: 1.294e+12, mean: 3.516e+10
+[Stage B] Prediction scale check (attempt 0): pred_median=9.781e-01, true_median=9.826e-02, ratio=9.954e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=7 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 60
+Stopping at epoch 61/2000, lm_opt.state['halt']=True, loss=6.5206e-02, loss_val=5.1921e-02
+[Stage B]    ratpoly trim fixed-point: 2 accepted drop(s), num=[2], den=[0, 1, 2, 3, 4]
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (ratpoly[7]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->1.172e-04 (Δ+1.17e-04) | params 640->14 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(2,3)->(2,3) nnz=(6,10) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=2, degD=3, probe_rms_rel≈0.000548
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.394e-03, max: 1.992e+00, mean: 1.873e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.275e-03, max: 1.722e+00, mean: 1.979e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.463e-03, max: 1.376e+00, mean: 1.732e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.834e-02, true_median=9.826e-02, ratio=1.001e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=16 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 87
+Stopping at epoch 88/2000, lm_opt.state['halt']=True, loss=9.8999e-08, loss_val=1.5913e-05
+[Stage B]    Candidate (ratpoly[8]): params=16, val-loss=1.5913e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.343e-03, max: 9.001e-01, mean: 1.361e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.112e-03, max: 8.617e-01, mean: 1.435e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.333e-03, max: 8.320e-01, mean: 1.393e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=8.538e-02, true_median=9.826e-02, ratio=8.689e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=15 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 86
+Stopping at epoch 87/2000, lm_opt.state['halt']=True, loss=2.6392e-07, loss_val=1.3788e-05
+[Stage B]    ratpoly trim accept (num) drop degree 0: num=[0, 1, 2], den=[0, 1, 2, 3] -> num=[1, 2], den=[0, 1, 2, 3], loss 1.5913e-05->1.3788e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 4.582e-03, max: 1.668e-01, mean: 4.559e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 4.453e-03, max: 1.665e-01, mean: 4.743e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 6.138e-03, max: 1.724e-01, mean: 5.240e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=3.557e-02, true_median=9.826e-02, ratio=3.620e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=13 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 113
+Stopping at epoch 114/2000, lm_opt.state['halt']=True, loss=1.9686e-05, loss_val=3.1471e+16
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.185e-03, max: 5.578e+00, mean: 2.823e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 4.976e-03, max: 4.698e+00, mean: 2.985e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.299e-03, max: 3.291e+00, mean: 2.234e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.107e-01, true_median=9.826e-02, ratio=1.127e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 94
+Stopping at epoch 95/2000, lm_opt.state['halt']=True, loss=4.3170e-06, loss_val=3.0873e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 7.663e-03, max: 4.595e+00, mean: 6.187e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 7.081e-03, max: 4.168e+00, mean: 6.570e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 1.184e-02, max: 3.884e+00, mean: 6.161e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=3.328e-01, true_median=9.826e-02, ratio=3.387e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 127
+Stopping at epoch 128/2000, lm_opt.state['halt']=True, loss=2.3499e-04, loss_val=1.8258e-03
+[Stage B]    ratpoly trim fixed-point: 1 accepted drop(s)
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (ratpoly[8]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->1.591e-05 (Δ+1.59e-05) | params 640->16 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(3,2)->(3,2) nnz=(10,6) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=3, degD=2, probe_rms_rel≈0.00206
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.394e-03, max: 1.990e+00, mean: 1.874e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.274e-03, max: 1.728e+00, mean: 1.980e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.466e-03, max: 1.366e+00, mean: 1.729e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.828e-02, true_median=9.826e-02, ratio=1.000e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=16 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 88
+Stopping at epoch 89/2000, lm_opt.state['halt']=True, loss=2.6087e-07, loss_val=4.2781e-05
+[Stage B]    Candidate (ratpoly[9]): params=16, val-loss=4.2781e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.392e-03, max: 6.702e-01, mean: 1.184e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.049e-03, max: 6.646e-01, mean: 1.247e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.185e-03, max: 6.681e-01, mean: 1.246e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=7.755e-02, true_median=9.826e-02, ratio=7.892e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=15 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 83
+Stopping at epoch 84/2000, lm_opt.state['halt']=True, loss=1.1443e-06, loss_val=2.6578e-05
+[Stage B]    ratpoly trim accept (num) drop degree 0: num=[0, 1, 2, 3], den=[0, 1, 2] -> num=[1, 2, 3], den=[0, 1, 2], loss 4.2781e-05->2.6578e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 3.038e-03, max: 8.626e-02, mean: 2.402e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 2.602e-03, max: 8.409e-02, mean: 2.485e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 3.804e-03, max: 8.969e-02, mean: 2.822e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=1.892e-02, true_median=9.826e-02, ratio=1.926e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=13 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 106
+Stopping at epoch 107/2000, lm_opt.state['halt']=True, loss=5.6069e-04, loss_val=2.4779e+15
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.678e-02, max: 2.000e+00, mean: 1.592e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.650e-02, max: 1.676e+00, mean: 1.688e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.231e-02, max: 1.317e+00, mean: 1.402e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=6.707e-02, true_median=9.826e-02, ratio=6.826e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 87
+Stopping at epoch 88/2000, lm_opt.state['halt']=True, loss=2.1992e-05, loss_val=1.7217e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.218e-03, max: 1.234e+01, mean: 3.632e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 4.654e-03, max: 9.525e+00, mean: 3.841e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.221e-03, max: 5.517e+00, mean: 2.551e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.175e-01, true_median=9.826e-02, ratio=1.196e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=13 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 105
+Stopping at epoch 106/2000, lm_opt.state['halt']=True, loss=3.0581e-05, loss_val=2.1252e-03
+[Stage B]    ratpoly trim fixed-point: 1 accepted drop(s)
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (ratpoly[9]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->4.278e-05 (Δ+4.27e-05) | params 640->16 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(3,4)->(3,4) nnz=(7,10) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=3, degD=4, probe_rms_rel≈0.000188
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.393e-03, max: 1.396e+00, mean: 1.781e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.277e-03, max: 1.392e+00, mean: 1.882e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.463e-03, max: 1.284e+00, mean: 1.710e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.827e-02, true_median=9.826e-02, ratio=1.000e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=17 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 94
+Stopping at epoch 95/2000, lm_opt.state['halt']=True, loss=1.2055e-07, loss_val=2.3929e-05
+[Stage B]    Candidate (ratpoly[10]): params=17, val-loss=2.3929e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.332e-03, max: 8.322e-01, mean: 1.338e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.144e-03, max: 8.560e-01, mean: 1.411e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.359e-03, max: 8.991e-01, mean: 1.437e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=8.504e-02, true_median=9.826e-02, ratio=8.655e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=16 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 87
+Stopping at epoch 88/2000, lm_opt.state['halt']=True, loss=5.4323e-07, loss_val=3.9336e-06
+[Stage B]    ratpoly trim accept (num) drop degree 1: num=[1, 2, 3], den=[0, 2, 3, 4] -> num=[2, 3], den=[0, 2, 3, 4], loss 2.3929e-05->3.9336e-06
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 4.585e-03, max: 1.972e-01, mean: 5.381e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 4.435e-03, max: 2.012e-01, mean: 5.606e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 6.294e-03, max: 1.995e-01, mean: 5.923e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=4.099e-02, true_median=9.826e-02, ratio=4.171e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=14 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 89
+Stopping at epoch 90/2000, lm_opt.state['halt']=True, loss=3.1024e-05, loss_val=5.5374e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.008e-03, max: 3.692e+00, mean: 2.402e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 4.816e-03, max: 3.085e+00, mean: 2.539e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.234e-03, max: 2.308e+00, mean: 2.045e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.064e-01, true_median=9.826e-02, ratio=1.083e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=15 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 108
+Stopping at epoch 109/2000, lm_opt.state['halt']=True, loss=6.4270e-06, loss_val=6.8279e+19
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 6.764e-03, max: 5.319e+00, mean: 6.773e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 6.379e-03, max: 4.924e+00, mean: 7.209e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 1.110e-02, max: 4.440e+00, mean: 6.675e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=3.426e-01, true_median=9.826e-02, ratio=3.487e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+Validation patience exceeded at epoch 601/2000, nval_worse=500
+[Stage B]    ratpoly trim fixed-point: 1 accepted drop(s)
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (ratpoly[10]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->2.393e-05 (Δ+2.39e-05) | params 640->17 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(4,3)->(4,3) nnz=(14,8) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=4, degD=3, probe_rms_rel≈0.0091
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.937e-03, max: 8.949e-01, mean: 1.584e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.742e-03, max: 9.109e-01, mean: 1.673e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 8.258e-03, max: 1.033e+00, mean: 1.878e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.050e-01, true_median=9.826e-02, ratio=1.068e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=22 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 92
+Stopping at epoch 93/2000, lm_opt.state['halt']=True, loss=6.3945e-08, loss_val=7.0623e-07
+[Stage B]    Candidate (ratpoly[11]): params=22, val-loss=7.0623e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.316e-03, max: 7.203e-01, mean: 1.223e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.055e-03, max: 7.116e-01, mean: 1.288e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.313e-03, max: 7.012e-01, mean: 1.273e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=7.898e-02, true_median=9.826e-02, ratio=8.038e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=20 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 180
+Stopping at epoch 181/2000, lm_opt.state['halt']=True, loss=1.9000e-06, loss_val=1.4575e+18
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 2.631e-03, max: 1.315e+00, mean: 7.763e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 2.514e-03, max: 1.094e+00, mean: 8.201e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 3.302e-03, max: 8.495e-01, mean: 6.103e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=3.120e-02, true_median=9.826e-02, ratio=3.175e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=19 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 153
+Stopping at epoch 154/2000, lm_opt.state['halt']=True, loss=1.7733e-04, loss_val=9.0737e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 4.569e-04, max: 2.019e+00, mean: 1.730e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 3.533e-04, max: 1.727e+00, mean: 1.832e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 2.351e-03, max: 1.358e+00, mean: 1.559e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=8.014e-02, true_median=9.826e-02, ratio=8.156e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=18 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 89
+Stopping at epoch 90/2000, lm_opt.state['halt']=True, loss=1.1878e-06, loss_val=7.0405e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.606e-03, max: 1.031e+01, mean: 5.679e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.303e-03, max: 8.628e+00, mean: 6.018e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.895e-03, max: 6.887e+00, mean: 4.130e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.528e-01, true_median=9.826e-02, ratio=1.555e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=19 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 190
+Stopping at epoch 191/2000, lm_opt.state['halt']=True, loss=5.2464e-06, loss_val=4.7680e+17
+[Stage B]    Reject (ratpoly[11]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->7.062e-07 (Δ+6.70e-07) | params 640->22 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying rat_linear on nn#leaf1 vars=(1, 2)
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.030e-03, max: 8.164e-01, mean: 1.424e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 4.715e-03, max: 7.949e-01, mean: 1.500e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 6.723e-03, max: 7.534e-01, mean: 1.435e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.081e-02, true_median=9.826e-02, ratio=9.242e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=4 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 72
+Stopping at epoch 73/2000, lm_opt.state['halt']=True, loss=4.1892e-04, loss_val=2.2903e-03
+[Stage B]    Candidate (rat_linear): params=4, val-loss=2.2903e-03
+[Stage B]    Reject (rat_linear): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->2.290e-03 (Δ+2.29e-03) | params 640->4 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Precheck reject (units: units-inconsistent (span)) rule=multid_nn cand=symexp_denom_rat target=nn#leaf1 vars=(1, 2) attempted=12
+[Stage B][pure-exp] leaf (1, 2) N_pos 5000 max_abs_log 1.7429408814367977 rms_rel_log 0.0022694875003211484 rms_rel_F 0.03394628722027076
+[Stage B]  Precheck reject (units: Atom kind 'exp_ratpoly' expects dimensionless inputs; x1 has units T^-1) rule=multid_nn cand=pure_exp_branch target=nn#leaf1 vars=(1, 2) attempted=12
+[Stage B]  Precheck reject (units: units-inconsistent (span)) rule=multid_nn cand=log_ratpoly target=nn#leaf1 vars=(1, 2) attempted=12
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]  Greedy order (2 cands): precond_fallback_div(1001p), precond_fallback_div(1001p)
+[Stage B]  Precheck reject (units: poly leaf with unitful inputs requires homogeneous basis (min_total=degree=1), but got min_total=0) rule=preconditioner_fallback_nn cand=precond_fallback_div target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: poly leaf with unitful inputs requires homogeneous basis (min_total=degree=1), but got min_total=0) rule=preconditioner_fallback_nn cand=precond_fallback_div target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B] ratpoly degree probe: no dimensionally valid pairs found, falling back to unconstrained grid, vars=(1, 2)
+[Stage B] ratpoly probe: 12 sub-threshold trial(s) for vars=(1, 2): rratpoly deg=(3,3)->(2,0) nnz=(1,1) rms=0.0008, ratpoly deg=(1,2)->(1,2) nnz=(3,6) rms=0.0076, ratpoly deg=(2,1)->(2,1) nnz=(6,3) rms=0.0146, ratpoly deg=(2,2)->(2,2) nnz=(6,6) rms=0.0026, ratpoly deg=(1,3)->(1,3) nnz=(3,10) rms=0.0031, ratpoly deg=(3,1)->(3,1) nnz=(10,3) rms=0.0069, ratpoly deg=(1,4)->(1,4) nnz=(3,10) rms=0.0082, rratpoly deg=(2,4)->(2,4) nnz=(4,10) rms=0.0024, ratpoly deg=(2,3)->(2,3) nnz=(6,10) rms=0.0005, ratpoly deg=(3,2)->(3,2) nnz=(10,6) rms=0.0021, ratpoly deg=(3,4)->(3,4) nnz=(7,10) rms=0.0002, ratpoly deg=(4,3)->(4,3) nnz=(14,8) rms=0.0091
+[Stage B] RuleLastHardAtomRescue proposing 12 capped candidate(s) for final NN vars=(1, 2): ['last_ratpoly', 'last_ratpoly[1]', 'last_ratpoly[2]', 'last_ratpoly[3]', 'last_ratpoly[4]', 'last_ratpoly[5]', 'last_ratpoly[6]', 'last_ratpoly[7]', 'last_ratpoly[8]', 'last_ratpoly[9]', 'last_ratpoly[10]', 'last_ratpoly[11]']
+[Stage B]  Exhaustive order (12 cands): last_ratpoly(2p), last_ratpoly[1](9p), last_ratpoly[2](9p), last_ratpoly[3](12p), last_ratpoly[4](13p), last_ratpoly[5](13p), last_ratpoly[6](13p), last_ratpoly[7](14p), last_ratpoly[8](16p), last_ratpoly[9](16p), last_ratpoly[10](17p), last_ratpoly[11](22p)
+[Stage B]  Trying rratpoly deg=(3,3)->(2,0) nnz=(1,1) on leaf1 vars=(1, 2)
+[Stage B custom_init rratpoly] Init on vars (1, 2): degN=2, degD=0, probe_rms_rel≈0.000789
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 1.368e-06, max: 2.134e-01, mean: 8.365e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 1.201e-06, max: 2.147e-01, mean: 9.401e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 3.608e-06, max: 1.977e-01, mean: 7.796e-03
+[Stage B] Prediction scale check (attempt 0): pred_median=7.268e-04, true_median=9.826e-02, ratio=7.397e-03
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=2 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 50
+Stopping at epoch 51/2000, lm_opt.state['halt']=True, loss=6.4805e-02, loss_val=5.0016e-02
+[Stage B]    Candidate (last_ratpoly): params=2, val-loss=5.0016e-02
+[Stage B]    Reject (last_ratpoly): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->5.002e-02 (Δ+5.00e-02) | params 640->2 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(1,2)->(1,2) nnz=(3,6) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=1, degD=2, probe_rms_rel≈0.00765
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.391e-03, max: 1.858e+00, mean: 1.868e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.217e-03, max: 1.653e+00, mean: 1.974e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.464e-03, max: 1.367e+00, mean: 1.743e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.856e-02, true_median=9.826e-02, ratio=1.003e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=9 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 83
+Stopping at epoch 84/2000, lm_opt.state['halt']=True, loss=8.4399e-06, loss_val=2.5781e-04
+[Stage B]    Candidate (last_ratpoly[1]): params=9, val-loss=2.5781e-04
+[Stage B]    ratpoly trim skip (num deg=0): duplicate support num=[1], den=[0, 1, 2]
+[Stage B]    ratpoly trim skip (den deg=1): duplicate support num=[0, 1], den=[0, 2]
+[Stage B]    Reject (last_ratpoly[1]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->2.578e-04 (Δ+2.58e-04) | params 640->9 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(2,1)->(2,1) nnz=(6,3) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=2, degD=1, probe_rms_rel≈0.0146
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.411e-03, max: 1.807e+00, mean: 1.865e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.070e-03, max: 1.623e+00, mean: 1.971e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.428e-03, max: 1.357e+00, mean: 1.747e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.874e-02, true_median=9.826e-02, ratio=1.005e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 79
+Stopping at epoch 80/2000, lm_opt.state['halt']=True, loss=3.6799e-05, loss_val=1.1153e-03
+[Stage B]    Candidate (last_ratpoly[2]): params=9, val-loss=1.1153e-03
+[Stage B]    ratpoly trim skip (num deg=0): duplicate support num=[1, 2], den=[0, 1]
+[Stage B]    ratpoly trim skip (num deg=1): duplicate support num=[0, 2], den=[0, 1]
+[Stage B]    Reject (last_ratpoly[2]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->1.115e-03 (Δ+1.12e-03) | params 640->9 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(2,2)->(2,2) nnz=(6,6) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=2, degD=2, probe_rms_rel≈0.00262
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.389e-03, max: 1.947e+00, mean: 1.872e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.290e-03, max: 1.702e+00, mean: 1.978e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.458e-03, max: 1.376e+00, mean: 1.735e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.841e-02, true_median=9.826e-02, ratio=1.002e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 93
+Stopping at epoch 94/2000, lm_opt.state['halt']=True, loss=1.1531e-06, loss_val=1.1950e-04
+[Stage B]    Candidate (last_ratpoly[3]): params=12, val-loss=1.1950e-04
+[Stage B]    ratpoly trim skip (num deg=0): duplicate support num=[1, 2], den=[0, 1, 2]
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 2.003e-03, max: 1.547e+00, mean: 9.289e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 2.189e-03, max: 1.285e+00, mean: 9.845e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 2.630e-03, max: 1.006e+00, mean: 7.317e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=3.027e-02, true_median=9.826e-02, ratio=3.081e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=10 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 127
+Stopping at epoch 128/2000, lm_opt.state['halt']=True, loss=1.2690e-04, loss_val=4.8241e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.801e-03, max: 8.699e+00, mean: 6.183e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.809e-03, max: 7.893e+00, mean: 6.553e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 8.680e-03, max: 5.998e+00, mean: 4.704e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.800e-01, true_median=9.826e-02, ratio=1.832e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 116
+Stopping at epoch 117/2000, lm_opt.state['halt']=True, loss=2.9263e-05, loss_val=8.1660e-05
+[Stage B]    ratpoly trim accept (den) drop degree 1: num=[0, 1, 2], den=[0, 1, 2] -> num=[0, 1, 2], den=[0, 2], loss 1.1950e-04->8.1660e-05
+[Stage B]    ratpoly trim fixed-point: 1 accepted drop(s)
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (last_ratpoly[3]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->1.195e-04 (Δ+1.19e-04) | params 640->12 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(1,3)->(1,3) nnz=(3,10) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=1, degD=3, probe_rms_rel≈0.00309
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.386e-03, max: 1.938e+00, mean: 1.871e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.298e-03, max: 1.698e+00, mean: 1.977e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.455e-03, max: 1.376e+00, mean: 1.736e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.846e-02, true_median=9.826e-02, ratio=1.002e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=13 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 89
+Stopping at epoch 90/2000, lm_opt.state['halt']=True, loss=2.2357e-06, loss_val=2.3001e-04
+[Stage B]    Candidate (last_ratpoly[4]): params=13, val-loss=2.3001e-04
+[Stage B]    ratpoly trim skip (num deg=0): duplicate support num=[1], den=[0, 1, 2, 3]
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 6.130e-03, max: 8.471e+00, mean: 6.985e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 6.156e-03, max: 7.943e+00, mean: 7.407e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 9.634e-03, max: 6.266e+00, mean: 5.618e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=2.180e-01, true_median=9.826e-02, ratio=2.218e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=11 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 121
+Stopping at epoch 122/2000, lm_opt.state['halt']=True, loss=1.3857e-04, loss_val=2.0150e-04
+[Stage B]    ratpoly trim accept (den) drop degree 1: num=[0, 1], den=[0, 1, 2, 3] -> num=[0, 1], den=[0, 2, 3], loss 2.3001e-04->2.0150e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 3.008e+06, max: 3.103e+10, mean: 2.244e+09
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 3.216e+06, max: 3.274e+10, mean: 2.388e+09
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 8.920e+06, max: 3.154e+10, mean: 1.688e+09
+[Stage B] Prediction scale check (attempt 0): pred_median=7.183e+08, true_median=9.826e-02, ratio=7.311e+09
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    ratpoly trim fixed-point: 1 accepted drop(s)
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (last_ratpoly[4]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->2.300e-04 (Δ+2.30e-04) | params 640->13 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(3,1)->(3,1) nnz=(10,3) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=3, degD=1, probe_rms_rel≈0.00688
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.360e-03, max: 1.937e+00, mean: 1.883e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.395e-03, max: 1.720e+00, mean: 1.990e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.384e-03, max: 1.345e+00, mean: 1.717e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.835e-02, true_median=9.826e-02, ratio=1.001e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=13 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 93
+Stopping at epoch 94/2000, lm_opt.state['halt']=True, loss=1.9748e-05, loss_val=7.2351e-04
+[Stage B]    Candidate (last_ratpoly[5]): params=13, val-loss=7.2351e-04
+[Stage B]    ratpoly trim skip (num deg=0): duplicate support num=[1, 2, 3], den=[0, 1]
+[Stage B]    ratpoly trim skip (num deg=1): duplicate support num=[0, 2, 3], den=[0, 1]
+[Stage B]    ratpoly trim skip (num deg=2): duplicate support num=[0, 1, 3], den=[0, 1]
+[Stage B]    Reject (last_ratpoly[5]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->7.235e-04 (Δ+7.23e-04) | params 640->13 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(1,4)->(1,4) nnz=(3,10) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=1, degD=4, probe_rms_rel≈0.00815
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.396e-03, max: 1.970e+00, mean: 1.872e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.271e-03, max: 1.715e+00, mean: 1.978e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.468e-03, max: 1.368e+00, mean: 1.730e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.831e-02, true_median=9.826e-02, ratio=1.001e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 85
+Stopping at epoch 86/2000, lm_opt.state['halt']=True, loss=1.3001e-06, loss_val=2.6140e-04
+[Stage B]    Candidate (last_ratpoly[6]): params=13, val-loss=2.6140e-04
+[Stage B]    ratpoly trim skip (num deg=0): duplicate support num=[1], den=[0, 1, 2, 3, 4]
+[Stage B]    ratpoly trim skip (den deg=1): duplicate support num=[0, 1], den=[0, 2, 3, 4]
+[Stage B]    ratpoly trim skip (den deg=2): duplicate support num=[0, 1], den=[0, 1, 3, 4]
+[Stage B]    ratpoly trim skip (den deg=3): duplicate support num=[0, 1], den=[0, 1, 2, 4]
+[Stage B]    Reject (last_ratpoly[6]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->2.614e-04 (Δ+2.61e-04) | params 640->13 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying rratpoly deg=(2,4)->(2,4) nnz=(4,10) on leaf1 vars=(1, 2)
+[Stage B custom_init rratpoly] Init on vars (1, 2): degN=2, degD=4, probe_rms_rel≈0.0024
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.392e-03, max: 1.993e+00, mean: 1.874e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.277e-03, max: 1.736e+00, mean: 1.980e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.464e-03, max: 1.345e+00, mean: 1.720e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.830e-02, true_median=9.826e-02, ratio=1.000e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=14 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 339
+Stopping at epoch 340/2000, lm_opt.state['halt']=True, loss=4.9605e-07, loss_val=1.1721e-04
+[Stage B]    Candidate (last_ratpoly[7]): params=14, val-loss=1.1721e-04
+[Stage B]    ratpoly trim skip (num deg=0): duplicate support num=[1, 2], den=[0, 1, 2, 3, 4]
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 4.970e-03, max: 9.668e-01, mean: 8.798e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.113e-03, max: 8.014e-01, mean: 9.233e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 6.790e-03, max: 6.299e-01, mean: 8.031e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=5.629e-02, true_median=9.826e-02, ratio=5.729e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 137
+Stopping at epoch 138/2000, lm_opt.state['halt']=True, loss=1.2379e-05, loss_val=5.1535e-05
+[Stage B]    ratpoly trim accept (num) drop degree 1: num=[0, 1, 2], den=[0, 1, 2, 3, 4] -> num=[0, 2], den=[0, 1, 2, 3, 4], loss 1.1721e-04->5.1535e-05
+[Stage B]    ratpoly trim skip (num deg=0): duplicate support num=[2], den=[0, 1, 2, 3, 4]
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 4.960e-03, max: 1.629e+00, mean: 1.700e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.253e-03, max: 1.464e+00, mean: 1.798e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.443e-03, max: 1.172e+00, mean: 1.635e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.424e-02, true_median=9.826e-02, ratio=9.591e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=11 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 92
+Stopping at epoch 93/2000, lm_opt.state['halt']=True, loss=1.2497e-05, loss_val=7.2455e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.258e-03, max: 4.170e+00, mean: 4.160e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.559e-03, max: 4.384e+00, mean: 4.406e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.921e-03, max: 4.267e+00, mean: 3.731e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.451e-01, true_median=9.826e-02, ratio=1.477e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=10 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 108
+Stopping at epoch 109/2000, lm_opt.state['halt']=True, loss=6.0283e-05, loss_val=1.5161e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 9.967e-02, max: 9.810e+11, mean: 3.169e+10
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 9.846e-02, max: 9.073e+11, mean: 3.604e+10
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 9.982e-02, max: 8.716e+11, mean: 2.347e+10
+[Stage B] Prediction scale check (attempt 0): pred_median=8.297e-01, true_median=9.826e-02, ratio=8.444e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=8 (trivially separable union)
+Validation patience exceeded at epoch 601/2000, nval_worse=500
+[Stage B]    ratpoly trim fixed-point: 1 accepted drop(s), num=[0, 2], den=[0, 1, 2, 3, 4]
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (last_ratpoly[7]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->1.172e-04 (Δ+1.17e-04) | params 640->14 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(2,3)->(2,3) nnz=(6,10) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=2, degD=3, probe_rms_rel≈0.000548
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.394e-03, max: 1.992e+00, mean: 1.873e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.275e-03, max: 1.722e+00, mean: 1.979e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.463e-03, max: 1.376e+00, mean: 1.732e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.834e-02, true_median=9.826e-02, ratio=1.001e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=16 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 87
+Stopping at epoch 88/2000, lm_opt.state['halt']=True, loss=9.8999e-08, loss_val=1.5913e-05
+[Stage B]    Candidate (last_ratpoly[8]): params=16, val-loss=1.5913e-05
+[Stage B]    ratpoly trim skip (num deg=0): duplicate support num=[1, 2], den=[0, 1, 2, 3]
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 4.304e-03, max: 1.159e+00, mean: 7.972e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 4.254e-03, max: 9.652e-01, mean: 8.386e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 5.691e-03, max: 7.400e-01, mean: 6.991e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=4.431e-02, true_median=9.826e-02, ratio=4.509e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=14 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 148
+Stopping at epoch 149/2000, lm_opt.state['halt']=True, loss=1.5890e-05, loss_val=4.7906e+17
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.424e-03, max: 7.680e+00, mean: 4.139e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.173e-03, max: 6.378e+00, mean: 4.383e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.492e-03, max: 4.964e+00, mean: 3.074e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.299e-01, true_median=9.826e-02, ratio=1.322e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 88
+Stopping at epoch 89/2000, lm_opt.state['halt']=True, loss=8.0132e-07, loss_val=9.2598e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 9.731e-03, max: 2.527e+00, mean: 3.829e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 8.520e-03, max: 2.253e+00, mean: 4.028e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 1.353e-02, max: 2.067e+00, mean: 3.959e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=2.432e-01, true_median=9.826e-02, ratio=2.475e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=13 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 160
+Stopping at epoch 161/2000, lm_opt.state['halt']=True, loss=1.6507e-05, loss_val=6.2473e-04
+[Stage B]    Reject (last_ratpoly[8]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->1.591e-05 (Δ+1.59e-05) | params 640->16 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(3,2)->(3,2) nnz=(10,6) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=3, degD=2, probe_rms_rel≈0.00206
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.394e-03, max: 1.990e+00, mean: 1.874e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.274e-03, max: 1.728e+00, mean: 1.980e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.466e-03, max: 1.366e+00, mean: 1.729e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.828e-02, true_median=9.826e-02, ratio=1.000e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=16 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 88
+Stopping at epoch 89/2000, lm_opt.state['halt']=True, loss=2.6087e-07, loss_val=4.2781e-05
+[Stage B]    Candidate (last_ratpoly[9]): params=16, val-loss=4.2781e-05
+[Stage B]    ratpoly trim skip (num deg=0): duplicate support num=[1, 2, 3], den=[0, 1, 2]
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 2.698e-03, max: 1.367e+00, mean: 8.186e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 2.543e-03, max: 1.138e+00, mean: 8.652e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 3.366e-03, max: 8.809e-01, mean: 6.558e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=3.316e-02, true_median=9.826e-02, ratio=3.374e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=14 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 128
+Stopping at epoch 129/2000, lm_opt.state['halt']=True, loss=7.7361e-05, loss_val=2.0110e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 4.892e-04, max: 2.022e+00, mean: 1.725e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 3.992e-04, max: 1.722e+00, mean: 1.827e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 1.112e-03, max: 1.357e+00, mean: 1.534e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=7.900e-02, true_median=9.826e-02, ratio=8.040e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=13 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 79
+Stopping at epoch 80/2000, lm_opt.state['halt']=True, loss=3.1856e-06, loss_val=1.8963e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.698e-03, max: 8.587e+00, mean: 5.136e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.302e-03, max: 7.251e+00, mean: 5.442e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.738e-03, max: 5.734e+00, mean: 3.839e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.512e-01, true_median=9.826e-02, ratio=1.539e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=14 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 102
+Stopping at epoch 103/2000, lm_opt.state['halt']=True, loss=5.5947e-06, loss_val=7.1656e-05
+[Stage B]    Reject (last_ratpoly[9]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->4.278e-05 (Δ+4.27e-05) | params 640->16 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(3,4)->(3,4) nnz=(7,10) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=3, degD=4, probe_rms_rel≈0.000188
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.393e-03, max: 1.396e+00, mean: 1.781e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.277e-03, max: 1.392e+00, mean: 1.882e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.463e-03, max: 1.284e+00, mean: 1.710e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.827e-02, true_median=9.826e-02, ratio=1.000e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=17 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 94
+Stopping at epoch 95/2000, lm_opt.state['halt']=True, loss=1.2055e-07, loss_val=2.3929e-05
+[Stage B]    Candidate (last_ratpoly[10]): params=17, val-loss=2.3929e-05
+[Stage B]    ratpoly trim skip (num deg=1): duplicate support num=[2, 3], den=[0, 2, 3, 4]
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 4.155e-03, max: 1.230e+00, mean: 7.930e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 4.144e-03, max: 1.019e+00, mean: 8.344e-02
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 5.683e-03, max: 8.015e-01, mean: 6.618e-02
+[Stage B] Prediction scale check (attempt 0): pred_median=4.278e-02, true_median=9.826e-02, ratio=4.354e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=15 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 135
+Stopping at epoch 136/2000, lm_opt.state['halt']=True, loss=2.8729e-05, loss_val=2.3555e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.439e-03, max: 9.206e+00, mean: 4.618e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.222e-03, max: 7.601e+00, mean: 4.892e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.489e-03, max: 6.101e+00, mean: 3.025e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.314e-01, true_median=9.826e-02, ratio=1.338e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=16 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 89
+Stopping at epoch 90/2000, lm_opt.state['halt']=True, loss=1.0703e-06, loss_val=6.6705e-06
+[Stage B]    ratpoly trim accept (den) drop degree 2: num=[1, 2, 3], den=[0, 2, 3, 4] -> num=[1, 2, 3], den=[0, 3, 4], loss 2.3929e-05->6.6705e-06
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 6.219e-03, max: 6.271e+08, mean: 1.329e+07
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.864e-03, max: 8.727e+08, mean: 1.446e+07
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 1.012e-02, max: 4.533e+08, mean: 6.901e+05
+[Stage B] Prediction scale check (attempt 0): pred_median=4.009e-01, true_median=9.826e-02, ratio=4.081e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+Stopping at epoch 201/2000, lm_opt.state['halt']=True, loss=5.7674e-02, loss_val=5.3860e-02
+[Stage B]    ratpoly trim fixed-point: 1 accepted drop(s)
+[Stage B]    ratpoly trim fallback: both variants rejected (raw=simpler-over-budget(thr=4.522e-09), trimmed=simpler-over-budget(thr=4.522e-09))
+[Stage B]    Reject (last_ratpoly[10]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->2.393e-05 (Δ+2.39e-05) | params 640->17 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(4,3)->(4,3) nnz=(14,8) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=4, degD=3, probe_rms_rel≈0.0091
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 5.937e-03, max: 8.949e-01, mean: 1.584e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 5.742e-03, max: 9.109e-01, mean: 1.673e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 8.258e-03, max: 1.033e+00, mean: 1.878e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.050e-01, true_median=9.826e-02, ratio=1.068e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=22 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 92
+Stopping at epoch 93/2000, lm_opt.state['halt']=True, loss=6.3945e-08, loss_val=7.0623e-07
+[Stage B]    Candidate (last_ratpoly[11]): params=22, val-loss=7.0623e-07
+[Stage B]    ratpoly trim skip (num deg=1): duplicate support num=[2, 3, 4], den=[0, 2, 3]
+[Stage B]    ratpoly trim skip (num deg=2): duplicate support num=[1, 3, 4], den=[0, 2, 3]
+[Stage B]    ratpoly trim skip (num deg=3): duplicate support num=[1, 2, 4], den=[0, 2, 3]
+[Stage B]    ratpoly trim skip (den deg=2): duplicate support num=[1, 2, 3, 4], den=[0, 3]
+[Stage B]    Reject (last_ratpoly[11]): simpler-over-budget(thr=4.522e-09) | loss 3.615e-08->7.062e-07 (Δ+6.70e-07) | params 640->22 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]   Backtrack: reverted accept (monomial_pow1_3), restored to loss=6.746e-07 (budget=2 remaining)
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 1 targets
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1)]
+[Stage B] monomial_peel_priority shortlist: monomial_deg1[z_inv]@nn#leaf0 vars=(0,) (k=0.223, rel=0.876); monomial_deg2[z_inv]@nn#leaf0 vars=(0,) (k=0.223, rel=0.876); monomial_deg3[z_inv]@nn#leaf0 vars=(0,) (k=0.223, rel=0.876)
+[Stage B] Rule monomial_peel_priority trying 3 globally ranked candidates
+[Stage B]  Greedy order (1 cands): monomial_deg1[z_inv](999p)
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=(x1,x2) target=L^4*T^-2 basis=['T^-1']) rule=monomial_peel_priority cand=monomial_deg1[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Greedy order (1 cands): monomial_deg2[z_inv](999p)
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=(x1,x2) target=L^7*T^-4 basis=['T^-1']) rule=monomial_peel_priority cand=monomial_deg2[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Greedy order (1 cands): monomial_deg3[z_inv](999p)
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=(x1,x2) target=L^10*T^-6 basis=['T^-1']) rule=monomial_peel_priority cand=monomial_deg3[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B] Rule subtree_separability found 0 targets
+[Stage B] Rule last_hard_trig_square found 0 targets
+[Stage B] Rule univariate_nn found 1 targets
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1)]
+[Stage B]  one_minus_cos_over_z2 skip NN vars (0,): no trig hint
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(0,)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.0159 > 0.001, deg=(3,3), vars=(0,)
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(0,)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.1880 > 0.001, deg=(0,2), vars=(0,)
+[Stage B]  one_minus_cos_over_z2 skip NN vars (0,): no trig hint
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(0,)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.4789 > 0.001, deg=(0,3), vars=(0,)
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(0,)
+[Stage B] ratpoly_1d rejected: best rel_rms=1.0000 > 0.001, deg=(0,1), vars=(0,)
+[Stage B] RuleUniNN proposing 13 candidates for NN vars=(0,): ['monomial_deg1', 'monomial_deg2', 'monomial_deg3', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo']
+[Stage B] RuleUniNN proposing 14 candidates for NN vars=(0,): ['scale', 'monomial_deg1[z_inv]', 'monomial_deg2[z_inv]', 'monomial_deg3[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]']
+[Stage B]  Exhaustive order (14 cands): monomial_deg1[z_inv](1000p), monomial_deg2[z_inv](1000p), monomial_deg3[z_inv](1000p), scale(1001p), cf_combo[z_inv](1001p), cf_combo[z_inv](1001p), cf_sharedpref_resid[z_inv](1002p), cf_sharedpref_resid[z_inv](1002p), cf_sharedpref_resid[z_inv](1002p), cf_sharedpref_resid[z_inv](1002p), cf_sharedpref_resid[z_inv](1002p), cf_sharedpref_resid[z_inv](1002p), cf_combo[z_inv](1002p), cf_combo[z_inv](1002p)
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=(x1,x2) target=L^4*T^-2 basis=['T^-1']) rule=univariate_nn cand=monomial_deg1[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=(x1,x2) target=L^7*T^-4 basis=['T^-1']) rule=univariate_nn cand=monomial_deg2[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=(x1,x2) target=L^10*T^-6 basis=['T^-1']) rule=univariate_nn cand=monomial_deg3[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Trying scaling rewrite on NN leaf vars (0,), k≈0.333
+[Stage B] Initialising PowerLeaf for vars (0,), tag=leaf0
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=642 (trivially separable union)
+Stopping at epoch 1001/2000, lm_opt.state['halt']=True, loss=2.4773e-10, loss_val=1.0964e-05
+[Stage B]    Candidate (scale): params=642, val-loss=1.0964e-05
+[Stage B]    Reject (scale): simpler-over-budget(thr=4.522e-09) | loss 6.746e-07->1.096e-05 (Δ+1.03e-05) | params 1024->642 | cx (1, 4, 2)->(1, 4, 2)
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B] Rule log_ratio found 0 targets
+[Stage B] Rule power_product found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]  power_product probe on NN vars=(1, 2): R²_log=0.5515 < 0.98 → skip
+[Stage B] Rule joint_product_monomial_closure found 0 targets
+[Stage B] Rule overlap_prefactor_peel found 0 targets
+[Stage B] Rule overlap_counterterm_peel found 0 targets
+[Stage B] Rule common_prefactor found 0 targets
+[Stage B] Rule additive_gauge_transfer found 0 targets
+[Stage B] Rule multiplicative_homogeneity_transfer found 0 targets
+[Stage B] Rule univariate_mono found 1 targets
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1)]
+[Stage B]  Exhaustive order (3 cands): monomial_deg1[z_inv](999p), monomial_deg2[z_inv](999p), monomial_deg3[z_inv](999p)
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=(x1,x2) target=L^4*T^-2 basis=['T^-1']) rule=univariate_mono cand=monomial_deg1[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=(x1,x2) target=L^7*T^-4 basis=['T^-1']) rule=univariate_mono cand=monomial_deg2[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=(x1,x2) target=L^10*T^-6 basis=['T^-1']) rule=univariate_mono cand=monomial_deg3[z_inv] target=nn#leaf0 vars=(0,) attempted=0
+[Stage B] Rule nn_leaf_separability found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[SubtreeSeparability] called on _SubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: -263.49498402298696, median absolute deviation: 81.76626196612565
+There is no multiplicativity (in NN[1, 2])
+All additive for x[1], complement x[2] (in NN[1, 2])
+[SubtreeSeparability] called on _OuterTransformedSubtreeModel, vars=[1, 2]
+symb: [1, 2], index: 0, var_x: torch.Size([20000, 3]), y_vals: torch.Size([20000, 1]), dydx_vals: torch.Size([20000, 1, 3]), d2ydx2_vals: torch.Size([20000, 1, 3, 3])
+Median of sub-model: 69412.27774402962, median absolute deviation: 37396.2761367153
+All multiplicative for x[1], complement x[2] (in NN[1, 2])
+[Stage B]  Greedy order (2 cands): nn_leaf_separability(2997p), nn_leaf_separability_sq(2997p)
+[Stage B]  Trying separability split on NN vars=(1, 2)
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1152 (trivially separable union)
+Validation patience exceeded at epoch 1101/2000, nval_worse=500
+[Stage B]    Candidate (nn_leaf_separability): params=1152, val-loss=1.9631e-03
+[Stage B]    Reject (nn_leaf_separability): simpler-over-budget(thr=4.522e-09) | loss 6.746e-07->1.963e-03 (Δ+1.96e-03) | params 1024->1152 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  NN-leaf separability split under square() vars=(1, 2)
+[transform_init] _adam_fit(L([1])): initial_loss=2.279e+05, final_loss=4.810e+03 after 80 steps
+[transform_init] _adam_fit(R([2])): initial_loss=1.141e+06, final_loss=6.045e+03 after 80 steps
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -1.489e+06, max: 1.954e+07, mean: 2.463e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -1.510e+06, max: 2.181e+07, mean: 3.119e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -1.137e+06, max: 1.678e+07, mean: 3.180e+05
+[Stage B] Prediction scale check (attempt 0): pred_median=1.152e+05, true_median=9.826e-02, ratio=1.173e+06
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (nn_leaf_separability_sq) rejected at init (non-finite loss); trying next.
+[Stage B] Rule counterterm_mul_split found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B] Probing counterterm mul split on NN vars=(1, 2)
+[counterterm] Gathered 4096 points for NN vars=(1, 2) (m=2)
+[counterterm] Trying 1 partitions (of 1 total) with progressive variants (sparse first; A_only, B_only, both) = 8 dense fits
+[counterterm]   New best (A_only_sparse_p+1): A=[0], B=[1], rel_err=1.1083e-01
+[counterterm]   New best (A_only_sparse_p+2): A=[0], B=[1], rel_err=7.6642e-02
+[counterterm]   New best (A_only_sparse_p-1): A=[0], B=[1], rel_err=7.0171e-02
+[counterterm]   New best (B_only_sparse_p+2): A=[0], B=[1], rel_err=6.6642e-02
+[counterterm]   New best (B_only_sparse_p-1): A=[0], B=[1], rel_err=6.5088e-02
+[counterterm] Sparse probe summary: tried=8, finite=8, tol=2.000e-02
+[counterterm]   sparse B_only_sparse_p-1: A=[0], B=[1], rel_err=6.5088e-02
+[counterterm]   sparse B_only_sparse_p+2: A=[0], B=[1], rel_err=6.6642e-02
+[counterterm]   sparse A_only_sparse_p-1: A=[0], B=[1], rel_err=7.0171e-02
+[counterterm]   sparse A_only_sparse_p-2: A=[0], B=[1], rel_err=7.4861e-02
+[counterterm]   sparse B_only_sparse_p-2: A=[0], B=[1], rel_err=7.6552e-02
+[counterterm]   New best (A_only_poly_deg2): A=[0], B=[1], rel_err=4.3439e-02
+[counterterm]   New best (A_only_poly_inv_deg2): A=[0], B=[1], rel_err=3.3363e-02
+[counterterm]   New best (A_only_poly_inv_deg3): A=[0], B=[1], rel_err=2.6668e-02
+[counterterm]   New best (B_only_poly_inv_deg3): A=[0], B=[1], rel_err=2.4854e-02
+[counterterm]   New best (both_Ainv_deg2_2): A=[0], B=[1], rel_err=1.9149e-02
+[counterterm]   New best (both_Ainv_deg2_3): A=[0], B=[1], rel_err=1.7894e-02
+[counterterm]   New best (both_Binv_deg2_3): A=[0], B=[1], rel_err=1.6491e-02
+[counterterm]   New best (both_Ainv_deg3_2): A=[0], B=[1], rel_err=1.5312e-02
+[counterterm] Tried 28 fits, 28 succeeded
+[counterterm] Building both variant: poly_inv(x1) + poly(x2) + (nn0(x1) * nn1(x2))
+[Stage B]  Greedy order (1 cands): counterterm_mul_split(3004p)
+[Stage B]  Precheck reject (units: poly leaf with unitful inputs requires homogeneous basis (min_total=degree=2), but got min_total=0) rule=counterterm_mul_split cand=counterterm_mul_split target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B] Rule counterfactor_add_split found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B] Probing counterfactor add split on NN vars=(1, 2)
+[Stage B]  Greedy order (1 cands): counterfactor_add_split(3001p)
+[Stage B]  Precheck reject (units: poly leaf with unitful inputs requires homogeneous basis (min_total=degree=2), but got min_total=0) rule=counterfactor_add_split cand=counterfactor_add_split target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B] === Phase 1 complete: No more separabilities found ===
+[Stage B] === Phase 2: Trying specialized patterns (after exhausting separability) ===
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1), vars=(1, 2)(arity=2)]
+[Stage B]  Greedy order (10 cands): cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_combo(1002p), cf_combo(1001p), cf_combo(1002p), cf_combo(1001p)
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=compound_fn_macros cand=cf_combo target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=compound_fn_macros cand=cf_combo target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=compound_fn_macros cand=cf_combo target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (L)) rule=compound_fn_macros cand=cf_combo target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Greedy order (10 cands): cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_combo(1002p), cf_combo(1001p), cf_combo(1002p), cf_combo(1001p)
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: units-inconsistent (T)) rule=compound_fn_macros cand=cf_combo target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B] RuleAffineDecomposition: screening NN vars=(1, 2), tag=leaf1
+[Stage B] AffineDecomp[jacobi_v1_full]: no decomposition found for NN vars=(1, 2)
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1)]
+[Stage B]  Exhaustive order (1 cands): chirp_cos_prod(1005p)
+[Stage B]  Precheck reject (units: free_const 'leaf0_uinv_amp' is not declared in UnitsSpec.free_const_dims) rule=univariate_oracle_invariants cand=chirp_cos_prod target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1), vars=(1, 2)(arity=2)]
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1)]
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1)]
+[Stage B] RuleUnivariateMulPeel: detected [k=1.5+mu=-0.01429] on NN vars=(0,)
+[Stage B]  Greedy order (3 cands): mono_exp_peel(1003p), mono_peel_nn_resid(2000p), exp_peel_nn_resid(2000p)
+[Stage B]  Precheck reject (units: Atom kind 'exp_poly' expects dimensionless inputs; x0 has units L^3*T^-2) rule=univariate_mul_peel cand=mono_exp_peel target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Trying mono-peel + NN residual (k=1.5) on NN leaf vars (0,)
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -1.414e+06, max: 1.632e+07, mean: 1.723e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -1.301e+06, max: 2.221e+07, mean: 2.323e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -1.756e+06, max: 2.274e+07, mean: 3.094e+05
+[Stage B] Prediction scale check (attempt 0): pred_median=4.737e+04, true_median=9.826e-02, ratio=4.821e+05
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (mono_peel_nn_resid) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (units: Atom kind 'exp_poly' expects dimensionless inputs; x0 has units L^3*T^-2) rule=univariate_mul_peel cand=exp_peel_nn_resid target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+symb: [1, 2], index: 0, var_x: torch.Size([4096, 3]), y_vals: torch.Size([4096, 1]), dydx_vals: torch.Size([4096, 1, 3]), d2ydx2_vals: torch.Size([4096, 1, 3, 3])
+Median of sub-model: -176.49104041748578, median absolute deviation: 20.018811203640155
+There is no multiplicativity (in NN[1, 2])
+[Stage B]  Greedy order (1 cands): outer_identity_mul(2997p)
+[Stage B]  Outer-transform split: T=identity, op=*, vars (1, 2) -> (1,) | (2,) (domain_ok=1.00)
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 601/2000, nval_worse=500
+[Stage B]    Candidate (outer_identity_mul): params=1152, val-loss=1.6812e-03
+[Stage B]    Reject (outer_identity_mul): simpler-over-budget(thr=4.522e-09) | loss 6.746e-07->1.681e-03 (Δ+1.68e-03) | params 1024->1152 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=2)]
+[GenAdd] X_group=(1,), Y_group=(2,), best_pair=(i=1, j=2), rel_res_x=0.964, rel_res_y=1.07, ok=False
+[Stage B] Trapped-variable probe on NN leaf vars (1, 2): trapped=2, leaky=1, rel_res=0.312
+[Stage B] ratpoly degree probe: no dimensionally valid pairs found, falling back to unconstrained grid, vars=(1, 2)
+[Stage B] ratpoly probe: 7 sub-threshold trial(s) for vars=(1, 2): rratpoly deg=(4,2)->(4,0) nnz=(1,1) rms=0.0025, ratpoly deg=(2,1)->(2,1) nnz=(5,3) rms=0.0100, rratpoly deg=(2,2)->(2,2) nnz=(4,6) rms=0.0045, ratpoly deg=(3,1)->(3,1) nnz=(10,2) rms=0.0037, ratpoly deg=(3,2)->(3,2) nnz=(10,6) rms=0.0037, ratpoly deg=(3,3)->(3,3) nnz=(7,9) rms=0.0044, ratpoly deg=(4,3)->(4,3) nnz=(9,8) rms=0.0020
+[Stage B] inv_poly rejected: best rel_rms=19.9028 > 0.001, degree=1, vars=(1, 2)
+[Stage B]  Greedy order (19 cands): trig_rational(1008p), quad_poly(lazy), highdeg_poly(lazy), sqrt_ratpoly(lazy), sqrt_poly(lazy), ratpoly(1001p), ratpoly[1](1007p), ratpoly[2](1009p), ratpoly[3](1011p), ratpoly[4](1015p), ratpoly[5](1015p), ratpoly[6](1016p), affine_split(lazy), trapped_mult(1031p), exp_branch(lazy), pure_exp_branch(lazy), log_poly(lazy), log_ratpoly(lazy), log_poly(lazy)
+[Stage B]  Precheck reject (units: poly leaf with unitful inputs requires homogeneous basis (min_total=degree=2), but got min_total=0) rule=multid_nn cand=trig_rational target=nn#leaf1 vars=(1, 2) attempted=12
+[Stage B] sqrt_ratpoly candidate rejected: rms_rel(f^2)=inf%, rms_rel(1/f^2)=inf%, threshold=0.1%, vars=(1, 2)
+[Stage B]  Trying rratpoly deg=(4,2)->(4,0) nnz=(1,1) on leaf1 vars=(1, 2)
+[Stage B custom_init rratpoly] Init on vars (1, 2): degN=4, degD=0, probe_rms_rel≈0.00248
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -7.560e+06, max: 9.425e+05, mean: -2.787e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -8.484e+06, max: 9.882e+05, mean: -4.989e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -7.484e+06, max: 3.264e+05, mean: -3.294e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=8.692e+01, true_median=9.826e-02, ratio=8.846e+02
+[info] dataloader for provider ASTCompositeAdaptor yields 10 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=386 (trivially separable union)
+[Stage B]    Candidate (ratpoly): params=386, val-loss=5.3787e-02
+[Stage B]    Reject (ratpoly): simpler-over-budget(thr=4.522e-09) | loss 6.746e-07->5.379e-02 (Δ+5.38e-02) | params 1024->386 | cx (1, 4, 2)->(0, 0, 0)
+[Stage B]  Trying ratpoly deg=(2,1)->(2,1) nnz=(5,3) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=2, degD=1, probe_rms_rel≈0.01
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -7.300e+06, max: 4.986e+05, mean: -1.603e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -8.405e+06, max: 4.929e+05, mean: -1.943e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -8.826e+06, max: 5.714e+05, mean: -2.705e+05
+[Stage B] Prediction scale check (attempt 0): pred_median=1.255e+05, true_median=9.826e-02, ratio=1.278e+06
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly[1]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying rratpoly deg=(2,2)->(2,2) nnz=(4,6) on leaf1 vars=(1, 2)
+[Stage B custom_init rratpoly] Init on vars (1, 2): degN=2, degD=2, probe_rms_rel≈0.00451
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -7.270e+06, max: 4.962e+05, mean: -1.603e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -8.368e+06, max: 4.905e+05, mean: -1.946e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -8.837e+06, max: 5.696e+05, mean: -2.702e+05
+[Stage B] Prediction scale check (attempt 0): pred_median=1.254e+05, true_median=9.826e-02, ratio=1.277e+06
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly[2]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying ratpoly deg=(3,1)->(3,1) nnz=(10,2) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=3, degD=1, probe_rms_rel≈0.0037
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -7.264e+06, max: 4.949e+05, mean: -1.603e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -8.353e+06, max: 4.896e+05, mean: -1.946e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -8.862e+06, max: 5.722e+05, mean: -2.700e+05
+[Stage B] Prediction scale check (attempt 0): pred_median=1.248e+05, true_median=9.826e-02, ratio=1.270e+06
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly[3]) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (duplicate-signature) rule=multid_nn cand=ratpoly[4] target=nn#leaf1 vars=(1, 2) sig=(2791888061, 0, 10, 2, 0, 0, 0, 1, 1, 0, 0, 2, 1, 1, 2, 0, 0, 3, 1, 2, 2, 1, 3, 0, -1, 6, 2, 0, 0, 0, 1, 1, 0, 0, 2, 1, 1, 2, 0) attempted=16
+[Stage B]  Trying ratpoly deg=(3,3)->(3,3) nnz=(7,9) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=3, degD=3, probe_rms_rel≈0.00437
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -7.280e+06, max: 4.959e+05, mean: -1.603e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -8.373e+06, max: 4.908e+05, mean: -1.945e+05
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -8.847e+06, max: 5.725e+05, mean: -2.702e+05
+[Stage B] Prediction scale check (attempt 0): pred_median=1.253e+05, true_median=9.826e-02, ratio=1.275e+06
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly[5]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying ratpoly deg=(4,3)->(4,3) nnz=(9,8) on leaf1 vars=(1, 2)
+[Stage B custom_init ratpoly] Init on vars (1, 2): degN=4, degD=3, probe_rms_rel≈0.00197
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -4.570e+15, max: 5.901e+14, mean: -2.436e+13
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.907e+15, max: 5.081e+14, mean: -1.643e+13
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -6.956e+15, max: 5.805e+14, mean: -4.172e+13
+[Stage B] Prediction scale check (attempt 0): pred_median=5.966e+05, true_median=9.826e-02, ratio=6.072e+06
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly[6]) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (units: Atom kind 'exp_poly' expects dimensionless inputs; x1 has units T^-1) rule=multid_nn cand=trapped_mult target=nn#leaf1 vars=(1, 2) attempted=18
+[Stage B][pure-exp] leaf (1, 2) N_pos 5000 max_abs_log 1.4120180491276777 rms_rel_log 0.008648356340409198 rms_rel_F 0.06922872780697589
+[Stage B]  Precheck reject (units: Atom kind 'exp_ratpoly' expects dimensionless inputs; x1 has units T^-1) rule=multid_nn cand=pure_exp_branch target=nn#leaf1 vars=(1, 2) attempted=18
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1), vars=(1, 2)(arity=2)]
+[Stage B]  Greedy order (1 cands): precond_fallback_div(2000p)
+[Stage B]  Precheck reject (units: poly leaf with unitful inputs requires homogeneous basis (min_total=degree=1), but got min_total=0) rule=preconditioner_fallback_nn cand=precond_fallback_div target=nn#leaf0 vars=(0,) attempted=0
+[Stage B]  Greedy order (2 cands): precond_fallback_div(2000p), precond_fallback_div(2000p)
+[Stage B]  Precheck reject (units: poly leaf with unitful inputs requires homogeneous basis (min_total=degree=1), but got min_total=0) rule=preconditioner_fallback_nn cand=precond_fallback_div target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B]  Precheck reject (units: poly leaf with unitful inputs requires homogeneous basis (min_total=degree=1), but got min_total=0) rule=preconditioner_fallback_nn cand=precond_fallback_div target=nn#leaf1 vars=(1, 2) attempted=0
+[Stage B] No improving rewrites found; stopping.
+[Stage B]   Restoring best-seen state (loss=3.615e-08 < current=6.746e-07)
+[Stage B] Pareto(loss,complexity): front=8 trackable=36 outcomes=['accept', 'reject']
+[Stage B]   Pareto step=1 accept monomial_pow1_3: loss=3.615e-08 cx=1000008.250 (ast=1000007.000, map=0.000:-/none) params=640
+[Stage B]   Pareto step=42 reject ratpoly[11]: loss=7.062e-07 cx=27.200 (ast=27.200, map=0.000:-/none) params=22
+[Stage B]   Pareto step=60 reject last_ratpoly[11]: loss=7.062e-07 cx=27.200 (ast=27.200, map=0.000:-/none) params=22
+[Stage B]   Pareto step=39 reject ratpoly[8]: loss=1.591e-05 cx=23.100 (ast=23.100, map=0.000:-/none) params=16
+[Stage B]   Pareto step=57 reject last_ratpoly[8]: loss=1.591e-05 cx=23.100 (ast=23.100, map=0.000:-/none) params=16
+[Stage B]   Pareto step=34 reject ratpoly[3]: loss=1.195e-04 cx=20.700 (ast=20.700, map=0.000:-/none) params=12
+[Stage B]   Pareto step=52 reject last_ratpoly[3]: loss=1.195e-04 cx=20.700 (ast=20.700, map=0.000:-/none) params=12
+[Stage B]   Pareto step=32 reject ratpoly[1]: loss=2.578e-04 cx=18.650 (ast=18.650, map=0.000:-/none) params=9
+[PruneParam] Skipping: 1 NN atoms remain
+[Prune] Skipping: 1 NN atoms remain
+[PruneNested] Skipping: 1 NN atoms remain
+[Stage B] Shuffle diagnostic skipped: input has only 3 columns, axes=(2, 3) not available.
+[Stage B] Phi diagnostic (phi_true=y^2): max|Δ|=0.251, rmse=0.147
+[Stage B] y_true stats: min=0.0208, max=0.742, median=0.134
+[Stage B] y_pred stats: min=0.0208, max=0.742, median=0.134
+[31m[Stage B] Final AST still contains 1 trainable NN leaf/leaves; Stage C expression will be marked unresolved and skipped by truth-eval/final-polish.[0m
+[Stage C] pretty_print_state FULL expr: (x0)**0.3333333333333333 * leaf1(x1, x2)
+[Stage B] Final model: params=640, val-loss=3.6148e-08
+[Stage B] recomputed final MSE: 3.6148e-08 RMS: 7.65137e-05
+[Stage B] stored val_loss: 3.6148e-08
+[Stage B] [32mAccepted[0m patterns: monomial_pow1_3
+[Stage B] After pruning/simplification: (x0)**0.3333333333333333 * leaf1(x1, x2)
+[36m[Stage B] Final AST:[0m ((x0 ** 0.333333) * nn(x1, x2)#leaf1)
+[36m[Stage B] Final expression (in φ(y)-space):[0m (x0)**0.3333333333333333 * leaf1(x1, x2)
+[36m[Stage B] Final expression (in original y-space):[0m (x0)**0.3333333333333333 * leaf1(x1, x2)
+[A<->B] Saved after-stageB checkpoint to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.state.pkl
+[A<->B] No multivariate NN atoms remain; converged.
+
+Elapsed time: 5.368824673923664 hours
+[GS] Wrote GS report to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.gs_report.json
+[Stage A provisional] 1/1 confirmed (confirmed_stageB_burden_reduction)
+
+Wrote JSON report to examples/jacobi_tidal/results/v1_clean_fixed7_report.json
+
+=== Pre-Polish Noiseless Ground Truth Check ===
+status: skipped (unresolved_symbolic_leaves)
+Wrote simplification path to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.path
+
+=== Simplification Path ===
+
+Step 0 [Stage A] pure NN surrogate (y_op=identity)
+  NN[x0, x1, x2]
+  mse_raw=7.8424e-07 params=960
+
+Step 1 [Stage A] separability/compound detection (y_op=identity)
+  (NN[x0] * NN[x1, x2])
+  mse_raw=6.7457e-07 params=1024
+  base_loss=7.8424e-07
+
+Step 2 [Stage B] rewrite monomial_pow1_3 (rule=monomial_peel_priority, target=nn#leaf0 vars=(0,))
+  ((x0)**0.333333 * NN[x1, x2])
+  mse_raw=3.6148e-08 complexity_total=1e+06 params=640 ast_cost=1000007.0
+  base_loss=6.7457e-07
+
+=== Final: ((x0)**0.333333 * NN[x1, x2]) ===
+
+--- Accuracy Progression ---
+  Stage A      mse_raw=  7.8424e-07  params=  960
+  Stage A      mse_raw=  6.7457e-07  params= 1024  (1.2e+00x better)
+  Stage B      mse_raw=  3.6148e-08  params=  640  (1.9e+01x better)
+[FinalPolish] Updated JSON report with final_polish: examples/jacobi_tidal/results/v1_clean_fixed7_report.json
+
+=== Final Pareto Polish ===
+status: skipped
+reason: final expression contains unresolved NN atoms or leaf functions
+
+=== Final Selected Result ===
+source: stageB
+expr: (x0)**0.3333333333333333 * leaf1(x1, x2)
+
+=== Final Selected Ground Truth Check ===
+status: skipped (unresolved_symbolic_leaves)

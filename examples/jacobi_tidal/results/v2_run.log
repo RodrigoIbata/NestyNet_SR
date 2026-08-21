@@ -1,0 +1,99 @@
+Running on mac.home with device cpu
+enforce_units=True, factorized symbolic search=ON, continuous skeleton refinement=ON, outer-peel-autorun(deprecated)=ON
+[GS] Stage-A symmetry layer enabled (mode=propose, policy=augment, known=True, affine=True, unit_torus=False)
+[Data] Overrides: batch_size=2000, ndata_train=6000, ndata_val=2000, data_slice=0
+Median of y values: 0.0011317777782874879
+Median absolute deviation of y values: 0.0011145661784046565
+Number of x variables: 3
+MAD^2 of y values: 1.2422577660435606e-06
+RMS of y values: 0.1926104169747269
+Log-space dynamic range of |y|: 7.74 decades
+[Units] Loaded basis=('L', 'T', 'M'); y_units=[3, 0, 0]; x_units=[[3, -2, 0], [0, -1, 0], [0, -1, 0]]
+[PhaseScan] Found 3 phase-coordinate hint(s) from the identity training split.
+[PhaseScan]   ((x1)**-1 * x2): omega_obs=6.28319, score=9.1e-05, R2_phase=0.00651, R2_trend=0.00597, cycles=0.447, unit=dimensionless, split_R2=0.00713, null_R2=0.00113
+[PhaseScan]   (1/sqrt(x1) * sqrt(x2)): omega_obs=12.5664, score=6.14e-05, R2_phase=0.00618, R2_trend=0.00578, cycles=0.43, unit=dimensionless, split_R2=0.00729, null_R2=0.00141
+[PhaseScan]   ((x1)**-2 * (x2)**2): omega_obs=3.14159, score=4.53e-07, R2_phase=0.00634, R2_trend=0.00634, cycles=0.49, unit=dimensionless, split_R2=0.00685, null_R2=0.00059
+[PhaseScan Context] No contextual phase hints found.
+[OuterLinkScan] No inverse-link hints found.
+
+Criteria (base, in units of MAD(φ(y))^2): loss acceptable: 1.000000e-03, loss target: 1.000000e-07, chisq_tol: 1.000000e-10, precision derivs d2y: 1.000000e-03
+
+[Units] Skipping y-transforms incompatible with y units (L^3): log, logneg, sqrt1p, exp, expneg, arctan, arcsin, arccos, sin, cos, tan
+[Stage A] Running standard separability search on pure NN expression
+
+
+Size of datasets: training: 6000, val: 2000
+Using MAD-normalised LM thresholds for y_op None: MAD(φ(y))≈0.000882, scale=7.78e-07
+Initial model (AST): NN[x0, x1, x2]
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:1 (full), number of leaves: 1, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() (NN[x0, x1, x2]), parameters: 960
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: wrapper=ASTCompositeAdaptor, base=_Composite, params=960, output_major=False, id=4973065648
+[LM][bucket] solving P=960 (trivially separable union)
+Validation patience exceeded at epoch 601/2500, nval_worse=500
+acceptable losses (raw) target=7.7807e-14, acceptable=7.7807e-10 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+Trial 1/1 with dual_layer=True [31mfailed[0m. best_val_loss=2.9209e-05 >= acceptable_raw=7.7807e-10
+Failed to fit model after 1 trials.
+[33m[Stage A] Keeping best baseline fit under protest: val_loss=2.9209e-05, dual_layer=True[0m
+Fit too poor to proceed (val_loss=2.9209e-05 > 100x acceptable=7.7807e-08)
+[33mIdentity fit rejected, but high dynamic range on y (7.74 decades > 4.0). Now testing if asinh transformation can rescue the fit[0m
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[33m[Stage A] asinh conditioning did not rescue fit (3.9159e-04 still too high), proceeding with rejection[0m
+[33m[Stage A] Initial identity fit failed before reference save (val_loss=2.9209e-05); retrying the initial identity fit once with a fresh random initialization before saving the reference model (attempt 2/2).[0m
+Initial model (AST): NN[x0, x1, x2]
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:1 (full), number of leaves: 1, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() (NN[x0, x1, x2]), parameters: 960
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 601/2500, nval_worse=500
+acceptable losses (raw) target=7.7807e-14, acceptable=7.7807e-10 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+Trial 1/1 with dual_layer=True [31mfailed[0m. best_val_loss=1.7298e-05 >= acceptable_raw=7.7807e-10
+Failed to fit model after 1 trials.
+[33m[Stage A] Keeping best baseline fit under protest: val_loss=1.7298e-05, dual_layer=True[0m
+Fit too poor to proceed (val_loss=1.7298e-05 > 100x acceptable=7.7807e-08)
+[33mIdentity fit rejected, but high dynamic range on y (7.74 decades > 4.0). Now testing if asinh transformation can rescue the fit[0m
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 701/2500, nval_worse=500
+[31m[Stage A] asinh conditioning fails y-space sanity: y-MSE=1.133e-02 > allowed=6.923e-03 (asinh=1.209e-01, D_ref=2.864e-03)[0m
+[33m[Stage A] asinh conditioning did not rescue fit (1.2087e-01 still too high), proceeding with rejection[0m
+Ending the run.
+
+[33m[Stage A] Identity fit failed with high dynamic range (7.74 decades > 4.0)[0m
+[33m[Stage A] Retrying with asinh fit-link conditioning...[0m
+
+
+Size of datasets: training: 6000, val: 2000
+Using MAD-normalised LM thresholds for y_op None: MAD(asinh(y/0.00113178))≈0.713, scale=0.508
+Initial model (AST): NN[x0, x1, x2]
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:1 (full), number of leaves: 1, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() (NN[x0, x1, x2]), parameters: 960
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 801/2500, nval_worse=500
+acceptable losses (raw) target=5.0791e-08, acceptable=5.0791e-04 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+Trial 1/1 with dual_layer=True [31mfailed[0m. best_val_loss=1.8650e-01 >= acceptable_raw=5.0791e-04
+Failed to fit model after 1 trials.
+[33m[Stage A] Keeping best baseline fit under protest: val_loss=1.8650e-01, dual_layer=True[0m
+[32m[Stage A] fit-link original-y certified after under-protest initial fit: y-MSE=1.983e-04 <= allowed=1.068e-02.[0m
+Fit too poor to proceed (val_loss=1.8650e-01 > 100x acceptable=5.0791e-02)
+Ending the run.
+[33m[Stage A] asinh-conditioned identity did not improve, reverting...[0m
+
+[36mNo Stage A separability found.[0m
+Saved Stage-A checkpoint to <WORKSPACE>/NestyNet_SR/results/jacobi_v2_cube.state.pkl
+[36mFinal model: Identity() (NN[x0, x1, x2]), rest: None, None[0m
+
+Elapsed time: 0.24657537365746168 hours
+[GS] Wrote GS report to <WORKSPACE>/NestyNet_SR/results/jacobi_v2_cube.gs_report.json
+
+Wrote JSON report to examples/jacobi_tidal/results/v2_report.json
+[FinalPolish] Updated JSON report with final_polish: examples/jacobi_tidal/results/v2_report.json
+
+=== Final Pareto Polish ===
+status: skipped
+reason: no Stage B result

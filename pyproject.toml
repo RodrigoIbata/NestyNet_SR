@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nestynet-sr"
+version = "0.1.0"
+description = "Symbolic regression and differential equation discovery using NestyNet neural networks"
+requires-python = ">=3.10"
+license = {text = "MPL-2.0"}
+authors = [
+    {name = "Rodrigo Ibata"}
+]
+readme = "README.md"
+dependencies = [
+    "nestynet>=0.1.0",
+    "torch>=2.6",
+    "numpy>=2.2",
+    "scipy>=1.15",
+    "pandas>=2.2",
+    "matplotlib>=3.5",
+    "sympy>=1.12",
+]
+
+[project.optional-dependencies]
+gui = [
+    "streamlit",
+    "altair"
+]
+dev = [
+    "pytest>=7",
+    "ruff>=0.4",
+    "mypy>=1.10",
+    "IPython>=8.0"
+]
+docs = ["sphinx>=7", "sphinx-rtd-theme>=2.0", "myst-parser>=4"]
+
+[project.scripts]
+nestynet-sr = "nestynet_sr.run_SR:main"
+nestynet-de = "nestynet_sr.run_de:main"
+nestynet-polish = "nestynet_sr.equation_polisher:main"
+
+[tool.setuptools.packages.find]
+include = ["nestynet_sr*"]
+exclude = ["tests*", "examples*", "data*", "models*", "results*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+extend-select = ["E","F","W","I"]
+ignore = ["E401", "E402", "E501", "E701", "E702", "E731", "E741", "E743", "I001"]
+
+[tool.pytest.ini_options]
+norecursedirs = [
+    ".git",
+    ".venv",
+    "build",
+    "data",
+    "dist",
+    "models",
+    "results",
+]

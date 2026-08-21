@@ -1,0 +1,4 @@
+# Install NestyNet and NestyNet-SR from their pinned release checkouts first.
+# Core dependencies are declared in pyproject.toml. Paper IV's HORIZONS-backed
+# reduced-Kepler example additionally needs Astropy.
+astropy>=6.0

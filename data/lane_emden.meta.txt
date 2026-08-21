@@ -1,0 +1,18 @@
+Lane-Emden Equation - Ground Truth
+==================================================
+
+Equation: (1/ξ²) d/dξ(ξ² dθ/dξ) + θⁿ = 0
+Expanded: θ_ξξ + (2/ξ) θ_ξ + θⁿ = 0
+
+Parameters:
+  n  = 1.5 (polytropic index)
+
+Expected Discovery (implicit form):
+  θ_ξξ + c1*(1/ξ)*θ_ξ + c2*θⁿ = 0
+
+Expected Coefficients:
+  c1 = 2.000000
+  c2 = 1.000000
+  n  = 1.500000
+
+Solution method: numerical

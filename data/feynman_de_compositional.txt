@@ -1,0 +1,37 @@
+# Feynman DE Compositional Mini-Benchmark
+#
+# Purpose:
+#   Clean DE cases whose structure is intentionally outside the current
+#   first-line sparse/template language but inside the compositional language
+#   available to factorized symbolic search. These are not flagship physics equations; they are
+#   capability probes for shifted reciprocals, nested unary functions, and
+#   simple composed operator structure.
+#
+# Format:
+# id order independent_var dependent_var equation description feynman_ref params param_ranges ic_type
+
+# =============================================================================
+# SANITY CASES
+# =============================================================================
+
+890 1 x u du/dx=-u "Linear decay sanity" compositional - - decay
+891 1 x u du/dx=-x "Linear forcing sanity" compositional - - value
+892 1 x u du/dx=-(x+u) "Affine linear sanity" compositional - - value
+893 2 x u d2u/dx2=-u "Simple harmonic sanity" compositional - - oscillatory
+
+# =============================================================================
+# FIRST-ORDER COMPOSITIONAL CASES
+# =============================================================================
+
+900 1 x u du/dx=-u/(1+x) "Shifted reciprocal decay" compositional - - decay
+901 1 x u du/dx=-u/(1+x)**2 "Shifted inverse-square decay" compositional - - decay
+902 1 x u du/dx=-u*log(1+x) "Logarithmic damping" compositional - - decay
+903 1 x u du/dx=-exp(u) "Exponential state decay" compositional - - value
+904 1 x u du/dx=-sin(u) "Sine state relaxation" compositional - - value
+905 1 x u du/dx=-u/(1+u) "Shifted self-reciprocal decay" compositional - - value
+
+# =============================================================================
+# SECOND-ORDER COMPOSITIONAL CASE
+# =============================================================================
+
+906 2 x u d2u/dx2=-(2/(1+x))*du/dx-u "Shifted Lane-Emden-like oscillator" compositional - - oscillatory

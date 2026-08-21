@@ -1,0 +1,7 @@
+[harness] attempt 1 -> examples/jacobi_tidal/results/v1_ab_1.log
+[harness] attempt 1: renorms=0
+0 calibrations=0
+0 guard_rejects=43
+[harness] attempt 1 final: [36m[Stage B] Final AST:[0m (((x0 ** 0.333333) * exp_ratpoly(x1*(x2)^-1)#leaf1) * ((x1 ** -1) ** 0.666667))
+[harness] SUCCESS(textbook) on attempt 1
+[36m[Stage B] Final expression (in original y-space):[0m (x0)**0.3333333333333333 * (exp((0.5609842113949798 - 0.8975105133365614*(x1*(x2)^-1) - 0.1396161129446586*(x1*(x2)^-1)^2)/(-0.7681710715533487 + 1.712446613053971*(x1*(x2)^-1) + 0.3559364594870748*(x1*(x2)^-1)^2))) * (1/(x1))**0.6666666666666666

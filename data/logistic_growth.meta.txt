@@ -1,0 +1,22 @@
+Logistic Growth Data - Ground Truth
+==================================================
+
+Data Format:
+  Columns: 't' (time coordinate), 'y' (population)
+  Note: 't' column will be auto-detected as time coordinate
+
+Equation: du/dt = r*u*(1 - u/K)
+Expanded: du/dt = r*u - (r/K)*u²
+
+Parameters:
+  r  = 0.5
+  K  = 10.0
+  u0 = 1.0
+
+Expected Discovery (implicit form):
+  u_t + c1*u + c2*u^p = 0
+
+Expected Coefficients:
+  c1 = -0.500000
+  c2 = 0.050000
+  p  = 2.000000

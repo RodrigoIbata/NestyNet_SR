@@ -1,0 +1,147 @@
+# Feynman DE Benchmark - Differential Equations from Physics
+#
+# Format:
+# id order independent_var dependent_var equation description feynman_ref params param_ranges ic_type [flags]
+#
+# Notes:
+# - 'order': DE order (1 or 2)
+# - 'equation': RHS of the DE in the form du/dx = f(x, u, du/dx) or d2u/dx2 = f(...)
+# - 'feynman_ref': Reference to Feynman Lectures (Volume.Chapter) or 'classical'
+# - 'params': Parameter names (comma-separated)
+# - 'param_ranges': Suggested parameter ranges as [min,max] pairs
+# - 'ic_type': 'value' (u(0)=u0), 'decay' (u->0 as x->inf), 'bounded', 'oscillatory'
+# - 'flags': optional comma-separated declared class metadata ('-' or absent = none).
+#   'singular_origin': the problem is posed on a domain with a coordinate
+#   singularity at the origin (radial/self-similar coordinate); the benchmark
+#   library additionally enables the inverse-coordinate atoms u'/x, u/x, u/x^2.
+#   Declared at the level of the problem class, never read from the equation.
+#
+# =============================================================================
+# FIRST-ORDER DEs
+# =============================================================================
+
+# --- Exponential Decay / Growth ---
+000 1 t u du/dt=-lambda*u "Radioactive decay" I.3 lambda [0.1,2.0] decay
+001 1 t N dN/dt=r*N "Exponential growth" I.3 r [0.1,2.0] value
+002 1 t N dN/dt=r*N*(1-N/K) "Logistic growth" classical r,K [0.5,2.0],[1.0,5.0] bounded
+
+# --- Thermal Physics ---
+003 1 t T dT/dt=-k*(T-T_env) "Newton's law of cooling" I.44 k,T_env [0.1,2.0],[0.0,1.0] value
+004 1 x T dT/dx=-T/L "Steady-state heat conduction (1D)" I.44 L [0.5,2.0] value
+
+# --- Electrical Circuits ---
+005 1 t q dq/dt=-q/(R*C) "RC circuit discharge" I.25 R,C [0.5,2.0],[0.5,2.0] decay
+006 1 t I dI/dt=-R*I/L "RL circuit decay" I.25 R,L [0.5,2.0],[0.5,2.0] decay
+007 1 t q dq/dt=(V0-q/C)/R "RC charging" I.25 V0,R,C [1.0,5.0],[0.5,2.0],[0.5,2.0] bounded
+
+# --- Mechanics with Drag ---
+008 1 t v dv/dt=g-k*v/m "Falling with linear drag" I.11 g,k,m [9.8,10.0],[0.1,1.0],[0.5,2.0] bounded
+009 1 t v dv/dt=g-k*v**2/m "Falling with quadratic drag" I.11 g,k,m [9.8,10.0],[0.01,0.5],[0.5,2.0] bounded
+
+# --- Fluid Dynamics ---
+010 1 r v dv/dr=-v/r "Radial inflow (mass conservation)" II.40 - - decay singular_origin
+011 1 x p dp/dx=-rho*g "Hydrostatic pressure" I.47 rho,g [1.0,2.0],[9.8,10.0] value
+
+# --- Quantum Mechanics ---
+012 1 x psi dpsi/dx=-kappa*psi "Tunneling wavefunction (evanescent)" III.3 kappa [0.5,3.0] decay
+
+# --- Chemical Kinetics ---
+013 1 t c dc/dt=-k*c**2 "Second-order reaction" classical k [0.1,2.0] decay
+014 1 t c dc/dt=-k*c**(1/2) "Half-order reaction" classical k [0.1,2.0] decay
+
+# =============================================================================
+# SECOND-ORDER DEs
+# =============================================================================
+
+# --- Simple Harmonic Motion ---
+100 2 t x d2x/dt2=-omega**2*x "Simple harmonic oscillator" I.21 omega [1.0,5.0] oscillatory
+101 2 t x d2x/dt2=-(k/m)*x "Mass-spring system" I.21 k,m [1.0,5.0],[0.5,2.0] oscillatory
+102 2 t theta d2theta/dt2=-(g/L)*theta "Simple pendulum (small angle)" I.21 g,L [9.8,10.0],[0.5,2.0] oscillatory
+
+# --- Damped Oscillations ---
+103 2 t x d2x/dt2=-2*gamma*dx/dt-omega0**2*x "Damped harmonic oscillator" I.24 gamma,omega0 [0.1,1.0],[1.0,5.0] decay
+104 2 t x d2x/dt2=-(b/m)*dx/dt-(k/m)*x "Damped mass-spring" I.24 b,m,k [0.1,1.0],[0.5,2.0],[1.0,5.0] decay
+105 2 t q d2q/dt2=-(R/L)*dq/dt-q/(L*C) "RLC circuit" I.25 R,L,C [0.1,2.0],[0.5,2.0],[0.5,2.0] oscillatory
+
+# --- Free Fall and Projectile Motion ---
+106 2 t x d2x/dt2=-g "Free fall" I.9 g [9.8,10.0] value
+107 2 t x d2x/dt2=-g-k*dx/dt "Free fall with linear drag" I.11 g,k [9.8,10.0],[0.1,1.0] value
+
+# --- Gravitational Systems ---
+108 2 t r d2r/dt2=-G*M/r**2 "Radial orbit (1D collapse)" I.13 G,M [1.0,2.0],[1.0,5.0] value
+109 2 phi u d2u/dphi2=-u+G*M/L**2 "Binet orbit equation" I.13 G,M,L [1.0,2.0],[1.0,5.0],[1.0,3.0] oscillatory
+
+# --- Electromagnetism ---
+110 2 x phi d2phi/dx2=-rho/epsilon0 "Poisson equation (1D)" II.6 rho,epsilon0 [1.0,5.0],[1.0,2.0] value
+111 2 x E d2E/dx2=k**2*E "Evanescent EM wave" II.24 k [0.5,3.0] decay
+112 2 x E d2E/dx2=-k**2*E "Propagating EM wave" II.24 k [0.5,3.0] oscillatory
+
+# --- Astrophysics (Lane-Emden) ---
+113 2 xi theta d2theta/dxi2=-(2/xi)*dtheta/dxi-theta**n "Lane-Emden equation" classical n [0.0,5.0] bounded singular_origin
+114 2 xi theta d2theta/dxi2=-(2/xi)*dtheta/dxi-theta "Lane-Emden n=1 (polytrope)" classical - - bounded singular_origin
+115 2 xi theta d2theta/dxi2=-(2/xi)*dtheta/dxi-theta**3 "Lane-Emden n=3 (polytrope)" classical - - bounded singular_origin
+116 2 xi theta d2theta/dxi2=-(2/xi)*dtheta/dxi-exp(-theta) "Isothermal sphere" classical - - bounded singular_origin
+
+# --- Bessel-type Equations ---
+117 2 x y d2y/dx2=-(1/x)*dy/dx+(nu**2/x**2-1)*y "Bessel equation" classical nu [0.0,3.0] oscillatory singular_origin
+118 2 x y d2y/dx2=-(1/x)*dy/dx-y "Bessel J_0" classical - - oscillatory singular_origin
+
+# --- Quantum Mechanics ---
+119 2 x psi d2psi/dx2=(2*m/hbar**2)*(V-E)*psi "Time-indep Schrodinger (1D)" III.16 m,hbar,V,E [0.5,2.0],[1.0,1.0],[2.0,4.0],[0.5,1.5] bounded
+120 2 x psi d2psi/dx2=-k**2*psi "Free particle wave" III.16 k [0.5,3.0] oscillatory
+121 2 x psi d2psi/dx2=(k**2*x**2-E)*psi "Harmonic oscillator QM" III.12 k,E [0.5,2.0],[0.5,5.0] bounded
+
+# --- Nonlinear Oscillators ---
+122 2 t x d2x/dt2=-omega**2*x-alpha*x**3 "Duffing oscillator" classical omega,alpha [1.0,3.0],[0.1,1.0] oscillatory
+123 2 t theta d2theta/dt2=-(g/L)*sin(theta) "Pendulum (full nonlinear)" I.21 g,L [9.8,10.0],[0.5,2.0] oscillatory
+124 2 t x d2x/dt2=-omega**2*x+epsilon*x**2 "Weakly nonlinear oscillator" classical omega,epsilon [1.0,3.0],[0.05,0.3] oscillatory
+
+# --- Van der Pol and Limit Cycles ---
+125 2 t x d2x/dt2=mu*(1-x**2)*dx/dt-x "Van der Pol oscillator" classical mu [0.1,2.0] oscillatory
+
+# --- Coupled/Parametric ---
+126 2 t x d2x/dt2=-omega**2*(1+epsilon*cos(Omega*t))*x "Mathieu/parametric" classical omega,epsilon,Omega [1.0,3.0],[0.1,0.5],[1.0,3.0] oscillatory
+
+# --- Relativistic Mechanics ---
+127 2 t x d2x/dt2=-omega**2*x*(1-(dx/dt)**2/c**2)**(3/2) "Relativistic oscillator" I.15 omega,c [1.0,3.0],[1.0,10.0] oscillatory
+
+# --- Acoustics and Waves ---
+128 2 r p d2p/dr2=-(2/r)*dp/dr-k**2*p "Spherical acoustic wave" I.47 k [0.5,3.0] oscillatory singular_origin
+129 2 x y d2y/dx2=(mu/T)*y "String mode (exponential branch)" I.49 T,mu [1.0,5.0],[0.5,2.0] value
+131 2 x y d2y/dx2=-(omega**2*mu/T)*y "Standing wave on string (spatial mode)" I.49 omega,T,mu [1.0,5.0],[1.0,5.0],[0.5,2.0] oscillatory
+
+# --- Capillary and Surface Tension ---
+130 2 x y d2y/dx2=(rho*g/gamma)*y*(1+(dy/dx)**2)**(3/2) "Capillary rise (planar meniscus)" I.51 rho,g,gamma [1.0,2.0],[9.8,10.0],[5.0,20.0] bounded
+
+# =============================================================================
+# SPECIAL CASES (Higher complexity)
+# =============================================================================
+
+# --- Abel Equations ---
+200 1 x y dy/dx=y**3+x "Abel equation type I" classical - - value
+
+# --- Riccati Equations ---
+201 1 x y dy/dx=y**2+x "Riccati equation" classical - - value
+
+# --- Bernoulli Equations ---
+202 1 x y dy/dx=y+y**2 "Bernoulli equation" classical - - value
+203 1 t P dP/dt=r*P-a*P**2 "Population with crowding" classical r,a [0.5,2.0],[0.1,0.5] bounded
+
+# --- Separable with Products ---
+204 1 t y dy/dt=k*t*y "Separable product form" classical k [0.1,1.0] value
+205 1 x y dy/dx=x*y/(x**2+1) "Separable rational" classical - - value
+
+# --- Exact Equations ---
+206 1 x y dy/dx=-y/x "Exact, separable" classical - - decay singular_origin
+
+# --- Lotka-Volterra (single species form) ---
+207 1 t x dx/dt=a*x-b*x*y "Prey equation (y=const)" classical a,b,y [0.5,2.0],[0.1,0.5],[0.5,2.0] bounded
+
+# =============================================================================
+# SYSTEMS (represented as higher-order single equations)
+# =============================================================================
+
+# Note: These are reductions of 2D systems to single higher-order DEs
+
+300 2 t x d2x/dt2=-a*x-b*dx/dt+c "Driven damped oscillator (const force)" classical a,b,c [1.0,5.0],[0.1,1.0],[0.5,2.0] bounded
+301 2 t x d2x/dt2=-omega**2*x+F0*cos(Omega*t) "Driven harmonic oscillator" I.23 omega,F0,Omega [1.0,5.0],[0.5,2.0],[0.5,3.0] oscillatory

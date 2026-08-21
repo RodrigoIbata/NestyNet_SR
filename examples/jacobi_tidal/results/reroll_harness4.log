@@ -1,0 +1,19 @@
+[harness] attempt 1 (ndata=6000) -> examples/jacobi_tidal/results/v1_reroll_1.log
+[harness] attempt 1: BAD trajectory (43 scale-guard rejects), killing early
+[harness] attempt 2 (ndata=5891) -> examples/jacobi_tidal/results/v1_reroll_2.log
+examples/jacobi_tidal/reroll_until_clean.sh: line 21: 27645 Terminated: 15          python3 -u -m nestynet_sr.run_SR --filepath examples/jacobi_tidal/data_clean/jacobi_v1_full.csv --units_basis "L,T,M" --y_units "[1,0,0]" --x_units "[[3,-2,0],[0,-1,0],[0,-1,0]]" --gs-stagea --gs-general-affine --gs-probe-refit --gs-probe-epochs 800 --gs-noise-calibrated-promotion --no-factorized-search --select-below-floor-max-regress-decades 5.0 --gauge-renorm --ndata_train "${NDATA_LIST[$((i-1))]}" --ndata_val 2000 --report_json "$REPORT" > "$LOG" 2>&1
+[harness] attempt 2 final: 
+[harness] attempt 2 finished but final still has NN leaf; re-rolling
+[harness] attempt 3 (ndata=6113) -> examples/jacobi_tidal/results/v1_reroll_3.log
+[harness] attempt 3 final: 
+[harness] attempt 3 finished but final still has NN leaf; re-rolling
+[harness] attempt 4 (ndata=5760) -> examples/jacobi_tidal/results/v1_reroll_4.log
+[harness] attempt 4 final: 
+[harness] attempt 4 finished but final still has NN leaf; re-rolling
+[harness] attempt 5 (ndata=6240) -> examples/jacobi_tidal/results/v1_reroll_5.log
+[harness] attempt 5 final: 
+[harness] attempt 5 finished but final still has NN leaf; re-rolling
+[harness] attempt 6 (ndata=6021) -> examples/jacobi_tidal/results/v1_reroll_6.log
+[harness] attempt 6 final: 
+[harness] attempt 6 finished but final still has NN leaf; re-rolling
+[harness] exhausted 6 attempts without a clean closure

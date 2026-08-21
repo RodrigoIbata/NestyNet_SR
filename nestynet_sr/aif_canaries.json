@@ -1,0 +1,3542 @@
+{
+  "pb000": {
+    "id": 0,
+    "vars": [
+      "x0"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "exp(-x0**2/2)/(sqrt(2*pi))",
+    "description": "AIF equation 000",
+    "reference": "AIF-000"
+  },
+  "pb001": {
+    "id": 1,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "exp(-(x1/x0)**2/2)/((x0*sqrt(2*pi)))",
+    "description": "AIF equation 001",
+    "reference": "AIF-001"
+  },
+  "pb002": {
+    "id": 2,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "exp(-((x1 - x2)/x0)**2/2)/((x0*sqrt(2*pi)))",
+    "description": "AIF equation 002",
+    "reference": "AIF-002"
+  },
+  "pb003": {
+    "id": 3,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "sqrt((-x0 + x1)**2 + (-x2 + x3)**2)",
+    "description": "AIF equation 003",
+    "reference": "AIF-003"
+  },
+  "pb004": {
+    "id": 4,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5",
+      "x6",
+      "x7",
+      "x8"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        2.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        1.0,
+        2.0
+      ],
+      "x3": [
+        3.0,
+        4.0
+      ],
+      "x4": [
+        1.0,
+        2.0
+      ],
+      "x5": [
+        3.0,
+        4.0
+      ],
+      "x6": [
+        1.0,
+        2.0
+      ],
+      "x7": [
+        3.0,
+        4.0
+      ],
+      "x8": [
+        1.0,
+        2.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2/((-x3 + x4)**2 + (-x5 + x6)**2 + (-x7 + x8)**2)",
+    "description": "AIF equation 004",
+    "reference": "AIF-004"
+  },
+  "pb005": {
+    "id": 5,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        3.0,
+        10.0
+      ]
+    },
+    "truth_expr": "x0/(sqrt(1 - x1**2/(x2**2)))",
+    "description": "AIF equation 005",
+    "reference": "AIF-005"
+  },
+  "pb006": {
+    "id": 6,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ],
+      "x5": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x3 + x1*x4 + x2*x5",
+    "description": "AIF equation 006",
+    "reference": "AIF-006"
+  },
+  "pb007": {
+    "id": 7,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1",
+    "description": "AIF equation 007",
+    "reference": "AIF-007"
+  },
+  "pb008": {
+    "id": 8,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x3/((4*pi*x2*x3**3))",
+    "description": "AIF equation 008",
+    "reference": "AIF-008"
+  },
+  "pb009": {
+    "id": 9,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x2/((4*pi*x1*x2**3))",
+    "description": "AIF equation 009",
+    "reference": "AIF-009"
+  },
+  "pb010": {
+    "id": 10,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1",
+    "description": "AIF equation 010",
+    "reference": "AIF-010"
+  },
+  "pb011": {
+    "id": 11,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*(x1 + x2*x3*sin(x4))",
+    "description": "AIF equation 011",
+    "reference": "AIF-011"
+  },
+  "pb012": {
+    "id": 12,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "1*x0*(x1**2 + x2**2 + x3**2)/2",
+    "description": "AIF equation 012",
+    "reference": "AIF-012"
+  },
+  "pb013": {
+    "id": 13,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x4*(1/x3 - 1/x2)",
+    "description": "AIF equation 013",
+    "reference": "AIF-013"
+  },
+  "pb014": {
+    "id": 14,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2",
+    "description": "AIF equation 014",
+    "reference": "AIF-014"
+  },
+  "pb015": {
+    "id": 15,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "1*x0*x1**2/2",
+    "description": "AIF equation 015",
+    "reference": "AIF-015"
+  },
+  "pb016": {
+    "id": 16,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        5.0,
+        10.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        3.0,
+        20.0
+      ],
+      "x3": [
+        1.0,
+        2.0
+      ]
+    },
+    "truth_expr": "(x0 - x1*x3)/(sqrt(1 - x1**2/(x2**2)))",
+    "description": "AIF equation 016",
+    "reference": "AIF-016"
+  },
+  "pb017": {
+    "id": 17,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        3.0,
+        10.0
+      ],
+      "x2": [
+        1.0,
+        2.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "(-x0*x2/(x1**2) + x3)/(sqrt(1 - x2**2/(x1**2)))",
+    "description": "AIF equation 017",
+    "reference": "AIF-017"
+  },
+  "pb018": {
+    "id": 18,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        3.0,
+        10.0
+      ]
+    },
+    "truth_expr": "x0*x1/(sqrt(1 - x1**2/(x2**2)))",
+    "description": "AIF equation 018",
+    "reference": "AIF-018"
+  },
+  "pb019": {
+    "id": 19,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "(x1 + x2)/(1 + x1*x2/(x0**2))",
+    "description": "AIF equation 019",
+    "reference": "AIF-019"
+  },
+  "pb020": {
+    "id": 20,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "(x0*x2 + x1*x3)/(x0 + x1)",
+    "description": "AIF equation 020",
+    "reference": "AIF-020"
+  },
+  "pb021": {
+    "id": 21,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        0.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*sin(x2)",
+    "description": "AIF equation 021",
+    "reference": "AIF-021"
+  },
+  "pb022": {
+    "id": 22,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2*sin(x3)",
+    "description": "AIF equation 022",
+    "reference": "AIF-022"
+  },
+  "pb023": {
+    "id": 23,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "1*x0*(x1**2 + x2**2)*1*x3**2/(2*2)",
+    "description": "AIF equation 023",
+    "reference": "AIF-023"
+  },
+  "pb024": {
+    "id": 24,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0/x1",
+    "description": "AIF equation 024",
+    "reference": "AIF-024"
+  },
+  "pb025": {
+    "id": 25,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        0.0,
+        1.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "arcsin(x0*sin(x1))",
+    "description": "AIF equation 025",
+    "reference": "AIF-025"
+  },
+  "pb026": {
+    "id": 26,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "1/(x2/x1 + 1/x0)",
+    "description": "AIF equation 026",
+    "reference": "AIF-026"
+  },
+  "pb027": {
+    "id": 27,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        10.0
+      ],
+      "x1": [
+        1.0,
+        10.0
+      ]
+    },
+    "truth_expr": "x0/x1",
+    "description": "AIF equation 027",
+    "reference": "AIF-027"
+  },
+  "pb028": {
+    "id": 28,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "sqrt(x0**2 - 2*x0*x1*cos(x2 - x3) + x1**2)",
+    "description": "AIF equation 028",
+    "reference": "AIF-028"
+  },
+  "pb029": {
+    "id": 29,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*sin(x2*x1/2)**2/(sin(x1/2)**2)",
+    "description": "AIF equation 029",
+    "reference": "AIF-029"
+  },
+  "pb030": {
+    "id": 30,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        2.0
+      ],
+      "x1": [
+        2.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "arcsin(x0/((x1*x2)))",
+    "description": "AIF equation 030",
+    "reference": "AIF-030"
+  },
+  "pb031": {
+    "id": 31,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0**2*x1**2/((6*pi*x2*x3**3))",
+    "description": "AIF equation 031",
+    "reference": "AIF-031"
+  },
+  "pb032": {
+    "id": 32,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        2.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        1.0,
+        2.0
+      ],
+      "x3": [
+        1.0,
+        2.0
+      ],
+      "x4": [
+        1.0,
+        2.0
+      ],
+      "x5": [
+        3.0,
+        5.0
+      ]
+    },
+    "truth_expr": "1*x0*x1*x2**2*8*pi*x3**2*x4**4/(2*3*(x4**2 - x5**2)**2)",
+    "description": "AIF equation 032",
+    "reference": "AIF-032"
+  },
+  "pb033": {
+    "id": 33,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2/x3",
+    "description": "AIF equation 033",
+    "reference": "AIF-033"
+  },
+  "pb034": {
+    "id": 34,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        3.0,
+        10.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x2/(1 - x1/x0)",
+    "description": "AIF equation 034",
+    "reference": "AIF-034"
+  },
+  "pb035": {
+    "id": 35,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        3.0,
+        10.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x2*(1 + x1/x0)/(sqrt(1 - x1**2/(x0**2)))",
+    "description": "AIF equation 035",
+    "reference": "AIF-035"
+  },
+  "pb036": {
+    "id": 36,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1/((2*pi))",
+    "description": "AIF equation 036",
+    "reference": "AIF-036"
+  },
+  "pb037": {
+    "id": 37,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0 + x1 + 2*sqrt(x0*x1)*cos(x2)",
+    "description": "AIF equation 037",
+    "reference": "AIF-037"
+  },
+  "pb038": {
+    "id": 38,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "4*pi*x3*(x2/((2*pi)))**2/((x0*x1**2))",
+    "description": "AIF equation 038",
+    "reference": "AIF-038"
+  },
+  "pb039": {
+    "id": 39,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "3*x0*x1/2",
+    "description": "AIF equation 039",
+    "reference": "AIF-039"
+  },
+  "pb040": {
+    "id": 40,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        2.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "1*x1*x2/(x0 - 1*1)",
+    "description": "AIF equation 040",
+    "reference": "AIF-040"
+  },
+  "pb041": {
+    "id": 41,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x3/x2",
+    "description": "AIF equation 041",
+    "reference": "AIF-041"
+  },
+  "pb042": {
+    "id": 42,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ],
+      "x5": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*exp((-x1)*x2*x4/((x3*x5)))",
+    "description": "AIF equation 042",
+    "reference": "AIF-042"
+  },
+  "pb043": {
+    "id": 43,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0**3*x2/(((2*pi))*((pi**2*x4**2*(exp(x0*x2/(((2*pi))*((x1*x3)))) - 1*1))))",
+    "description": "AIF equation 043",
+    "reference": "AIF-043"
+  },
+  "pb044": {
+    "id": 44,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2/x3",
+    "description": "AIF equation 044",
+    "reference": "AIF-044"
+  },
+  "pb045": {
+    "id": 45,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2",
+    "description": "AIF equation 045",
+    "reference": "AIF-045"
+  },
+  "pb046": {
+    "id": 46,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        2.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "1*x1*x3/((x0 - 1*1)*x2)",
+    "description": "AIF equation 046",
+    "reference": "AIF-046"
+  },
+  "pb047": {
+    "id": 47,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2*log(x4/x3)",
+    "description": "AIF equation 047",
+    "reference": "AIF-047"
+  },
+  "pb048": {
+    "id": 48,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "sqrt(x0*x1/x2)",
+    "description": "AIF equation 048",
+    "reference": "AIF-048"
+  },
+  "pb049": {
+    "id": 49,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        3.0,
+        10.0
+      ]
+    },
+    "truth_expr": "x0*x2**2/(sqrt(1 - x1**2/(x2**2)))",
+    "description": "AIF equation 049",
+    "reference": "AIF-049"
+  },
+  "pb050": {
+    "id": 50,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "x0*(x3*cos(x1*x2)**2 + cos(x1*x2))",
+    "description": "AIF equation 050",
+    "reference": "AIF-050"
+  },
+  "pb051": {
+    "id": 51,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x3*(-x1 + x2)/x4",
+    "description": "AIF equation 051",
+    "reference": "AIF-051"
+  },
+  "pb052": {
+    "id": 52,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0/((4*pi*x1**2))",
+    "description": "AIF equation 052",
+    "reference": "AIF-052"
+  },
+  "pb053": {
+    "id": 53,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0/((4*pi*x1*x2))",
+    "description": "AIF equation 053",
+    "reference": "AIF-053"
+  },
+  "pb054": {
+    "id": 54,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "1*x1*cos(x2)/((4*pi*x0)*x3**2)",
+    "description": "AIF equation 054",
+    "reference": "AIF-054"
+  },
+  "pb055": {
+    "id": 55,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ],
+      "x4": [
+        1.0,
+        3.0
+      ],
+      "x5": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "x1*3*x5*sqrt(x3**2 + x4**2)/((4*pi*x0)*x2**5)",
+    "description": "AIF equation 055",
+    "reference": "AIF-055"
+  },
+  "pb056": {
+    "id": 56,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "x1*3*cos(x2)*sin(x2)/((4*pi*x0)*x3**3)",
+    "description": "AIF equation 056",
+    "reference": "AIF-056"
+  },
+  "pb057": {
+    "id": 57,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "3*x0**2/(5*(4*pi*x1*x2))",
+    "description": "AIF equation 057",
+    "reference": "AIF-057"
+  },
+  "pb058": {
+    "id": 58,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1**2/2",
+    "description": "AIF equation 058",
+    "reference": "AIF-058"
+  },
+  "pb059": {
+    "id": 59,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*1/(x1*(x2 + 1))",
+    "description": "AIF equation 059",
+    "reference": "AIF-059"
+  },
+  "pb060": {
+    "id": 60,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        3.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        2.0
+      ]
+    },
+    "truth_expr": "x0*x1/((x2*(x3**2 - x4**2)))",
+    "description": "AIF equation 060",
+    "reference": "AIF-060"
+  },
+  "pb061": {
+    "id": 61,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ],
+      "x4": [
+        1.0,
+        3.0
+      ],
+      "x5": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "x0*(x4*x5*cos(x3)/((x1*x2)) + 1)",
+    "description": "AIF equation 061",
+    "reference": "AIF-061"
+  },
+  "pb062": {
+    "id": 62,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1**2*x2/((3*x3*x4))",
+    "description": "AIF equation 062",
+    "reference": "AIF-062"
+  },
+  "pb063": {
+    "id": 63,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        0.0,
+        1.0
+      ],
+      "x1": [
+        0.0,
+        1.0
+      ],
+      "x2": [
+        1.0,
+        2.0
+      ],
+      "x3": [
+        1.0,
+        2.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2*x3/(1 - x0*x1/3)",
+    "description": "AIF equation 063",
+    "reference": "AIF-063"
+  },
+  "pb064": {
+    "id": 64,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        0.0,
+        1.0
+      ],
+      "x1": [
+        0.0,
+        1.0
+      ]
+    },
+    "truth_expr": "x0*x1/(1 - x0*x1/3) + 1",
+    "description": "AIF equation 064",
+    "reference": "AIF-064"
+  },
+  "pb065": {
+    "id": 65,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "1*2*x2/((4*pi*x0*x1**2)*x3)",
+    "description": "AIF equation 065",
+    "reference": "AIF-065"
+  },
+  "pb066": {
+    "id": 66,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        3.0,
+        10.0
+      ]
+    },
+    "truth_expr": "x0/(sqrt(1 - x1**2/(x2**2)))",
+    "description": "AIF equation 066",
+    "reference": "AIF-066"
+  },
+  "pb067": {
+    "id": 67,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        3.0,
+        10.0
+      ]
+    },
+    "truth_expr": "x0*x1/(sqrt(1 - x1**2/(x2**2)))",
+    "description": "AIF equation 067",
+    "reference": "AIF-067"
+  },
+  "pb068": {
+    "id": 68,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "(-x0)*x1*cos(x2)",
+    "description": "AIF equation 068",
+    "reference": "AIF-068"
+  },
+  "pb069": {
+    "id": 69,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "(-x0)*x1*cos(x2)",
+    "description": "AIF equation 069",
+    "reference": "AIF-069"
+  },
+  "pb070": {
+    "id": 70,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        2.0
+      ],
+      "x4": [
+        3.0,
+        10.0
+      ]
+    },
+    "truth_expr": "x0/((4*pi*x1*x2*(1 - x3/x4)))",
+    "description": "AIF equation 070",
+    "reference": "AIF-070"
+  },
+  "pb071": {
+    "id": 71,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        4.0,
+        6.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        2.0,
+        4.0
+      ]
+    },
+    "truth_expr": "sqrt(x0**2/(x1**2) - pi**2/(x2**2))",
+    "description": "AIF equation 071",
+    "reference": "AIF-071"
+  },
+  "pb072": {
+    "id": 72,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2**2",
+    "description": "AIF equation 072",
+    "reference": "AIF-072"
+  },
+  "pb073": {
+    "id": 73,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1**2",
+    "description": "AIF equation 073",
+    "reference": "AIF-073"
+  },
+  "pb074": {
+    "id": 74,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1/((2*pi*x2))",
+    "description": "AIF equation 074",
+    "reference": "AIF-074"
+  },
+  "pb075": {
+    "id": 75,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2/2",
+    "description": "AIF equation 075",
+    "reference": "AIF-075"
+  },
+  "pb076": {
+    "id": 76,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2/((2*x3))",
+    "description": "AIF equation 076",
+    "reference": "AIF-076"
+  },
+  "pb077": {
+    "id": 77,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1/((4*pi*x2))",
+    "description": "AIF equation 077",
+    "reference": "AIF-077"
+  },
+  "pb078": {
+    "id": 78,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x2*x3*x4/((x1/((2*pi))))",
+    "description": "AIF equation 078",
+    "reference": "AIF-078"
+  },
+  "pb079": {
+    "id": 79,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ],
+      "x4": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "x0/(exp((-x3)*x4/((x1*x2))) + exp(x3*x4/((x1*x2))))",
+    "description": "AIF equation 079",
+    "reference": "AIF-079"
+  },
+  "pb080": {
+    "id": 80,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*tanh(x1*x2/((x3*x4)))",
+    "description": "AIF equation 080",
+    "reference": "AIF-080"
+  },
+  "pb081": {
+    "id": 81,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5",
+      "x6",
+      "x7"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ],
+      "x4": [
+        1.0,
+        3.0
+      ],
+      "x5": [
+        1.0,
+        3.0
+      ],
+      "x6": [
+        1.0,
+        3.0
+      ],
+      "x7": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "x0*x1/((x2*x3)) + x0*x4*x7/((x2*x3*x5*x6**2))",
+    "description": "AIF equation 081",
+    "reference": "AIF-081"
+  },
+  "pb082": {
+    "id": 82,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*(x2 + 1)",
+    "description": "AIF equation 082",
+    "reference": "AIF-082"
+  },
+  "pb083": {
+    "id": 83,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x3/x2",
+    "description": "AIF equation 083",
+    "reference": "AIF-083"
+  },
+  "pb084": {
+    "id": 84,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0/((2*(x1 + 1)))",
+    "description": "AIF equation 084",
+    "reference": "AIF-084"
+  },
+  "pb085": {
+    "id": 85,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "1/(exp(x0*x1/(((2*pi))*((x2*x3)))) - 1*1)",
+    "description": "AIF equation 085",
+    "reference": "AIF-085"
+  },
+  "pb086": {
+    "id": 86,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1/(((2*pi))*(exp(x0*x1/(((2*pi))*((x2*x3)))) - 1*1))",
+    "description": "AIF equation 086",
+    "reference": "AIF-086"
+  },
+  "pb087": {
+    "id": 87,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "2*x0*x1/((x2/((2*pi))))",
+    "description": "AIF equation 087",
+    "reference": "AIF-087"
+  },
+  "pb088": {
+    "id": 88,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        2.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        1.0,
+        4.0
+      ]
+    },
+    "truth_expr": "sin(x0*x1/((x2/((2*pi)))))**2",
+    "description": "AIF equation 088",
+    "reference": "AIF-088"
+  },
+  "pb089": {
+    "id": 89,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ],
+      "x5": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1*x2*sin((x4 - x5)*x2/2)**2/(((x3/((2*pi))))*(((x4 - x5)*x2/2)**2))",
+    "description": "AIF equation 089",
+    "reference": "AIF-089"
+  },
+  "pb090": {
+    "id": 90,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*sqrt(x1**2 + x2**2 + x3**2)",
+    "description": "AIF equation 090",
+    "reference": "AIF-090"
+  },
+  "pb091": {
+    "id": 91,
+    "vars": [
+      "x0",
+      "x1"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*x1/((2*pi))",
+    "description": "AIF equation 091",
+    "reference": "AIF-091"
+  },
+  "pb092": {
+    "id": 92,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "2*x0*x1**2*x2/((x3/((2*pi))))",
+    "description": "AIF equation 092",
+    "reference": "AIF-092"
+  },
+  "pb093": {
+    "id": 93,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        1.0,
+        2.0
+      ],
+      "x3": [
+        1.0,
+        2.0
+      ],
+      "x4": [
+        1.0,
+        2.0
+      ]
+    },
+    "truth_expr": "x0*(exp(x1*x2/((x3*x4))) - 1*1)",
+    "description": "AIF equation 093",
+    "reference": "AIF-093"
+  },
+  "pb094": {
+    "id": 94,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "2*x0*(1 - cos(x1*x2))",
+    "description": "AIF equation 094",
+    "reference": "AIF-094"
+  },
+  "pb095": {
+    "id": 95,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "(x0/((2*pi)))**2/((2*x1*x2**2))",
+    "description": "AIF equation 095",
+    "reference": "AIF-095"
+  },
+  "pb096": {
+    "id": 96,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "2*pi*x0/((x1*x2))",
+    "description": "AIF equation 096",
+    "reference": "AIF-096"
+  },
+  "pb097": {
+    "id": 97,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*(x1*cos(x2) + 1)",
+    "description": "AIF equation 097",
+    "reference": "AIF-097"
+  },
+  "pb098": {
+    "id": 98,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "-x0*x1**4*1/((2*(x2/((2*pi)))**2*(4*pi*x4)**2)*x3**2)",
+    "description": "AIF equation 098",
+    "reference": "AIF-098"
+  },
+  "pb099": {
+    "id": 99,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "(-x0)*x1*x2/x3",
+    "description": "AIF equation 099",
+    "reference": "AIF-099"
+  },
+  "pb100": {
+    "id": 100,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5",
+      "x6"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        2.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        1.0,
+        2.0
+      ],
+      "x3": [
+        1.0,
+        2.0
+      ],
+      "x4": [
+        1.0,
+        2.0
+      ],
+      "x5": [
+        1.0,
+        3.0
+      ],
+      "x6": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "(x0*x1*x2*x3*x4/((4*x5*sin(x6/2)**2)))**2",
+    "description": "AIF equation 100",
+    "reference": "AIF-100"
+  },
+  "pb101": {
+    "id": 101,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ],
+      "x4": [
+        0.0,
+        6.0
+      ],
+      "x5": [
+        0.0,
+        6.0
+      ]
+    },
+    "truth_expr": "x0*x1*(sqrt(2*x2**2*x3/((x0*x1**2)) + 1)*cos(x4 - x5) + 1)/(x2**2)",
+    "description": "AIF equation 101",
+    "reference": "AIF-101"
+  },
+  "pb102": {
+    "id": 102,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        2.0,
+        4.0
+      ],
+      "x2": [
+        4.0,
+        5.0
+      ],
+      "x3": [
+        4.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*(1 - x1**2)/(x1*cos(x2 - x3) + 1)",
+    "description": "AIF equation 102",
+    "reference": "AIF-102"
+  },
+  "pb103": {
+    "id": 103,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        8.0,
+        12.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ],
+      "x4": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "sqrt(2*(x1 - x2 - x3**2/(2*x0*x4**2))/x0)",
+    "description": "AIF equation 103",
+    "reference": "AIF-103"
+  },
+  "pb104": {
+    "id": 104,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "2*pi*x0**(3/2)/(sqrt(x1*(x2 + x3)))",
+    "description": "AIF equation 104",
+    "reference": "AIF-104"
+  },
+  "pb105": {
+    "id": 105,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5",
+      "x6"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ],
+      "x4": [
+        1.0,
+        3.0
+      ],
+      "x5": [
+        1.0,
+        3.0
+      ],
+      "x6": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "sqrt(2*x0**2*x1**2*x6/((x2*(x3*x4*x5**2)**2)) + 1)",
+    "description": "AIF equation 105",
+    "reference": "AIF-105"
+  },
+  "pb106": {
+    "id": 106,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        2.0
+      ],
+      "x3": [
+        1.0,
+        2.0
+      ],
+      "x4": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "sqrt(8*pi*x0*x1/3 - x2*x3**2/(x4**2))",
+    "description": "AIF equation 106",
+    "reference": "AIF-106"
+  },
+  "pb107": {
+    "id": 107,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "x0/(x0*(1 - cos(x3))/((x1*x2**2)) + 1)",
+    "description": "AIF equation 107",
+    "reference": "AIF-107"
+  },
+  "pb108": {
+    "id": 108,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        2.0
+      ],
+      "x1": [
+        1.0,
+        2.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        2.0
+      ]
+    },
+    "truth_expr": "-32*x0**4*(x2*x3)**2*(x2 + x3)/(5*x1**5*x4**5)",
+    "description": "AIF equation 108",
+    "reference": "AIF-108"
+  },
+  "pb109": {
+    "id": 109,
+    "vars": [
+      "x0",
+      "x1",
+      "x2"
+    ],
+    "domain_bounds": {
+      "x0": [
+        4.0,
+        6.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ]
+    },
+    "truth_expr": "arccos((cos(x2) - x1/x0)/(1 - x1*cos(x2)/x0))",
+    "description": "AIF equation 109",
+    "reference": "AIF-109"
+  },
+  "pb110": {
+    "id": 110,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        3.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        3.0
+      ],
+      "x3": [
+        1.0,
+        2.0
+      ]
+    },
+    "truth_expr": "x0*(sin(x1/2)*sin(x3*x2/2)/((x1*sin(x2/2)/2)))**2",
+    "description": "AIF equation 110",
+    "reference": "AIF-110"
+  },
+  "pb111": {
+    "id": 111,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        4.0,
+        6.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*(-x0*x1**3*x3/((x1**2 - x3**2)**2) + 4*pi*x2*x3*x4)/((4*pi*x1**2*x4))",
+    "description": "AIF equation 111",
+    "reference": "AIF-111"
+  },
+  "pb112": {
+    "id": 112,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        4.0,
+        6.0
+      ],
+      "x3": [
+        0.0,
+        6.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "1*x0/((4*pi*x4)*sqrt(x1**2 - 2*x1*x2*cos(x3) + x2**2))",
+    "description": "AIF equation 112",
+    "reference": "AIF-112"
+  },
+  "pb113": {
+    "id": 113,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        0.0,
+        6.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x0*(-x2 + x3**3*(x4 - 1*1)/((x4 + 2)*(x2**2)))*cos(x1)",
+    "description": "AIF equation 113",
+    "reference": "AIF-113"
+  },
+  "pb114": {
+    "id": 114,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "domain_bounds": {
+      "x0": [
+        5.0,
+        20.0
+      ],
+      "x1": [
+        1.0,
+        3.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        0.0,
+        6.0
+      ]
+    },
+    "truth_expr": "x2*sqrt(1 - x1**2/(x0**2))/(1 + x1*cos(x3)/x0)",
+    "description": "AIF equation 114",
+    "reference": "AIF-114"
+  },
+  "pb115": {
+    "id": 115,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ],
+      "x5": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "x3*x5 + sqrt(x0**2*x1**4 + x1**2*(x2 - x3*x4)**2)",
+    "description": "AIF equation 115",
+    "reference": "AIF-115"
+  },
+  "pb116": {
+    "id": 116,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ],
+      "x5": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "1*(x0**2*x1**2*x4**2*(1 + x4*x5/x3) + x2**2)/(2*x0)",
+    "description": "AIF equation 116",
+    "reference": "AIF-116"
+  },
+  "pb117": {
+    "id": 117,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "3*(x1*x4**2/(x2**2) + x3**2)/((8*pi*x0))",
+    "description": "AIF equation 117",
+    "reference": "AIF-117"
+  },
+  "pb118": {
+    "id": 118,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ],
+      "x5": [
+        1.0,
+        5.0
+      ]
+    },
+    "truth_expr": "-(x1*x5**4/(x2**2) + x3**2*x5**2*(1 - 2*x4))/(8*pi*x0)",
+    "description": "AIF equation 118",
+    "reference": "AIF-118"
+  },
+  "pb119": {
+    "id": 119,
+    "vars": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5",
+      "x6"
+    ],
+    "domain_bounds": {
+      "x0": [
+        1.0,
+        5.0
+      ],
+      "x1": [
+        1.0,
+        5.0
+      ],
+      "x2": [
+        1.0,
+        5.0
+      ],
+      "x3": [
+        1.0,
+        5.0
+      ],
+      "x4": [
+        1.0,
+        5.0
+      ],
+      "x5": [
+        1.0,
+        5.0
+      ],
+      "x6": [
+        0.0,
+        6.0
+      ]
+    },
+    "truth_expr": "1*x2**2*x3**2*(x1/x0)**2*(x0/x1 - sin(x6)**2 + x1/x0)/((4*pi)*(x4**2*x5**2))",
+    "description": "AIF equation 119",
+    "reference": "AIF-119"
+  }
+}

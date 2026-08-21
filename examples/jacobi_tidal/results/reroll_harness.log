@@ -1,0 +1,13 @@
+[harness] attempt 1 -> examples/jacobi_tidal/results/v1_reroll_1.log
+[harness] attempt 1: BAD trajectory (47 scale-guard rejects), killing early
+[harness] attempt 2 -> examples/jacobi_tidal/results/v1_reroll_2.log
+examples/jacobi_tidal/reroll_until_clean.sh: line 20: 75770 Terminated: 15          python3 -u -m nestynet_sr.run_SR --filepath examples/jacobi_tidal/data_clean/jacobi_v1_full.csv --units_basis "L,T,M" --y_units "[1,0,0]" --x_units "[[3,-2,0],[0,-1,0],[0,-1,0]]" --gs-stagea --gs-general-affine --gs-probe-refit --gs-probe-epochs 800 --gs-noise-calibrated-promotion --no-factorized-search --select-below-floor-max-regress-decades 5.0 --ndata_train 6000 --ndata_val 2000 --report_json "$REPORT" > "$LOG" 2>&1
+[harness] attempt 2: BAD trajectory (47 scale-guard rejects), killing early
+[harness] attempt 3 -> examples/jacobi_tidal/results/v1_reroll_3.log
+examples/jacobi_tidal/reroll_until_clean.sh: line 20: 83909 Terminated: 15          python3 -u -m nestynet_sr.run_SR --filepath examples/jacobi_tidal/data_clean/jacobi_v1_full.csv --units_basis "L,T,M" --y_units "[1,0,0]" --x_units "[[3,-2,0],[0,-1,0],[0,-1,0]]" --gs-stagea --gs-general-affine --gs-probe-refit --gs-probe-epochs 800 --gs-noise-calibrated-promotion --no-factorized-search --select-below-floor-max-regress-decades 5.0 --ndata_train 6000 --ndata_val 2000 --report_json "$REPORT" > "$LOG" 2>&1
+[harness] attempt 3: BAD trajectory (47 scale-guard rejects), killing early
+[harness] attempt 4 -> examples/jacobi_tidal/results/v1_reroll_4.log
+examples/jacobi_tidal/reroll_until_clean.sh: line 20: 90883 Terminated: 15          python3 -u -m nestynet_sr.run_SR --filepath examples/jacobi_tidal/data_clean/jacobi_v1_full.csv --units_basis "L,T,M" --y_units "[1,0,0]" --x_units "[[3,-2,0],[0,-1,0],[0,-1,0]]" --gs-stagea --gs-general-affine --gs-probe-refit --gs-probe-epochs 800 --gs-noise-calibrated-promotion --no-factorized-search --select-below-floor-max-regress-decades 5.0 --ndata_train 6000 --ndata_val 2000 --report_json "$REPORT" > "$LOG" 2>&1
+[harness] attempt 4: BAD trajectory (43 scale-guard rejects), killing early
+[harness] attempt 5 -> examples/jacobi_tidal/results/v1_reroll_5.log
+examples/jacobi_tidal/reroll_until_clean.sh: line 20: 97858 Terminated: 15          python3 -u -m nestynet_sr.run_SR --filepath examples/jacobi_tidal/data_clean/jacobi_v1_full.csv --units_basis "L,T,M" --y_units "[1,0,0]" --x_units "[[3,-2,0],[0,-1,0],[0,-1,0]]" --gs-stagea --gs-general-affine --gs-probe-refit --gs-probe-epochs 800 --gs-noise-calibrated-promotion --no-factorized-search --select-below-floor-max-regress-decades 5.0 --ndata_train 6000 --ndata_val 2000 --report_json "$REPORT" > "$LOG" 2>&1

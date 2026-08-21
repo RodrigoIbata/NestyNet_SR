@@ -1,0 +1,110 @@
+# Simple Complex Number Benchmarks - "Hello World" for Complex Symbolic Regression
+#
+# Purpose
+# -------
+# These are trivial algebraic benchmarks to verify complex number support in symbolic
+# regression, analogous to easy AI Feynman problems like #010 (x0*x1). They test the
+# representation of complex values as 2-component real vectors [Re, Im].
+#
+# Complex Representation
+# ----------------------
+# Complex z = x0 + i*x1 is represented by two real inputs (x0, x1).
+# Complex output y = y_re + i*y_im is represented by two real outputs [y_re, y_im].
+# For product z*w where z=x0+i*x1 and w=x2+i*x3, inputs are [x0,x1,x2,x3].
+#
+# Format
+# ------
+# Tab-separated: id  nvars  vars  xmin  xmax  eqn_re  eqn_im  description  complex_ops
+#
+# - id: CXnnn identifier
+# - nvars: number of real input variables
+# - vars: comma-separated variable names
+# - xmin, xmax: comma-separated bounds for each variable
+# - eqn_re: equation for real part of output
+# - eqn_im: equation for imaginary part of output (or "-" for scalar output)
+# - description: human-readable description
+# - complex_ops: complex operations tested (Re, Im, conj, abs, arg, mod2, mul, etc.)
+#
+# =============================================================================
+# TIER 1: Trivial (1-2 complex vars, single operation)
+# =============================================================================
+
+# Identity: z = x0 + i*x1 -> [x0, x1]
+CX000	2	x0,x1	-2,-2	2,2	x0	x1	"identity z"	Re,Im
+
+# Conjugate: conj(z) = x0 - i*x1 -> [x0, -x1]
+CX001	2	x0,x1	-2,-2	2,2	x0	-x1	"conjugate conj(z)"	conj
+
+# Real part extraction: Re(z) = x0 (scalar output)
+CX002	2	x0,x1	-2,-2	2,2	x0	-	"real part Re(z)"	Re
+
+# Imaginary part extraction: Im(z) = x1 (scalar output)
+CX003	2	x0,x1	-2,-2	2,2	x1	-	"imag part Im(z)"	Im
+
+# Magnitude: |z| = sqrt(x0^2 + x1^2) (scalar output)
+CX004	2	x0,x1	-2,-2	2,2	sqrt(x0**2+x1**2)	-	"magnitude |z|"	abs
+
+# Magnitude squared: |z|^2 = x0^2 + x1^2 (scalar output)
+CX005	2	x0,x1	-2,-2	2,2	x0**2+x1**2	-	"magnitude squared |z|^2"	mod2
+
+# Complex square: z^2 = (x0+i*x1)^2 -> [x0^2-x1^2, 2*x0*x1]
+CX006	2	x0,x1	-2,-2	2,2	x0**2-x1**2	2*x0*x1	"complex square z^2"	mul
+
+# Euler real: Re(exp(i*x0)) = cos(x0) (scalar output)
+CX007	1	x0	0	6.28	cos(x0)	-	"Euler real Re(exp(i*x0))=cos(x0)"	Re,exp
+
+# Euler imag: Im(exp(i*x0)) = sin(x0) (scalar output)
+CX008	1	x0	0	6.28	sin(x0)	-	"Euler imag Im(exp(i*x0))=sin(x0)"	Im,exp
+
+# Euler full: exp(i*x0) -> [cos(x0), sin(x0)]
+CX009	1	x0	0	6.28	cos(x0)	sin(x0)	"Euler formula exp(i*x0)"	exp
+
+# =============================================================================
+# TIER 2: Easy (2 complex vars = 4 real vars, composition)
+# =============================================================================
+
+# Product real: Re(z*w) = x0*x2 - x1*x3
+CX010	4	x0,x1,x2,x3	-2,-2,-2,-2	2,2,2,2	x0*x2-x1*x3	-	"Re(z*w)"	Re,mul
+
+# Product imag: Im(z*w) = x0*x3 + x1*x2
+CX011	4	x0,x1,x2,x3	-2,-2,-2,-2	2,2,2,2	x0*x3+x1*x2	-	"Im(z*w)"	Im,mul
+
+# Full product: z*w -> [x0*x2-x1*x3, x0*x3+x1*x2]
+CX012	4	x0,x1,x2,x3	-2,-2,-2,-2	2,2,2,2	x0*x2-x1*x3	x0*x3+x1*x2	"complex product z*w"	mul
+
+# Product magnitude: |z*w| = |z|*|w| = sqrt((x0^2+x1^2)*(x2^2+x3^2))
+CX013	4	x0,x1,x2,x3	-2,-2,-2,-2	2,2,2,2	sqrt((x0**2+x1**2)*(x2**2+x3**2))	-	"|z*w| = |z|*|w|"	abs,mul
+
+# Hermitian inner product Re(z*conj(w)) = x0*x2 + x1*x3 (dot product)
+CX014	4	x0,x1,x2,x3	-2,-2,-2,-2	2,2,2,2	x0*x2+x1*x3	-	"Re(z*conj(w)) dot product"	Re,conj
+
+# Sum of magnitudes: |z|^2 + |w|^2
+CX015	4	x0,x1,x2,x3	-2,-2,-2,-2	2,2,2,2	x0**2+x1**2+x2**2+x3**2	-	"|z|^2 + |w|^2"	mod2
+
+# Division: z/w where w != 0 -> [(x0*x2+x1*x3)/(x2^2+x3^2), (x1*x2-x0*x3)/(x2^2+x3^2)]
+CX016	4	x0,x1,x2,x3	-2,-2,0.5,0.5	2,2,2,2	(x0*x2+x1*x3)/(x2**2+x3**2)	(x1*x2-x0*x3)/(x2**2+x3**2)	"complex division z/w"	div
+
+# Reciprocal: 1/z = conj(z)/|z|^2 -> [x0/(x0^2+x1^2), -x1/(x0^2+x1^2)]
+CX017	2	x0,x1	0.5,0.5	2,2	x0/(x0**2+x1**2)	-x1/(x0**2+x1**2)	"reciprocal 1/z"	div,conj
+
+# =============================================================================
+# TIER 3: Medium (NLS-like nonlinearities, no derivatives)
+# =============================================================================
+
+# NLS cubic Re: Re(|z|^2 * z) = (x0^2+x1^2)*x0
+CX020	2	x0,x1	-2,-2	2,2	(x0**2+x1**2)*x0	-	"Re(|z|^2*z) NLS cubic"	mod2,Re
+
+# NLS cubic Im: Im(|z|^2 * z) = (x0^2+x1^2)*x1
+CX021	2	x0,x1	-2,-2	2,2	(x0**2+x1**2)*x1	-	"Im(|z|^2*z) NLS cubic"	mod2,Im
+
+# NLS cubic full: |z|^2 * z -> [(x0^2+x1^2)*x0, (x0^2+x1^2)*x1]
+CX022	2	x0,x1	-2,-2	2,2	(x0**2+x1**2)*x0	(x0**2+x1**2)*x1	"|z|^2*z NLS nonlinearity"	mod2,mul
+
+# Scaled NLS: c*(|z|^2)*z with c = x2
+CX023	3	x0,x1,x2	-2,-2,0.5	2,2,2	x2*(x0**2+x1**2)*x0	x2*(x0**2+x1**2)*x1	"c*|z|^2*z with constant"	mod2,mul
+
+# Complex exponential decay: exp(-|z|^2) * z
+CX024	2	x0,x1	-1.5,-1.5	1.5,1.5	exp(-(x0**2+x1**2))*x0	exp(-(x0**2+x1**2))*x1	"exp(-|z|^2)*z Gaussian"	mod2,exp
+
+# Coupled NLS: (|z|^2 + |w|^2)*z
+CX025	4	x0,x1,x2,x3	-1.5,-1.5,-1.5,-1.5	1.5,1.5,1.5,1.5	(x0**2+x1**2+x2**2+x3**2)*x0	(x0**2+x1**2+x2**2+x3**2)*x1	"(|z|^2+|w|^2)*z coupled NLS"	mod2,mul

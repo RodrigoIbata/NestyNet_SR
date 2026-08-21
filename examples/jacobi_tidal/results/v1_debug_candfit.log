@@ -1,0 +1,79 @@
+Running on obas-rech-ri.astro.unistra.fr with device cpu
+enforce_units=True, factorized symbolic search=OFF, continuous skeleton refinement=ON, outer-peel-autorun(deprecated)=ON
+[GS] Stage-A symmetry layer enabled (mode=propose, policy=augment, known=True, affine=True, unit_torus=False)
+[Data] Overrides: batch_size=2000, ndata_train=6000, ndata_val=2000, data_slice=0
+Median of y values: 0.11048863000693729
+Median absolute deviation of y values: 0.06888620195283074
+Number of x variables: 3
+MAD^2 of y values: 0.004745308819486181
+RMS of y values: 0.25269601114923845
+Log-space dynamic range of |y|: 2.59 decades
+[Units] Loaded basis=('L', 'T', 'M'); y_units=[1, 0, 0]; x_units=[[3, -2, 0], [0, -1, 0], [0, -1, 0]]
+[PhaseScan] Found 6 phase-coordinate hint(s) from the identity training split.
+[PhaseScan]   (x1 * (x2)**-1): omega_obs=6.28319, score=9.7e-05, R2_phase=0.00515, R2_trend=0.0045, cycles=0.389, unit=dimensionless, split_R2=0.00221, null_R2=0.00377
+[PhaseScan]   (sqrt(x1) * 1/sqrt(x2)): omega_obs=12.5664, score=8.71e-05, R2_phase=0.0051, R2_trend=0.00449, cycles=0.401, unit=dimensionless, split_R2=0.00235, null_R2=0.00377
+[PhaseScan]   (1/sqrt(x1) * sqrt(x2)): omega_obs=12.5664, score=3.99e-05, R2_phase=0.00477, R2_trend=0.00451, cycles=0.43, unit=dimensionless, split_R2=0.00258, null_R2=0.00367
+[PhaseScan]   ((x1)**2 * (x2)**-2): omega_obs=3.14159, score=2.89e-05, R2_phase=0.00476, R2_trend=0.00453, cycles=0.371, unit=dimensionless, split_R2=0.00208, null_R2=0.00361
+[PhaseScan]   ((x1)**-1 * x2): omega_obs=6.28319, score=2e-05, R2_phase=0.00465, R2_trend=0.00453, cycles=0.447, unit=dimensionless, split_R2=0.00263, null_R2=0.00363
+[PhaseScan]   ((x1)**-2 * (x2)**2): omega_obs=3.14159, score=1.86e-05, R2_phase=0.0047, R2_trend=0.00459, cycles=0.49, unit=dimensionless, split_R2=0.00256, null_R2=0.00368
+[PhaseScan Context] No contextual phase hints found.
+[OuterLinkScan] No inverse-link hints found.
+
+Criteria (base, in units of MAD(φ(y))^2): loss acceptable: 1.000000e-03, loss target: 1.000000e-07, chisq_tol: 1.000000e-10, precision derivs d2y: 1.000000e-03
+
+[Units] Skipping y-transforms incompatible with y units (L): log, logneg, sqrt1p, exp, expneg, arctan, arcsin, arccos, sin, cos, tan
+Resuming from checkpoint: results/jacobi_v1_full.state.pkl
+Loaded checkpoint with phase=after_stageB
+[Stage A] Loaded checkpoint with val_loss: 2.4666e-11
+
+[36mFinal model: Identity() ((NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))), rest: None, None[0m
+[Stage B] Restored Stage-B model checkpoint from <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full_stageB_model.pt
+[Stage B] y-transform adjudication shortlist:
+  - identity     source=baseline
+[Units] Enforcing units in Stage B (policy=free_const_only, y_transform=identity).
+[A<->B] Resuming after Stage B iter 1; continuing from iter 2
+[A<->B] No multivariate NN atoms remain; converged.
+
+Elapsed time: 6.964483815762731e-05 hours
+[GS] Wrote GS report to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.gs_report.json
+
+Wrote JSON report to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.report.json
+
+=== Pre-Polish Noiseless Ground Truth Check ===
+status: skipped (unresolved_symbolic_leaves)
+Wrote simplification path to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.path
+
+=== Simplification Path ===
+
+Step 0 [Stage A] pure NN surrogate (y_op=identity)
+  NN[x0, x1, x2]
+  mse_raw=2.4666e-11 params=1152
+
+Step 1 [Stage A] separability/compound detection (y_op=identity)
+  (NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))
+  mse_raw=2.4666e-11 params=1152
+  base_loss=2.4666e-11
+
+Step 2 [Stage B] rewrite monomial_pow1_3 (rule=monomial_peel_priority, target=nn#leaf0 vars=(0,))
+  (((x0)**0.333333 * NN[(x1 * (x2)**-1)]) * NN[x1])
+  mse_raw=7.5282e-13 complexity_total=2e+06 params=768 ast_cost=2000011.5
+  base_loss=5.6455e-12
+
+=== Final: (((x0)**0.333333 * NN[(x1 * (x2)**-1)]) * NN[x1]) ===
+
+--- Accuracy Progression ---
+  Stage A      mse_raw=  2.4666e-11  params= 1152
+  Stage A      mse_raw=  2.4666e-11  params= 1152  (unchanged)
+  Stage B      mse_raw=  7.5282e-13  params=  768  (3.3e+01x better)
+[FinalPolish] Updated JSON report with final_polish: <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.report.json
+
+=== Final Pareto Polish ===
+status: skipped
+reason: final expression contains unresolved NN atoms or leaf functions
+
+=== Final Selected Result ===
+source: stageB
+expr: (x0)**0.3333333333333333 * leaf1(x1*(x2)^-1) * leaf2(x1)
+
+=== Final Selected Ground Truth Check ===
+status: skipped (unresolved_symbolic_leaves)

@@ -1,0 +1,19 @@
+[harness] attempt 1 -> examples/jacobi_tidal/results/v1_ab_1.log
+[harness] attempt 1: renorms=0
+0 calibrations=0
+0 guard_rejects=0
+0
+[harness] attempt 1 final: 
+[harness] attempt 2 -> examples/jacobi_tidal/results/v1_ab_2.log
+[harness] attempt 2: renorms=0
+0 calibrations=0
+0 guard_rejects=0
+0
+[harness] attempt 2 final: 
+[harness] attempt 3 -> examples/jacobi_tidal/results/v1_ab_3.log
+[harness] attempt 3: renorms=0
+0 calibrations=0
+0 guard_rejects=0
+0
+[harness] attempt 3 final: 
+[harness] exhausted 3 attempts without a clean closure

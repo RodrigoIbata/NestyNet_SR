@@ -1,0 +1,317 @@
+{
+  "target": "obs",
+  "n": 24576,
+  "segments": 12,
+  "epochs": 300,
+  "seed": 0,
+  "surrogate_best_val_loss": 0.00025228037569452303,
+  "y_rel_rms_vs_true_q": 0.0016251564367603377,
+  "gradient_rel_rms_vs_truth": 0.012950690304126315,
+  "gate_pass": false,
+  "specs": [
+    {
+      "objective": "strict",
+      "family": "translation",
+      "kind": "axis",
+      "accepted": true,
+      "confidence": 0.831215667905429,
+      "residual_rel": 0.010127059925674258,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "translation",
+      "kind": "diagonal_plus",
+      "accepted": true,
+      "confidence": 0.6535594591125664,
+      "residual_rel": 0.020786432453246018,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "translation",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.49577775829871606,
+      "residual_rel": 0.030591113838179754,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "translation",
+      "kind": "diagonal_minus",
+      "accepted": false,
+      "confidence": 0.42461036794299467,
+      "residual_rel": 0.04055454848798075,
+      "xi_coeffs": [
+        1.0,
+        -1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "general_affine",
+      "kind": "affine_translation_pair",
+      "accepted": false,
+      "confidence": 0.4093113129894045,
+      "residual_rel": 0.04269641618148337,
+      "xi_coeffs": [
+        0.29583717294597917,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "general_affine",
+      "kind": "affine_translation_pair",
+      "accepted": false,
+      "confidence": 0.27276074858103516,
+      "residual_rel": 0.06181349519865508,
+      "xi_coeffs": [
+        0.3310458056298369,
+        1.0
+      ],
+      "output_beta": -0.0
+    },
+    {
+      "objective": "strict",
+      "family": "scaling",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 1.1239476003898428,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "scaling",
+      "kind": "common_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 2.1273814242225937,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "lorentz",
+      "kind": "boost_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 2.7289695010496113,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "scaling",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 3.1590085410446442,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "scaling",
+      "kind": "opposite_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 4.0,
+      "xi_coeffs": [
+        1.0,
+        -1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "strict",
+      "family": "rotation",
+      "kind": "so2_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 4.0,
+      "xi_coeffs": [
+        -1.0,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "translation",
+      "kind": "axis",
+      "accepted": true,
+      "confidence": 0.831215667905429,
+      "residual_rel": 0.010127059925674258,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "translation",
+      "kind": "diagonal_plus",
+      "accepted": true,
+      "confidence": 0.6535594591125664,
+      "residual_rel": 0.020786432453246018,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "translation",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.49577775829871606,
+      "residual_rel": 0.030591113838179754,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "translation",
+      "kind": "diagonal_minus",
+      "accepted": false,
+      "confidence": 0.42461036794299467,
+      "residual_rel": 0.04055454848798075,
+      "xi_coeffs": [
+        1.0,
+        -1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "general_affine",
+      "kind": "affine_translation_pair",
+      "accepted": false,
+      "confidence": 0.4093113129894045,
+      "residual_rel": 0.04269641618148337,
+      "xi_coeffs": [
+        0.29583717294597917,
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "general_affine",
+      "kind": "affine_translation_pair",
+      "accepted": false,
+      "confidence": 0.27276074858103516,
+      "residual_rel": 0.06181349519865508,
+      "xi_coeffs": [
+        0.3310458056298369,
+        1.0
+      ],
+      "output_beta": -0.0
+    },
+    {
+      "objective": "full",
+      "family": "scaling",
+      "kind": "common_pair",
+      "accepted": false,
+      "confidence": 0.05719531261502688,
+      "residual_rel": 0.09199265623389624,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 1.9897464428519185
+    },
+    {
+      "objective": "full",
+      "family": "scaling",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 0.5989858945869404,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 2.8231624791751075
+    },
+    {
+      "objective": "full",
+      "family": "scaling",
+      "kind": "opposite_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 0.8944968998927567,
+      "xi_coeffs": [
+        1.0,
+        -1.0
+      ],
+      "output_beta": 3.656578515498297
+    },
+    {
+      "objective": "full",
+      "family": "scaling",
+      "kind": "axis",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 1.1239476003898428,
+      "xi_coeffs": [
+        1.0
+      ],
+      "output_beta": 0.0
+    },
+    {
+      "objective": "full",
+      "family": "rotation",
+      "kind": "so2_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 1.1712312901398567,
+      "xi_coeffs": [
+        -1.0,
+        1.0
+      ],
+      "output_beta": -3.797176910399041
+    },
+    {
+      "objective": "full",
+      "family": "lorentz",
+      "kind": "boost_pair",
+      "accepted": false,
+      "confidence": 0.0,
+      "residual_rel": 1.185059987660655,
+      "xi_coeffs": [
+        1.0,
+        1.0
+      ],
+      "output_beta": 2.2616128815229475
+    }
+  ]
+}

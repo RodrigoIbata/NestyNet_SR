@@ -1,0 +1,110 @@
+# Feynman Vector/System Benchmark - Coupled PDEs and Vector Equations from Physics
+#
+# Goal
+# ----
+# Vector and system equation benchmark listing famous physics equations involving
+# coupled PDEs, vector fields, and multi-component ODE systems.
+#
+# Proposed Equations (~25 problems)
+# ---------------------------------
+#
+# Electromagnetism (V000-V008)
+#   V000: 1D Maxwell coupled (dE/dt = -dB/dx; dB/dt = -dE/dx)
+#   V001: Maxwell-Faraday 3D (dB/dt = -curl(E))
+#   V002: Maxwell-Ampere 3D vacuum (dE/dt = curl(B))
+#   V003: Full vacuum Maxwell (dE/dt = curl(B); dB/dt = -curl(E))
+#   V004: Gauss's law for E (div(E) = rho/eps0)
+#   V005: Gauss's law for B (div(B) = 0)
+#   V006: EM vector wave equation (d2E/dt2 = c^2*laplacian(E))
+#   V007: Maxwell with current source (dE/dt = curl(B) - J)
+#   V008: MHD induction equation (dB/dt = curl(v*B) + eta*laplacian(B))
+#
+# Fluid Dynamics (V100-V106)
+#   V100: Euler momentum 2D (dv/dt + advect(v,v) = -grad(p)/rho)
+#   V101: Navier-Stokes 2D (dv/dt + advect(v,v) = -grad(p) + nu*laplacian(v))
+#   V102: Incompressibility constraint 2D (div(v) = 0)
+#   V103: Stokes flow 2D (grad(p) = mu*laplacian(v))
+#   V104: Shallow water equations (dh/dt + div(h*v) = 0; dv/dt + advect(v,v) + g*grad(h) = 0)
+#   V105: Vector Burgers 2D (du/dt + advect(u,u) = nu*laplacian(u))
+#   V106: Navier-Stokes 3D (dv/dt + advect(v,v) = -grad(p) + nu*laplacian(v))
+#
+# Elasticity & Waves (V200-V204)
+#   V200: Vector wave equation (d2u/dt2 = c^2*laplacian(u))
+#   V201: Navier-Cauchy elastic wave (d2u/dt2 = (lam+mu)*grad(div(u)) + mu*laplacian(u))
+#   V202: Acoustic system (dp/dt = -rho*c^2*div(v); dv/dt = -grad(p)/rho)
+#   V203: Coupled thermoelasticity (d2u/dt2 = c^2*laplacian(u) - beta*grad(T); dT/dt = alpha*laplacian(T))
+#   V204: Linear elastostatics (div(sigma) + f = 0; sigma = C:eps(u))
+#
+# Coupled ODE Systems (V300-V305)
+#   V300: Coupled harmonic oscillators
+#   V301: Lotka-Volterra (dx/dt = alpha*x - beta*x*y; dy/dt = delta*x*y - gamma*y)
+#   V302: Lorenz system (dx/dt = sigma*(y-x); dy/dt = x*(rho-z) - y; dz/dt = x*y - beta*z)
+#   V303: SIR epidemic model (dS/dt = -beta*S*I; dI/dt = beta*S*I - gamma*I; dR/dt = gamma*I)
+#   V304: Coupled pendulums
+#   V305: Brusselator (dx/dt = a - (b+1)*x + x^2*y; dy/dt = b*x - x^2*y)
+#
+# Format
+# ------
+# Tab-separated fields:
+# id	type	order	axes	x_axis	components	equation	description	ref	vector_ops	params	param_ranges
+#
+# Notes:
+# - 'type': system (independent coefficients), vector (coefficient-tied), vector_system (coupled vector eqns)
+# - 'order': highest derivative order (0, 1, or 2)
+# - 'axes': coordinate axes (comma-separated)
+# - 'x_axis': index of evolution axis (0-based), or -1 for constraints/algebraic
+# - 'components': state variable names (comma-separated)
+# - 'equation': compact vector/system notation
+# - 'ref': Feynman Lectures (Volume.Chapter) or standard reference
+# - 'vector_ops': required vector calculus operators (comma-separated)
+# - 'params': parameter names (comma-separated), '-' if none
+# - 'param_ranges': suggested [min,max] pairs, '-' if none
+#
+# All entries have >= 2 coupled components (no scalar PDEs).
+#
+# =============================================================================
+# ELECTROMAGNETISM (V000-V008)
+# =============================================================================
+
+V000	system	1	t,x	0	E,B	dE/dt=-dB/dx; dB/dt=-dE/dx	"1D Maxwell coupled"	II.20	grad	-	-
+V001	vector	1	t,x,y,z	0	Bx,By,Bz	dB/dt=-curl(E)	"Maxwell-Faraday 3D"	II.22	curl	-	-
+V002	vector	1	t,x,y,z	0	Ex,Ey,Ez	dE/dt=curl(B)	"Maxwell-Ampere 3D (vacuum)"	II.22	curl	-	-
+V003	vector_system	1	t,x,y,z	0	Ex,Ey,Ez,Bx,By,Bz	dE/dt=curl(B); dB/dt=-curl(E)	"Full vacuum Maxwell"	II.22	curl	-	-
+V004	vector	0	x,y,z	-1	Ex,Ey,Ez	div(E)=rho/eps0	"Gauss's law for E"	II.4	div	rho,eps0	[0.1,2.0],[1.0,1.0]
+V005	vector	0	x,y,z	-1	Bx,By,Bz	div(B)=0	"Gauss's law for B"	II.4	div	-	-
+V006	vector	2	t,x,y,z	0	Ex,Ey,Ez	d2E/dt2=c2*laplacian(E)	"EM vector wave equation"	II.24	laplacian	c	[1.0,3.0]
+V007	vector	1	t,x,y,z	0	Ex,Ey,Ez	dE/dt=curl(B)-J	"Maxwell with current source"	II.21	curl	Jx,Jy,Jz	[0.0,1.0],[0.0,1.0],[0.0,1.0]
+V008	vector	1	t,x,y,z	0	Bx,By,Bz	dB/dt=curl(v*B)+eta*laplacian(B)	"MHD induction equation"	classical	curl,laplacian	eta	[0.01,1.0]
+
+# =============================================================================
+# FLUID DYNAMICS (V100-V106)
+# =============================================================================
+
+V100	vector	1	t,x,y	0	vx,vy	dv/dt+advect(v,v)=-grad(p)/rho	"Euler momentum 2D"	II.40	advect,grad	rho	[0.5,2.0]
+V101	vector	1	t,x,y	0	vx,vy	dv/dt+advect(v,v)=-grad(p)+nu*laplacian(v)	"Navier-Stokes 2D"	II.41	advect,grad,laplacian	nu	[0.01,1.0]
+V102	vector	0	x,y	-1	vx,vy	div(v)=0	"Incompressibility constraint 2D"	II.40	div	-	-
+V103	system	0	x,y	-1	p,vx,vy	grad(p)=mu*laplacian(v)	"Stokes flow 2D"	II.41	grad,laplacian	mu	[0.1,2.0]
+V104	system	1	t,x,y	0	h,vx,vy	dh/dt+div(h*v)=0; dv/dt+advect(v,v)+g*grad(h)=0	"Shallow water equations"	classical	div,advect,grad	g	[9.8,10.0]
+V105	vector	1	t,x,y	0	ux,uy	du/dt+advect(u,u)=nu*laplacian(u)	"Vector Burgers 2D"	classical	advect,laplacian	nu	[0.01,1.0]
+V106	vector	1	t,x,y,z	0	vx,vy,vz	dv/dt+advect(v,v)=-grad(p)+nu*laplacian(v)	"Navier-Stokes 3D"	II.41	advect,grad,laplacian	nu	[0.01,1.0]
+
+# =============================================================================
+# ELASTICITY & WAVES (V200-V204)
+# =============================================================================
+
+V200	vector	2	t,x,y,z	0	ux,uy,uz	d2u/dt2=c2*laplacian(u)	"Vector wave equation"	I.47	laplacian	c	[1.0,3.0]
+V201	vector	2	t,x,y,z	0	ux,uy,uz	d2u/dt2=(lam+mu)*grad(div(u))+mu*laplacian(u)	"Navier-Cauchy elastic wave"	classical	grad,div,laplacian	lam,mu	[0.5,2.0],[0.5,2.0]
+V202	system	1	t,x,y,z	0	p,vx,vy,vz	dp/dt=-rho*c2*div(v); dv/dt=-grad(p)/rho	"Acoustic system"	I.47	div,grad	rho,c	[0.5,2.0],[1.0,3.0]
+V203	system	1	t,x,y,z	0	ux,uy,uz,T	d2u/dt2=c2*laplacian(u)-beta*grad(T); dT/dt=alpha*laplacian(T)	"Coupled thermoelasticity"	classical	laplacian,grad	c,beta,alpha	[1.0,3.0],[0.1,1.0],[0.01,1.0]
+V204	vector	0	x,y,z	-1	ux,uy,uz	div(sigma)+f=0; sigma=C:eps(u)	"Linear elastostatics"	classical	div,grad	C	[1.0,5.0]
+
+# =============================================================================
+# COUPLED ODE SYSTEMS (V300-V305)
+# =============================================================================
+
+V300	system	2	t	0	x1,x2	d2x1/dt2=-k1*x1+k2*(x2-x1); d2x2/dt2=-k2*(x2-x1)	"Coupled harmonic oscillators"	I.21	-	k1,k2	[1.0,5.0],[0.5,3.0]
+V301	system	1	t	0	x,y	dx/dt=alpha*x-beta*x*y; dy/dt=delta*x*y-gamma*y	"Lotka-Volterra"	classical	-	alpha,beta,delta,gamma	[0.5,2.0],[0.1,1.0],[0.1,1.0],[0.5,2.0]
+V302	system	1	t	0	x,y,z	dx/dt=sigma*(y-x); dy/dt=x*(rho-z)-y; dz/dt=x*y-beta*z	"Lorenz system"	classical	-	sigma,rho,beta	[10.0,10.0],[28.0,28.0],[2.667,2.667]
+V303	system	1	t	0	S,I,R	dS/dt=-beta*S*I; dI/dt=beta*S*I-gamma*I; dR/dt=gamma*I	"SIR epidemic model"	classical	-	beta,gamma	[0.1,1.0],[0.05,0.5]
+V304	system	2	t	0	theta1,theta2	d2theta1/dt2=-(g/L)*(theta1)+kappa*(theta2-theta1); d2theta2/dt2=-(g/L)*(theta2)+kappa*(theta1-theta2)	"Coupled pendulums"	I.21	-	g,L,kappa	[9.8,10.0],[0.5,2.0],[0.1,2.0]
+V305	system	1	t	0	x,y	dx/dt=a-(b+1)*x+x**2*y; dy/dt=b*x-x**2*y	"Brusselator"	classical	-	a,b	[1.0,1.0],[1.5,4.0]

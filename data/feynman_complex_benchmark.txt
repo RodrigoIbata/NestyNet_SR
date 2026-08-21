@@ -1,0 +1,109 @@
+# Feynman Complex-Valued Benchmark - Equations with Complex Fields and Complex Coefficients
+#
+# Goal
+# ----
+# Complex-valued equation benchmark using native complex notation (i, conj, |z|^2, etc.),
+# listing famous physics equations involving complex fields.
+#
+# Proposed Equations (~25 problems)
+# ---------------------------------
+#
+# Quantum Mechanics (C000-C008)
+#   C000: Free-particle Schrodinger (i*hbar*dpsi/dt = -(hbar^2/2m)*d2psi/dx2)
+#   C001: Harmonic oscillator Schrodinger (i*hbar*dpsi/dt = -(hbar^2/2m)*d2psi/dx2 + 1/2*m*omega^2*x^2*psi)
+#   C002: Schrodinger with potential V(x) (general 1D)
+#   C003: Gross-Pitaevskii / nonlinear Schrodinger (i*dpsi/dt = -d2psi/dx2 + g*|psi|^2*psi)
+#   C004: Two-level quantum system (i*d[c1,c2]/dt = H*[c1,c2]) -- complex_system
+#   C005: Pauli equation / spin-1/2 (2-component complex spinor)
+#   C006: Time-independent Schrodinger eigenvalue (-(hbar^2/2m)*d2psi/dx2 + V*psi = E*psi)
+#   C007: Hydrogen radial (complex spherical harmonic factor)
+#   C008: Dirac equation 1+1D (i*gamma^mu*d_mu*psi = m*psi, 2-component spinor)
+#
+# Nonlinear Waves & Optics (C100-C105)
+#   C100: Nonlinear Schrodinger / fiber optics (i*du/dz + d2u/dt2 + |u|^2*u = 0)
+#   C101: Complex Ginzburg-Landau (du/dt = (1+i*a)*d2u/dx2 + u - (1+i*b)*|u|^2*u)
+#   C102: Manakov system (coupled NLS: i*du/dz + d2u/dt2 + (|u|^2+|v|^2)*u = 0, same for v)
+#   C103: Soliton / KdV-NLS envelope (i*dA/dt + d2A/dx2 + 2*|A|^2*A = 0)
+#   C104: Second harmonic generation (i*dA1/dz = kappa*conj(A1)*A2, i*dA2/dz = kappa*A1^2)
+#   C105: Parametric amplification (i*dA/dz = kappa*conj(A)*exp(i*Delta*z))
+#
+# Classical Oscillators & Circuits (C200-C204)
+#   C200: Complex damped oscillator (d2z/dt2 + 2*gamma*dz/dt + omega0^2*z = 0)
+#   C201: Driven complex oscillator (d2z/dt2 + 2*gamma*dz/dt + omega0^2*z = F*exp(i*Omega*t))
+#   C202: Coupled complex modes (dz1/dt = i*omega1*z1 + kappa*z2, dz2/dt = i*omega2*z2 + kappa*z1)
+#   C203: Van der Pol in complex amplitude (dA/dt = (mu-|A|^2)*A + i*omega*A)
+#   C204: RLC phasor (i*omega*L*I + R*I + I/(i*omega*C) = V)
+#
+# Condensed Matter & Field Theory (C300-C305)
+#   C300: BCS gap equation (complex order parameter ODE)
+#   C301: Landau order parameter (dPhi/dt = -a*Phi - b*|Phi|^2*Phi + kappa*d2Phi/dx2)
+#   C302: Josephson junction (dphi/dt = V, dV/dt = -sin(phi) - alpha*V + I_ext) -- naturally complexified
+#   C303: Stuart-Landau (dA/dt = (mu+i*omega)*A - (1+i*beta)*|A|^2*A)
+#   C304: Complex scalar field (Klein-Gordon: d2phi/dt2 - c^2*d2phi/dx2 + m^2*phi = 0)
+#   C305: Coupled Bose-Einstein condensates (i*dpsi1/dt = -d2psi1/dx2 + g1*|psi1|^2*psi1 + kappa*psi2, etc.)
+#
+# Format
+# ------
+# Tab-separated fields:
+# id	type	order	axes	x_axis	field	equation	description	ref	complex_ops	params	param_ranges
+#
+# Notes:
+# - 'type': complex_ode (single complex field ODE), complex_pde (single complex field PDE),
+#            complex_system (coupled complex fields)
+# - 'order': highest derivative order (0, 1, or 2)
+# - 'axes': coordinate axes (comma-separated)
+# - 'x_axis': index of evolution axis (0-based), or -1 for eigenvalue/algebraic
+# - 'field': complex field name(s) (comma-separated)
+# - 'equation': native complex notation using i, conj(z), |z|^2, Re(z), Im(z)
+# - 'ref': Feynman Lectures (Volume.Chapter) or standard reference
+# - 'complex_ops': complex-specific operators used (conj, mod2, Re, Im, etc.)
+# - 'params': parameter names (comma-separated), '-' if none
+# - 'param_ranges': suggested [min,max] pairs, '-' if none
+#
+# All entries involve genuinely complex-valued fields or intrinsically complex coefficients.
+#
+# =============================================================================
+# QUANTUM MECHANICS (C000-C008)
+# =============================================================================
+
+C000	complex_pde	2	t,x	0	psi	i*hbar*dpsi/dt=-(hbar^2/(2*m))*d2psi/dx2	"Free-particle Schrodinger"	III.16	i	hbar,m	[0.5,2.0],[0.5,2.0]
+C001	complex_pde	2	t,x	0	psi	i*hbar*dpsi/dt=-(hbar^2/(2*m))*d2psi/dx2+0.5*m*omega^2*x^2*psi	"Harmonic oscillator Schrodinger"	III.17	i	hbar,m,omega	[0.5,2.0],[0.5,2.0],[0.5,3.0]
+C002	complex_pde	2	t,x	0	psi	i*hbar*dpsi/dt=-(hbar^2/(2*m))*d2psi/dx2+V*psi	"1D Schrodinger with potential"	III.16	i	hbar,m,V	[0.5,2.0],[0.5,2.0],[0.1,5.0]
+C003	complex_pde	2	t,x	0	psi	i*dpsi/dt=-d2psi/dx2+g*|psi|^2*psi	"Gross-Pitaevskii / nonlinear Schrodinger"	classical	i,mod2	g	[0.5,3.0]
+C004	complex_system	1	t	0	c1,c2	i*dc1/dt=E1*c1+V12*c2; i*dc2/dt=V21*c1+E2*c2	"Two-level quantum system"	III.8	i	E1,E2,V12,V21	[0.5,2.0],[0.5,2.0],[0.1,1.0],[0.1,1.0]
+C005	complex_system	1	t	0	psi_up,psi_dn	i*dpsi_up/dt=(p^2/(2*m))*psi_up+Bz*psi_up+Bx*psi_dn; i*dpsi_dn/dt=(p^2/(2*m))*psi_dn-Bz*psi_dn+Bx*psi_up	"Pauli spin-1/2 equation"	III.12	i	m,Bx,Bz	[0.5,2.0],[0.1,1.0],[0.1,1.0]
+C006	complex_pde	2	x	-1	psi	-(hbar^2/(2*m))*d2psi/dx2+V*psi=E*psi	"Time-independent Schrodinger eigenvalue"	III.16	i	hbar,m,V,E	[0.5,2.0],[0.5,2.0],[0.1,5.0],[0.1,5.0]
+C007	complex_pde	2	r	-1	R	-(hbar^2/(2*m))*(d2R/dr2+(2/r)*dR/dr)+(V_eff)*R=E*R	"Hydrogen radial Schrodinger"	III.19	i	hbar,m,V_eff,E	[0.5,2.0],[0.5,2.0],[0.1,5.0],[0.1,5.0]
+C008	complex_system	1	t,x	0	psi1,psi2	i*dpsi1/dt+i*dpsi1/dx=m*psi2; i*dpsi2/dt-i*dpsi2/dx=m*psi1	"Dirac equation 1+1D"	classical	i	m	[0.5,2.0]
+
+# =============================================================================
+# NONLINEAR WAVES & OPTICS (C100-C105)
+# =============================================================================
+
+C100	complex_pde	2	z,t	0	u	i*du/dz+d2u/dt2+|u|^2*u=0	"Nonlinear Schrodinger / fiber optics"	classical	i,mod2	-	-
+C101	complex_pde	2	t,x	0	u	du/dt=(1+i*a)*d2u/dx2+u-(1+i*b)*|u|^2*u	"Complex Ginzburg-Landau"	classical	i,mod2	a,b	[0.5,3.0],[0.5,3.0]
+C102	complex_system	2	z,t	0	u,v	i*du/dz+d2u/dt2+(|u|^2+|v|^2)*u=0; i*dv/dz+d2v/dt2+(|u|^2+|v|^2)*v=0	"Manakov system (coupled NLS)"	classical	i,mod2	-	-
+C103	complex_pde	2	t,x	0	A	i*dA/dt+d2A/dx2+2*|A|^2*A=0	"NLS soliton envelope"	classical	i,mod2	-	-
+C104	complex_system	1	z	0	A1,A2	i*dA1/dz=kappa*conj(A1)*A2; i*dA2/dz=kappa*A1^2	"Second harmonic generation"	classical	i,conj	kappa	[0.1,2.0]
+C105	complex_ode	1	z	0	A	i*dA/dz=kappa*conj(A)*exp(i*Delta*z)	"Parametric amplification"	classical	i,conj	kappa,Delta	[0.1,2.0],[0.1,3.0]
+
+# =============================================================================
+# CLASSICAL OSCILLATORS & CIRCUITS (C200-C204)
+# =============================================================================
+
+C200	complex_ode	2	t	0	z	d2z/dt2+2*gamma*dz/dt+omega0^2*z=0	"Complex damped oscillator"	I.23	i	gamma,omega0	[0.01,1.0],[0.5,3.0]
+C201	complex_ode	2	t	0	z	d2z/dt2+2*gamma*dz/dt+omega0^2*z=F*exp(i*Omega*t)	"Driven complex oscillator"	I.23	i	gamma,omega0,F,Omega	[0.01,1.0],[0.5,3.0],[0.1,2.0],[0.5,3.0]
+C202	complex_system	1	t	0	z1,z2	dz1/dt=i*omega1*z1+kappa*z2; dz2/dt=i*omega2*z2+kappa*z1	"Coupled complex modes"	classical	i	omega1,omega2,kappa	[0.5,3.0],[0.5,3.0],[0.1,1.0]
+C203	complex_ode	1	t	0	A	dA/dt=(mu-|A|^2)*A+i*omega*A	"Van der Pol amplitude equation (Stuart-Landau form)"	classical	i,mod2	mu,omega	[0.1,2.0],[0.5,3.0]
+C204	complex_ode	0	-	-1	I	i*omega*L*I+R*I+I/(i*omega*C)=V	"RLC phasor relation (algebraic, order 0)"	I.23	i	omega,L,R,C,V	[0.5,3.0],[0.1,2.0],[0.1,2.0],[0.1,2.0],[0.5,2.0]
+
+# =============================================================================
+# CONDENSED MATTER & FIELD THEORY (C300-C305)
+# =============================================================================
+
+C300	complex_ode	1	T	0	Delta	Delta=g*N0*integral(Delta/(2*sqrt(xi^2+|Delta|^2))*tanh(sqrt(xi^2+|Delta|^2)/(2*T)))	"Gap relaxation (time-dependent Ginzburg-Landau amplitude)"	classical	mod2	g,N0	[0.1,1.0],[0.5,2.0]
+C301	complex_pde	2	t,x	0	Phi	dPhi/dt=-a*Phi-b*|Phi|^2*Phi+kappa*d2Phi/dx2	"Landau order parameter (TDGL)"	classical	mod2	a,b,kappa	[0.1,2.0],[0.1,2.0],[0.01,1.0]
+C302	complex_system	1	t	0	phi,V	dphi/dt=V; dV/dt=-sin(phi)-alpha*V+I_ext	"Josephson junction (complexified)"	classical	-	alpha,I_ext	[0.1,1.0],[0.1,2.0]
+C303	complex_ode	1	t	0	A	dA/dt=(mu+i*omega)*A-(1+i*beta)*|A|^2*A	"Stuart-Landau oscillator"	classical	i,mod2	mu,omega,beta	[0.1,2.0],[0.5,3.0],[0.1,3.0]
+C304	complex_pde	2	t,x	0	phi	d2phi/dt2-c^2*d2phi/dx2+m^2*phi=0	"Complex Klein-Gordon field"	classical	i	c,m	[1.0,3.0],[0.1,2.0]
+C305	complex_system	2	t,x	0	psi1,psi2	i*dpsi1/dt=-d2psi1/dx2+g1*|psi1|^2*psi1+kappa*psi2; i*dpsi2/dt=-d2psi2/dx2+g2*|psi2|^2*psi2+kappa*psi1	"Coupled Bose-Einstein condensates"	classical	i,mod2	g1,g2,kappa	[0.5,3.0],[0.5,3.0],[0.1,1.0]

@@ -1,0 +1,1014 @@
+Running on fragarach-2-1.home with device cpu
+enforce_units=True, factorized symbolic search=OFF, continuous skeleton refinement=ON, outer-peel-autorun(deprecated)=ON
+[GS] Stage-A symmetry layer enabled (mode=propose, policy=augment, known=True, affine=True, unit_torus=False)
+[Data] Overrides: batch_size=2000, ndata_train=6000, ndata_val=2000, data_slice=0
+Median of y values: 0.11048863000693729
+Median absolute deviation of y values: 0.06888620195283074
+Number of x variables: 3
+MAD^2 of y values: 0.004745308819486181
+RMS of y values: 0.25269601114923845
+Log-space dynamic range of |y|: 2.59 decades
+[Units] Loaded basis=('L', 'T', 'M'); y_units=[1, 0, 0]; x_units=[[3, -2, 0], [0, -1, 0], [0, -1, 0]]
+[PhaseScan] Found 6 phase-coordinate hint(s) from the identity training split.
+[PhaseScan]   (sqrt(x1) * 1/sqrt(x2)): omega_obs=1905.78, score=0.00213, R2_phase=0.00343, R2_trend=0.000444, cycles=107, unit=dimensionless, split_R2=-0.00665, null_R2=0.00276
+[PhaseScan]   ((x1)**-1 * x2): omega_obs=25.1327, score=0.00185, R2_phase=0.00244, R2_trend=-0.00126, cycles=4.25, unit=dimensionless, split_R2=-0.000706, null_R2=0.00163
+[PhaseScan]   ((x1)**-2 * (x2)**2): omega_obs=21.0314, score=0.00155, R2_phase=0.00229, R2_trend=-0.00208, cycles=9.97, unit=dimensionless, split_R2=0.000871, null_R2=-0.000434
+[PhaseScan]   ((x1)**2 * (x2)**-2): omega_obs=741.471, score=0.00125, R2_phase=0.00375, R2_trend=0.0019, cycles=124, unit=dimensionless, split_R2=-0.00496, null_R2=-0.00322
+[PhaseScan]   (x1 * (x2)**-1): omega_obs=1273.61, score=0.000463, R2_phase=0.00161, R2_trend=0.000999, cycles=128, unit=dimensionless, split_R2=-0.000893, null_R2=-0.00593
+[PhaseScan]   (1/sqrt(x1) * sqrt(x2)): omega_obs=6.28319, score=6.96e-05, R2_phase=0.000426, R2_trend=-0.000722, cycles=0.457, unit=dimensionless, split_R2=0.00649, null_R2=0.0042
+[PhaseScan Context] No contextual phase hints found.
+[OuterLinkScan] No inverse-link hints found.
+
+Criteria (base, in units of MAD(φ(y))^2): loss acceptable: 1.000000e-03, loss target: 1.000000e-07, chisq_tol: 1.000000e-10, precision derivs d2y: 1.000000e-03
+
+[Units] Skipping y-transforms incompatible with y units (L): log, logneg, sqrt1p, exp, expneg, arctan, arcsin, arccos, sin, cos, tan
+[Stage A] Running standard separability search on pure NN expression
+
+
+Size of datasets: training: 6000, val: 2000
+Using MAD-normalised LM thresholds for y_op None: MAD(φ(y))≈0.0673, scale=0.00453
+Initial model (AST): NN[x0, x1, x2]
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:1 (full), number of leaves: 1, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() (NN[x0, x1, x2]), parameters: 960
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=960 (trivially separable union)
+Stopping at epoch 601/2500, lm_opt.state['halt']=True, loss=4.8327e-10, loss_val=8.7297e-10
+acceptable losses (raw) target=4.5251e-10, acceptable=4.5251e-06 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+[32mADOPTING[0m best val-loss 8.7297e-10 (trial 1/1, dual_layer=True)
+Saving initial model which converged with loss 0.000000
+Discovering approximate invariance features from gradients...
+Discovered 1 candidate features:
+  feat_0_0_1       kind=integer_linear  coeffs=[+0.00, +0.00, +1.00]
+Discovering approximate scaling / homogeneity features...
+Discovered 3 scaling candidates:
+  S=[0]  k≈  0.333  rel_std= 0.007  n=6000
+  S=[1,2]  k≈ -0.667  rel_std= 0.008  n=6000
+  S=[0,1,2]  k≈ -0.333  rel_std= 0.015  n=6000
+    [x1] reciprocal probe (negative-k singularity detected)
+    [x1] reciprocal: rel_std=1.0983>0.08, no gradient fallback available
+[Oracle Probe] No scaling verified by direct evaluation.
+  [Trig Scaling] Sampled 5000 points, probing 3 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=2.182e-02)
+  [Trig Scaling] x0: no viable ω candidates (span=42.9)
+  [Trig Scaling] x1: no viable ω candidates (span=197)
+  [Trig Scaling] x2: no viable ω candidates (span=181)
+  [Trig Scaling] No monomial-in-trig detected.
+[Early Compound] Checked 1 single-var scaling specs, 0 qualify (need ≥2 for compound)
+[Early PureDiff] No valid power-difference proposals found.
+Checking for low-degree polynomial fit in x (degree 2)...
+Poly-in-x (deg 2) fit: rms_abs=8.798e-02, rms_rel=4.881e-01, n_terms=10, n=6000
+Checking for low-degree polynomial fit in f(x)^2 (degree 2)...
+Poly-in-f^2 (deg 2) fit: rms_abs=1.121e-01, rms_rel=7.046e-01, n_terms=10, n=6000
+Checking for rational poly/poly fit f(x) ≈ P(x)/Q(x)...
+Rational fit rat_degN2_degD2: deg_num=2, deg_den=2, rms_abs=5.980e-02, rms_rel=3.318e-01, n_terms_num=6, n_terms_den=6, n=6000, sigma_min=4.888e-02, sigma_ratio=2.376e-03
+Checking for trig-like behaviour along coordinate axes...
+  [FFT hint] axis 0: omega~0.223, strength=104, span=[0.0204,28.2]
+  [FFT hint] axis 1: omega~0.0735, strength=59.7, span=[3.67,89]
+  [FFT hint] axis 2: omega~0.06, strength=14.3, span=[4.22,109]
+No oracle-derived trig axis.
+Discovering K-based preferred directions...
+Found 3 preferred directions from K:
+  dir 0: u=[+1.000, +0.000, +0.000]
+  dir 1: u=[+0.000, +1.000, +0.000]
+  dir 2: u=[+0.000, +0.000, +1.000]
+  dir 0: omega≈0.228, trig_strength≈105.0
+  dir 1: omega≈0.0722, trig_strength≈56.0
+  dir 2: omega≈0.0591, trig_strength≈13.0
+Checking for approximate even/odd parity along coordinate axes...
+Detected parity candidates on 3 axes:
+  axis= 0  origin≈   0.795  kind=none  rms_rel_even=4.85e+03  rms_rel_odd=4.85e+03  n=6000
+  axis= 1  origin≈    21.3  kind=none  rms_rel_even=7.13e+03  rms_rel_odd=7.13e+03  n=6000
+  axis= 2  origin≈    34.2  kind=none  rms_rel_even=2.12e+03  rms_rel_odd=2.13e+03  n=6000
+Checking for approximately radial dependence over small variable groups...
+No clear radial structure detected.
+Checking for preferred origins / translation structure along axes...
+No strong translation structure detected.
+Checking for saturating / sigmoidal behaviour along coordinate axes...
+No clear saturating behaviour detected along single axes.
+Checking for near-constant directions (parameter-like variables)...
+No strongly parameter-like directions detected.
+Initial separability check with precision 0.1
+symb: [0, 1, 2], index: 0, var_x: torch.Size([6000, 3]), y_vals: torch.Size([6000, 1]), dydx_vals: torch.Size([6000, 1, 3]), d2ydx2_vals: torch.Size([6000, 1, 3, 3])
+Trying transformation identity
+Median of model: 0.10865550025834396, median absolute deviation: 0.06726853765274277, precision: 0.1, 0.1
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=2.65e-02
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=3.24e-02
+  overlapping candidate: x[0, 2] + x[1, 2], shared=1, max-metric=7.07e-02
+Found separability candidate separability for op identity, 0
+
+Trying transformation square
+Median of model: 0.011806017736390985, median absolute deviation: 0.010731549887940844, precision: 0.1, 0.1
+There is additivity between x[0, 1] and x[0, 2] (in NN[0, 1, 2]), rest: [0]
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=5.56e-02
+Found separability candidate separability for op square, 1
+
+Trying transformation reciprocal
+Median of model: 9.20299546990624, median absolute deviation: 5.80294257926896, precision: 0.1, 0.1
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=1.18e-02
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=2.14e-02
+  overlapping candidate: x[0, 2] + x[1, 2], shared=1, max-metric=5.94e-02
+Found separability candidate separability for op reciprocal, 2
+
+Trying transformation sqrt
+Median of model: 0.3296293376784657, median absolute deviation: 0.11393754934316508, precision: 0.1, 0.1
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=1.07e-02
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=2.50e-02
+  overlapping candidate: x[0, 2] + x[1, 2], shared=1, max-metric=2.96e-02
+Found separability candidate separability for op sqrt, 3
+
+Recap:
+Transformation identity is a candidate for separability: True
+Transformation square is a candidate for separability: True
+Transformation reciprocal is a candidate for separability: True
+Transformation sqrt is a candidate for separability: True
+
+Initial fit suggests separability candidates for y_op None.
+
+======================================================================
+  [Stage A] SEPARABILITY SEARCH
+======================================================================
+All multiplicative for x[0], complement x[1, 2] (in NN[0, 1, 2])
+[Variable Extension] Detecting compound structure for NN[0, 1, 2]...
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=720, output_major=False, id=6087907056, primary=base_model
+[nestynet.optimizer] [LM] num_params: 720
+[LM][bucket] solving P=720 (trivially separable union)
+[nestynet.optimizer] [LM] Iter 0, chisq: 1590.272299740261, improvement: 16529.281378778196, val-set chisq: 1575.0946145161133, nacc: 1, nacc_lin: 0, skipped_Quad: 0, acc_frac: 1.0, lambda: 33.333333333333336, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 100, chisq: 1.3376767180963953e-06, improvement: 1590.2722984025843, val-set chisq: 1.7012776284457493e-06, nacc: 70, nacc_lin: 69, skipped_Quad: 0, acc_frac: 0.69, lambda: 7.144490169181527e-10, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 200, chisq: 3.369579240726186e-07, improvement: 1.0007187940237766e-06, val-set chisq: 1.2872595196156334e-05, nacc: 130, nacc_lin: 129, skipped_Quad: 0, acc_frac: 0.6, lambda: 1.7504711857864025e-10, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 300, chisq: 1.9937389893155706e-07, improvement: 1.375840251410615e-07, val-set chisq: 1.168421113777043e-05, nacc: 189, nacc_lin: 139, skipped_Quad: 15, acc_frac: 0.59, lambda: 5.633406825343891e-10, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 400, chisq: 1.9790192277519037e-07, improvement: 1.4719761563666964e-09, val-set chisq: 1.1297779051224009e-05, nacc: 248, nacc_lin: 139, skipped_Quad: 35, acc_frac: 0.59, lambda: 1.8129560039329651e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Convergence achieved: chisq improvement (1.471976e-09) < tolerance (1.000000e-08); halting.
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:540: RuntimeWarning: divide by zero encountered in matmul
+  fields = x @ A_phys.T + b_phys
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:540: RuntimeWarning: overflow encountered in matmul
+  fields = x @ A_phys.T + b_phys
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:540: RuntimeWarning: invalid value encountered in matmul
+  fields = x @ A_phys.T + b_phys
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:238: RuntimeWarning: divide by zero encountered in matmul
+  col_residuals = np.linalg.norm(D_train @ basis, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:238: RuntimeWarning: overflow encountered in matmul
+  col_residuals = np.linalg.norm(D_train @ basis, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:238: RuntimeWarning: invalid value encountered in matmul
+  col_residuals = np.linalg.norm(D_train @ basis, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:630: RuntimeWarning: divide by zero encountered in matmul
+  col_residuals = np.linalg.norm(D[idx] @ basis_b, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:630: RuntimeWarning: overflow encountered in matmul
+  col_residuals = np.linalg.norm(D[idx] @ basis_b, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:630: RuntimeWarning: invalid value encountered in matmul
+  col_residuals = np.linalg.norm(D[idx] @ basis_b, axis=0)
+[Stage A GS] audited=29, accepted=3, proposals=0
+    [x1] reciprocal probe (negative-k singularity detected)
+    [x1] reciprocal: rel_std=1.0983>0.08, no gradient fallback available
+  [Trig Scaling] Sampled 5000 points, probing 3 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=2.182e-02)
+  [Trig Scaling] x0: no viable ω candidates (span=42.9)
+  [Trig Scaling] x1: no viable ω candidates (span=197)
+  [Trig Scaling] x2: no viable ω candidates (span=181)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_core/separability_math.py:2778: RuntimeWarning: divide by zero encountered in matmul
+  coeff = (V @ a_vec) / den
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_core/separability_math.py:2778: RuntimeWarning: overflow encountered in matmul
+  coeff = (V @ a_vec) / den
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_core/separability_math.py:2778: RuntimeWarning: invalid value encountered in matmul
+  coeff = (V @ a_vec) / den
+[Compound LogDeriv] Recovered 1 proposal(s) (sigma_ratio=0.0011567820069917063) for vars=(0, 1, 2)
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x1 * (x2)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x1 * (x2)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x2 * (x1)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x2 * (x1)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Compound Exhaustion] High-confidence proposal (conf=0.999), trying...
+[Compound] Normalized proposal shortlist:
+[Compound]   1. kind=monomial, conf=0.999, support=2, z=(x1 * (x2)**-1)
+[Compound]   2. kind=monomial, conf=0.949, support=2, z=(x1 * (x2)**-1)
+[Units/Buckingham] Skipping compound before screening: compound reduces dimensional rank: 2 -> 1; remaining variables cannot span output dimension
+[Units/Buckingham] Skipping compound before screening: compound reduces dimensional rank: 2 -> 1; remaining variables cannot span output dimension
+Checking separability of None(y) in input space with precision 0.001
+All multiplicative for x[0], complement x[1, 2] (in NN[0, 1, 2])
+Setting number of segments: 16 (variant: no_offset)
+[Teacher init] Training left factor on 2000 profile samples...
+[Teacher init] Left factor trained, final loss: 2.947e-01
+[Teacher init] Training right factor on 2000 profile samples...
+[Teacher init] Right factor trained, final loss: 3.376e+02
+[Teacher init] Scale check: left_rms=7.375e-01, right_rms=1.830e+01, ratio=24.82
+[rescale_leaf] left: leaf type=DualSegmentedAdaptor, factor=4.9820
+[rescale_leaf] left: scaled a_fit via base_model
+[rescale_leaf] left: scaled a_pieces_fixed[15] via base_model
+[rescale_leaf] right: leaf type=DualSegmentedAdaptor, factor=0.2007
+[rescale_leaf] right: scaled a_fit via base_model
+[rescale_leaf] right: scaled a_pieces_fixed[15] via base_model
+[Teacher init] Final gauge norm: left x4.98, right x0.20
+***Training candidate separable model (variant: no_offset)***, acceptance threshold (raw) 8.7297e-08 (base 1.0000e-03)
+    Proposed: (NN[x0] * NN[x1, x2])
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1024 (trivially separable union)
+[trial] Stopping at epoch 401/2500, lm_opt.state['halt']=True, loss=1.5188e-10, loss_val=1.6619e-10
+[32mAccepted[0m separation (variant: no_offset), val-loss 1.6619e-10
+[Stage A]   Current: [35mIdentity()(nn0(x0) * nn1(x1, x2))[0m
+[Shadow] pruned stale coordinate evidence after separation: parents=1, shadows=4, consumed=0
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:2 (full), number of leaves: 2, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() ((NN[x0] * NN[x1, x2])), parameters: 1024
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 1/2500, lm_opt.state['halt']=True, loss=1.5160e-10, loss_val=1.6580e-10
+acceptable losses (raw) target=4.5251e-10, acceptable=4.5251e-06 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+[32mADOPTING[0m best val-loss 1.6580e-10 (trial 1/1, dual_layer=True)
+
+======================================================================
+  [Stage A] SEPARABILITY SEARCH — restart (pass 2)
+======================================================================
+There is no multiplicativity (in NN[1, 2])
+There is no multiplicativity (in NN[1, 2])
+[Stage A Monomial] Trying monomial_deg1 on NN[0] as rpoly (k≈0.333, rel=2.71e-05); accept_threshold=4.5251e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 432/1920 cross-segment channel pairs exceed |cos|>0.95 (worst seg 1/out 2 ↔ seg 10/out 0 |cos|=1.0000). Grouped segment pairs: 0/120 exceed |cos|>0.95 (worst seg 11 ↔ seg 13 |cos|=0.8853). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=2), so channel-level directional crowding can appear before whole segments overlap.[0m
+[LM][bucket] solving P=640 (trivially separable union)
+[trial] Validation patience exceeded at epoch 601/2500, nval_worse=500
+[Variable Extension] Detecting compound structure for NN[1, 2]...
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (G_Model, segments=48, outputs=1, seg_width=2): 21/1128 cross-segment channel pairs exceed |cos|>0.95 (worst seg 5/out 0 ↔ seg 37/out 0 |cos|=0.9930). Grouped segment pairs: 21/1128 exceed |cos|>0.95 (worst seg 5 ↔ seg 37 |cos|=0.9930). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=4), so channel-level directional crowding can appear before whole segments overlap.[0m
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=384, output_major=False, id=13344328144, primary=base_model
+[nestynet.optimizer] [LM] num_params: 384
+[LM][bucket] solving P=384 (trivially separable union)
+[nestynet.optimizer] [LM] Iter 0, chisq: 1624.8006984604745, improvement: 9575.611936579928, val-set chisq: 1651.4060877112424, nacc: 1, nacc_lin: 0, skipped_Quad: 0, acc_frac: 1.0, lambda: 33.333333333333336, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 100, chisq: 3.351729105086596e-07, improvement: 1624.8006981253016, val-set chisq: 2.4274687337028676e-07, nacc: 90, nacc_lin: 89, skipped_Quad: 0, acc_frac: 0.89, lambda: 1e-10, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 200, chisq: 9.881657005428457e-09, improvement: 3.252912535032312e-07, val-set chisq: 1.0172807662208913e-08, nacc: 150, nacc_lin: 128, skipped_Quad: 10, acc_frac: 0.6, lambda: 5.361035741720886e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 300, chisq: 9.21028956163459e-09, improvement: 6.713674437938677e-10, val-set chisq: 9.376427484117535e-09, nacc: 210, nacc_lin: 128, skipped_Quad: 35, acc_frac: 0.6, lambda: 1.1502006082152934e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Convergence achieved: chisq improvement (6.713674e-10) < tolerance (1.000000e-08); halting.
+[Stage A GS] audited=13, accepted=4, proposals=1
+    [x0] reciprocal probe (negative-k singularity detected)
+    [x0] reciprocal: rel_std=0.5500>0.08, no gradient fallback available
+  [Trig Scaling] Sampled 5000 points, probing 2 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=6.450e-04)
+  [Trig Scaling] x0: no viable ω candidates (span=197)
+  [Trig Scaling] x1: no viable ω candidates (span=181)
+[Compound RetainAxis] Adding wrapper z=(x1 * (x2)**-1) with extra x1
+[Compound RetainAxis] Adding wrapper z=(x1 * (x2)**-1) with extra x2
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x2 * (x1)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x2 * (x1)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Compound Exhaustion] High-confidence proposal (conf=1.000), trying...
+[Compound] Normalized proposal shortlist:
+[Compound]   1. kind=monomial, conf=1.000, support=2, z=(x1 * (x2)**-1)
+[Compound]   2. kind=linear, conf=0.912, support=2, z=((-2 * x1) + x2)
+[Compound]   3. kind=gs_promoted_reduction, conf=0.381, support=2, z=((-0.810708 * x1) + (0.585451 * x2))
+[Compound]   4. kind=monomial, conf=0.898, support=2, z=(x1 * (x2)**-1)
+[Compound]   5. kind=monomial, conf=0.898, support=2, z=(x1 * (x2)**-1)
+[Units/Buckingham] Skipping compound before screening: compound reduces dimensional rank: 1 -> 0; remaining variables cannot span output dimension
+[Compound] 1D compound detected (all vars in z), boosting segments to 32
+[Compound] Proposal (linear) conf 0.912, screen=0.687; trying sq:(((-2 * x1) + x2))**2
+[Distill] epoch 1/2000: loss=2.3559e+10
+[Distill] epoch 1000/2000: loss=2.6180e+03
+[Distill] epoch 2000/2000: loss=3.2527e+00
+[Distill] Final: loss=3.2527e+00 (did not converge below 1.0000e-04)
+[Compound] Training candidate (sq); accept_threshold=4.5251e-08
+[Compound] Structural arity reduction target enabled: arity signature (1, 2, 1) → (0, 1, 0), target-quality threshold 4.5251e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1152 (trivially separable union)
+[trial] Validation patience exceeded at epoch 901/2500, nval_worse=500
+[Compound] Rejected (sq) (linear) z=(((-2 * x1) + x2))**2, val-loss 4.9000e-03
+[Compound] Proposal (linear) conf 0.912, screen=0.687; trying abs:sqrt((((-2 * x1) + x2))**2)
+[Distill] epoch 1/2000: loss=3.2901e+06
+[Distill] epoch 1000/2000: loss=6.4847e+00
+[Distill] epoch 2000/2000: loss=1.0148e+00
+[Distill] Final: loss=1.0148e+00 (did not converge below 1.0000e-04)
+[Compound] Training candidate (abs); accept_threshold=4.5251e-08
+[Compound] Structural arity reduction target enabled: arity signature (1, 2, 1) → (0, 1, 0), target-quality threshold 4.5251e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[trial] Validation patience exceeded at epoch 601/2500, nval_worse=500
+[Compound] Rejected (abs) (linear) z=sqrt((((-2 * x1) + x2))**2), val-loss 5.1585e-03
+[Compound] Proposal (linear) conf 0.912, screen=0.685; trying z:((-2 * x1) + x2)
+[Distill] epoch 1/2000: loss=2.7792e+06
+[Distill] epoch 1000/2000: loss=4.5777e-01
+[Distill] epoch 2000/2000: loss=8.8413e-02
+[Distill] Final: loss=8.8413e-02 (did not converge below 1.0000e-04)
+[Compound] Training candidate (z); accept_threshold=4.5251e-08
+[Compound] Structural arity reduction target enabled: arity signature (1, 2, 1) → (0, 1, 0), target-quality threshold 4.5251e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[trial] Validation patience exceeded at epoch 601/2500, nval_worse=500
+[Compound] Rejected (z) (linear) z=((-2 * x1) + x2), val-loss 5.2572e-03
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; could not infer target dimension
+[Compound] Trying same-arity wrapper: arity 2 → 2; will require confirmed separability payoff
+[Compound] Proposal (monomial) conf 0.898; trying z:(x1 * (x2)**-1), extras=[1]
+[Distill] epoch 1/2000: loss=4.1443e+06
+[Distill] epoch 1000/2000: loss=2.2817e-01
+[Distill] epoch 2000/2000: loss=3.6266e+00
+[Distill] Final: loss=3.6266e+00 (did not converge below 1.0000e-04)
+[Compound] Training candidate (z); accept_threshold=4.5251e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1024 (trivially separable union)
+[trial] Stopping at epoch 2401/2500, lm_opt.state['halt']=True, loss=6.1622e-10, loss_val=6.2335e-10
+[32m[Compound] LM fit passed[0m (z) (monomial) z=(x1 * (x2)**-1), val-loss 6.2335e-10
+All multiplicative for x['z'], complement x[1] (in NN['z', 1])
+[Compound] Wrapper z enables separability (z separates from extras)
+[Compound] Retained-axis overlap confirmed for x1: retained-axis power-like factor k=-0.6667, rel_std=0.000713, n=5000
+[Compound] Skipping rat_inv (redundant: z already accepted)
+[Compound] Skipping rat_z2 (redundant: z already accepted)
+[32m[Compound] Selected[0m best variant (z) (monomial) z=(x1 * (x2)**-1) (pattern=(1, -1)), val-loss 6.2335e-10
+[Stage A]   Current: [35mIdentity()(nn0(x0) * nn1(z=(x1 * x2^-1), x1))[0m
+[Stage A Monomial] Trying monomial_deg1 on NN[0] as rpoly (k≈0.333, rel=1.21e-05); accept_threshold=4.5251e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 742/1920 cross-segment channel pairs exceed |cos|>0.95 (worst seg 13/out 0 ↔ seg 15/out 0 |cos|=1.0000). Grouped segment pairs: 1/120 exceed |cos|>0.95 (worst seg 10 ↔ seg 12 |cos|=0.9599). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=2), so channel-level directional crowding can appear before whole segments overlap.[0m
+[LM][bucket] solving P=640 (trivially separable union)
+[trial] Validation patience exceeded at epoch 601/2500, nval_worse=500
+All multiplicative for x['z'], complement x[1] (in NN['z', 1])
+[Compound] Existing compound separates from extras [1], but checking only extensions that consume the separated coordinate.
+[Variable Extension] Checking iterative extension for compound atom NN[1, 2]...
+    [x0] reciprocal probe (negative-k singularity detected)
+    [x0] reciprocal: rel_std=1.1944>0.08, no gradient fallback available
+    [x1] reciprocal probe (negative-k singularity detected)
+  [Trig Scaling] Sampled 5000 points, probing 2 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=8.318e-04)
+  [Trig Scaling] x0: span=0.63, 16 ω candidates
+  [Trig Scaling] x0 rejected: best rel_std=0.1976 >= threshold=0.1
+  [Trig Scaling] x1: no viable ω candidates (span=197)
+[Local Oracle] Fresh path: 1 scaling, 0 trig specs
+  [Local Oracle] x[1]: k≈-0.696, rel_std=0.0386
+[Stage A LogExp] Shadowed dimless_input:log z=log((x1 * (x2)**-1)) (conf=0.900); coordinate lift is not committed in Stage A
+[Shadow] merged log((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_input:exp z=exp((x1 * (x2)**-1)) (conf=0.900); coordinate lift is not committed in Stage A
+[Shadow] merged exp((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Compound Exhaustion] High-confidence proposal (conf=0.900), trying...
+[Compound] Normalized proposal shortlist:
+[Compound]   1. kind=passthrough, conf=0.900, support=1, z=(x1 * (x2)**-1)
+[Compound] Skipping proposal: raw extra(s) x1 already appear inside compound (x1 * (x2)**-1); overlap coordinate splits are Stage-A gauge moves, not confirmed simplifications
+Checking separability of None(y) in input space with precision 0.001
+All multiplicative for x['z'], complement x[1] (in NN['z', 1])
+Setting number of segments: 16 (variant: no_offset)
+[Teacher init] Training left factor on 2000 profile samples...
+[Teacher init] Left factor trained, final loss: 3.562e-02
+[Teacher init] Training right factor on 2000 profile samples...
+[Teacher init] Right factor trained, final loss: 8.849e-01
+[Teacher init] Scale check: left_rms=2.102e-01, right_rms=9.421e-01, ratio=4.48
+[rescale_leaf] left: leaf type=DualSegmentedAdaptor, factor=2.1170
+[rescale_leaf] left: scaled a_fit via base_model
+[rescale_leaf] left: scaled a_pieces_fixed[15] via base_model
+[rescale_leaf] right: leaf type=DualSegmentedAdaptor, factor=0.4724
+[rescale_leaf] right: scaled a_fit via base_model
+[rescale_leaf] right: scaled a_pieces_fixed[15] via base_model
+[Teacher init] Final gauge norm: left x2.12, right x0.47
+***Training candidate separable model (variant: no_offset)***, acceptance threshold (raw) 4.5251e-08 (base 1.0000e-03)
+    Proposed: (NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1152 (trivially separable union)
+[trial] Early abandonment at epoch 1001/2500: best_val_loss=1.0283e-05 > 1.1313e-07 (2.5x accept_threshold 4.5251e-08)
+Rejected separation (variant: no_offset), val-loss 1.0283e-05
+Setting number of segments: 16 (variant: no_offset)
+[Teacher init] Training left factor on 2000 profile samples...
+[Teacher init] Left factor trained, final loss: 2.550e-02
+[Teacher init] Training right factor on 2000 profile samples...
+[Teacher init] Right factor trained, final loss: 2.826e+01
+[Teacher init] Scale check: left_rms=1.602e-01, right_rms=5.294e+00, ratio=33.04
+[rescale_leaf] left: leaf type=DualSegmentedAdaptor, factor=5.7476
+[rescale_leaf] left: scaled a_fit via base_model
+[rescale_leaf] left: scaled a_pieces_fixed[15] via base_model
+[rescale_leaf] right: leaf type=DualSegmentedAdaptor, factor=0.1740
+[rescale_leaf] right: scaled a_fit via base_model
+[rescale_leaf] right: scaled a_pieces_fixed[15] via base_model
+[Teacher init] Final gauge norm: left x5.75, right x0.17
+***Training candidate separable model (variant: no_offset)***, acceptance threshold (raw) 4.5251e-08 (base 1.0000e-03)
+    Proposed: (NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[trial] Early abandonment at epoch 1001/2500: best_val_loss=2.3856e-07 > 1.1313e-07 (2.5x accept_threshold 4.5251e-08)
+Rejected separation (variant: no_offset), val-loss 2.3856e-07
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:3 (full), number of leaves: 2, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() ((NN[x0] * NN[(x1 * (x2)**-1), x1])), parameters: 1024
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1024 (trivially separable union)
+Stopping at epoch 1/2500, lm_opt.state['halt']=True, loss=6.1478e-10, loss_val=6.2455e-10
+acceptable losses (raw) target=4.5251e-10, acceptable=4.5251e-06 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+[32mADOPTING[0m best val-loss 6.2455e-10 (trial 1/1, dual_layer=True)
+
+======================================================================
+  [Stage A] SEPARABILITY SEARCH — restart (pass 3)
+======================================================================
+All multiplicative for x['z'], complement x[1] (in NN['z', 1])
+[Stage A Monomial] Trying monomial_deg1 on NN[0] as rpoly (k≈0.333, rel=1.21e-05); accept_threshold=6.2455e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 742/1920 cross-segment channel pairs exceed |cos|>0.95 (worst seg 13/out 0 ↔ seg 15/out 0 |cos|=1.0000). Grouped segment pairs: 1/120 exceed |cos|>0.95 (worst seg 10 ↔ seg 12 |cos|=0.9599). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=2), so channel-level directional crowding can appear before whole segments overlap.[0m
+[LM][bucket] solving P=640 (trivially separable union)
+[trial] Validation patience exceeded at epoch 601/2500, nval_worse=500
+All multiplicative for x['z'], complement x[1] (in NN['z', 1])
+[Compound] Existing compound separates from extras [1], but checking only extensions that consume the separated coordinate.
+[Variable Extension] Checking iterative extension for compound atom NN[1, 2]...
+    [x0] reciprocal probe (negative-k singularity detected)
+    [x0] reciprocal: rel_std=1.1944>0.08, no gradient fallback available
+    [x1] reciprocal probe (negative-k singularity detected)
+  [Trig Scaling] Sampled 5000 points, probing 2 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=8.318e-04)
+  [Trig Scaling] x0: span=0.63, 16 ω candidates
+  [Trig Scaling] x0 rejected: best rel_std=0.1976 >= threshold=0.1
+  [Trig Scaling] x1: no viable ω candidates (span=197)
+[Local Oracle] Fresh path: 1 scaling, 0 trig specs
+  [Local Oracle] x[1]: k≈-0.696, rel_std=0.0386
+[Stage A LogExp] Shadowed dimless_input:log z=log((x1 * (x2)**-1)) (conf=0.900); coordinate lift is not committed in Stage A
+[Shadow] merged log((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_input:exp z=exp((x1 * (x2)**-1)) (conf=0.900); coordinate lift is not committed in Stage A
+[Shadow] merged exp((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Compound Exhaustion] High-confidence proposal (conf=0.900), trying...
+[Compound] Normalized proposal shortlist:
+[Compound]   1. kind=passthrough, conf=0.900, support=1, z=(x1 * (x2)**-1)
+[Compound] Skipping proposal: raw extra(s) x1 already appear inside compound (x1 * (x2)**-1); overlap coordinate splits are Stage-A gauge moves, not confirmed simplifications
+Checking separability of None(y) in input space with precision 0.001
+All multiplicative for x['z'], complement x[1] (in NN['z', 1])
+Setting number of segments: 16 (variant: no_offset)
+[Teacher init] Training left factor on 2000 profile samples...
+[Teacher init] Left factor trained, final loss: 1.384e-03
+[Teacher init] Training right factor on 2000 profile samples...
+[Teacher init] Right factor trained, final loss: 2.206e+00
+[Teacher init] Scale check: left_rms=7.789e-02, right_rms=1.484e+00, ratio=19.05
+[rescale_leaf] left: leaf type=DualSegmentedAdaptor, factor=4.3651
+[rescale_leaf] left: scaled a_fit via base_model
+[rescale_leaf] left: scaled a_pieces_fixed[15] via base_model
+[rescale_leaf] right: leaf type=DualSegmentedAdaptor, factor=0.2291
+[rescale_leaf] right: scaled a_fit via base_model
+[rescale_leaf] right: scaled a_pieces_fixed[15] via base_model
+[Teacher init] Final gauge norm: left x4.37, right x0.23
+***Training candidate separable model (variant: no_offset)***, acceptance threshold (raw) 6.2455e-08 (base 1.0000e-03)
+    Proposed: (NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1152 (trivially separable union)
+[trial] Early abandonment at epoch 1001/2500: best_val_loss=1.1844e-05 > 1.5614e-07 (2.5x accept_threshold 6.2455e-08)
+Rejected separation (variant: no_offset), val-loss 1.1844e-05
+Setting number of segments: 16 (variant: no_offset)
+[Teacher init] Training left factor on 2000 profile samples...
+[Teacher init] Left factor trained, final loss: 2.578e-03
+[Teacher init] Training right factor on 2000 profile samples...
+[Teacher init] Right factor trained, final loss: 8.006e+01
+[Teacher init] Scale check: left_rms=7.320e-02, right_rms=8.871e+00, ratio=121.18
+[rescale_leaf] left: leaf type=DualSegmentedAdaptor, factor=11.0082
+[rescale_leaf] left: scaled a_fit via base_model
+[rescale_leaf] left: scaled a_pieces_fixed[15] via base_model
+[rescale_leaf] right: leaf type=DualSegmentedAdaptor, factor=0.0908
+[rescale_leaf] right: scaled a_fit via base_model
+[rescale_leaf] right: scaled a_pieces_fixed[15] via base_model
+[Teacher init] Final gauge norm: left x11.01, right x0.09
+***Training candidate separable model (variant: no_offset)***, acceptance threshold (raw) 6.2455e-08 (base 1.0000e-03)
+    Proposed: (NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[trial] Stopping at epoch 801/2500, lm_opt.state['halt']=True, loss=3.2592e-10, loss_val=3.5377e-10
+[32mAccepted[0m separation (variant: no_offset), val-loss 3.5377e-10
+[Stage A]   Current: [35mIdentity()(nn0(x0) * nn1(z=(x1 * x2^-1)) * nn2(x1))[0m
+[Shadow] pruned stale coordinate evidence after separation: parents=1, shadows=4, consumed=0
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:4 (full), number of leaves: 3, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() ((NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))), parameters: 1152
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 1/2500, lm_opt.state['halt']=True, loss=3.2585e-10, loss_val=3.5444e-10
+acceptable losses (raw) target=4.5251e-10, acceptable=4.5251e-06 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+[32mADOPTING[0m best val-loss 3.5444e-10 (trial 1/1, dual_layer=True)
+
+======================================================================
+  [Stage A] SEPARABILITY SEARCH — restart (pass 4)
+======================================================================
+[Stage A Monomial] Trying monomial_deg1 on NN[0] as rpoly (k≈0.333, rel=2.71e-05); accept_threshold=4.5251e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=768 (trivially separable union)
+[trial] Validation patience exceeded at epoch 601/2500, nval_worse=500
+[Stage A Monomial] Skipping NN[1, 2]: shared multiplicative NN support; leaving gauge-sensitive peel to Stage B.
+[Stage A Monomial] Skipping NN[1]: shared multiplicative NN support; leaving gauge-sensitive peel to Stage B.
+[Units] Stage A summary (identity): skipped 4 unit-incompatible proposal(s).
+[Units]   - compound_buckingham: 4
+[Units]       2× compound reduces dimensional rank: 2 -> 1; remaining variables cannot span output dimension
+[Units]       1× compound reduces dimensional rank: 1 -> 0; remaining variables cannot span output dimension
+[Units]       1× compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; could not infer target dimension
+[Reference] Saved pre-separability model to <WORKSPACE>/NestyNet_SR/results_ref/jacobi_v1_full.mod
+[Stage A] Using identity separability results
+
+Saved Stage-A checkpoint to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.state.pkl
+[36mFinal model: Identity() ((NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))), rest: None, None[0m
+[Stage B] y-transform adjudication shortlist:
+  - identity     source=baseline
+[Units] Enforcing units in Stage B (policy=free_const_only, y_transform=identity).
+
+======================================================================
+  [Stage B] ANALYTICAL REWRITING — identity(y)-space
+======================================================================
+
+
+Size of datasets: training: 6000, val: 2000
+[Stage B] Using MAD-normalised thresholds: MAD(y)≈0.0673, scale=0.00453
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1152 (trivially separable union)
+Stopping at epoch 1/2000, lm_opt.state['halt']=True, loss=3.2585e-10, loss_val=3.5462e-10
+
+[Stage B] Initial model: params=1152, val-loss=3.5462e-10
+[Stage B] Initial NN metrics: total=3, multivar=0, max_arity=1
+[Stage B] Found 3 scaling candidates:
+  axis 0: k≈0.333, rel_std=0.001, n=6000
+  joint [1,2]: k≈-0.667, rel_std=0.002, n=6000
+  joint [0,1,2]: k≈-0.333, rel_std=0.003, n=6000
+[Stage B] FFT trig-axis candidates (informational):
+[Stage B]   axis 2: omega≈0.120, strength=2625.0, span=[4.22,109]
+[Stage B]   axis 1: omega≈0.073, strength=356.6, span=[3.67,89]
+[Stage B]   axis 0: omega≈0.223, strength=102.8, span=[0.0204,28.2]
+[Stage B] Found 1 nontrivial target(s) for trig probing:
+[Stage B]   x1*x2**-1 (kind=ratio, indices=(1, 2))
+    [x1] reciprocal probe (negative-k singularity detected)
+    [x1] reciprocal: rel_std=0.5997>0.08, no gradient fallback available
+    [x1*x2**-1] reciprocal probe (negative-k singularity detected)
+  [Trig Scaling] Sampled 5000 points, probing 2 trivial + 1 compound target(s) (skipping axes [0] as polynomial)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=2.176e-02)
+  [Trig Scaling] x1: no viable ω candidates (span=197)
+  [Trig Scaling] x2: no viable ω candidates (span=181)
+  [Trig Scaling] x1*x2**-1: span=0.63, 16 ω candidates
+  [Trig Scaling] x1*x2**-1 rejected: best rel_std=0.1664 >= threshold=0.1
+[Stage B] Oracle trig probe found no trig
+[Stage B]   Separability rules: ['nonsense_units_zero_prune', 'monomial_peel_priority', 'subtree_separability', 'last_hard_trig_square', 'univariate_nn', 'log_ratio', 'power_product', 'joint_product_monomial_closure', 'overlap_prefactor_peel', 'overlap_counterterm_peel', 'common_prefactor', 'additive_gauge_transfer', 'multiplicative_homogeneity_transfer', 'univariate_mono', 'nn_leaf_separability', 'counterterm_mul_split', 'counterfactor_add_split']
+[Stage B]   Specialized rules: ['compound_fn_macros', 'inverse_trig_outer_rational_closure', 'monomial_prefactor_compound', 'compound_planck', 'affine_decomp', 'nonlinear_substitution', 'univariate_oracle_invariants', 'homogeneity_peel', 'product_homogeneity', 'ratio_invariance', 'coupled_leaf_ratio', 'metric_distance', 'inverse_trig_outer_closure', 'phase_hint_trig_closure', 'phase_hint_reciprocal_trig_power', 'phase_context_trig_closure', 'barycentric', 'logexp_compound', 'r1_operator_certificate', 'univariate_mul_peel', 'outer_transform_split_nn', 'multid_nn', 'poly_split', 'preconditioner_fallback_nn', 'last_hard_trig_power', 'last_hard_atom_rescue']
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 3 targets
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1), vars=(1, 2)(arity=1), vars=(1,)(arity=1)]
+[Stage B] monomial_peel_priority shortlist: monomial_pow1_3@nn#leaf0 vars=(0,) (k=0.333, rel=2.71e-05); monomial_deg1[z_inv]@nn#leaf0 vars=(0,) (k=0.333, rel=2.71e-05); monomial_deg2[z_inv]@nn#leaf0 vars=(0,) (k=0.333, rel=2.71e-05); monomial_deg3[z_inv]@nn#leaf0 vars=(0,) (k=0.333, rel=2.71e-05); monomial_pow2_3[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=0.000135); monomial_deg1[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=0.000135); monomial_deg2[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=0.000135); monomial_deg3[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=0.000135)
+[Stage B] Rule monomial_peel_priority trying 14 globally ranked candidates
+[Stage B]  Greedy order (1 cands): monomial_pow1_3(1998p)
+[Stage B]  Priority trying fixed third-power monomial (z^0.333, k≈0.333, rel=2.71e-05) on NN leaf vars (0,)
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=768 (trivially separable union)
+Stopping at epoch 401/2000, lm_opt.state['halt']=True, loss=4.6940e-11, loss_val=3.6588e-11
+[Stage B]    Candidate (monomial_pow1_3): params=768, val-loss=3.6588e-11
+[Stage B]    [32mAccepted[0m rewrite (monomial_pow1_3, loss-below-floor-simpler)
+[Stage B]    NN metrics: total=2, multivar=0, max_arity=1
+[Stage B]    Current: [35mx0^0.33 * nn0(z=(x1 * x2^-1)) * nn1(x1)[0m
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 2 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=1), vars=(1,)(arity=1)]
+[Stage B] monomial_peel_priority shortlist: monomial_pow2_3[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=0.00017); monomial_deg1[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=0.00017); monomial_deg2[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=0.00017); monomial_deg3[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=0.00017); monomial_deg1[z_inv]@nn#leaf1 vars=(1, 2) (k=-0.858, rel=0.452); monomial_deg2[z_inv]@nn#leaf1 vars=(1, 2) (k=-0.858, rel=0.452); monomial_deg1@nn#leaf1 vars=(1, 2) (k=-0.858, rel=0.452); monomial_deg3[z_inv]@nn#leaf1 vars=(1, 2) (k=-0.858, rel=0.452)
+[Stage B] Rule monomial_peel_priority trying 10 globally ranked candidates
+[Stage B]  Greedy order (1 cands): monomial_pow2_3[z_inv](999p)
+[Stage B]  Priority trying fixed third-power monomial (z^0.667, k≈0.667, rel=0.00017) on NN leaf vars (1,) [coord=1/z]
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 1080/1080 cross-segment channel pairs exceed |cos|>0.95 (worst seg 1/out 1 ↔ seg 6/out 2 |cos|=1.0000). Grouped segment pairs: 5/120 exceed |cos|>0.95 (worst seg 0 ↔ seg 12 |cos|=0.9963). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=1), so channel-level directional crowding can appear before whole segments overlap.[0m
+[LM][bucket] solving P=384 (trivially separable union)
+Stopping at epoch 301/2000, lm_opt.state['halt']=True, loss=9.3286e-11, loss_val=8.4388e-11
+[Stage B]    Candidate (monomial_pow2_3[z_inv]): params=384, val-loss=8.4388e-11
+[Stage B]    [32mAccepted[0m rewrite (monomial_pow2_3[z_inv], loss-below-floor-simpler)
+[Stage B]    NN metrics: total=1, multivar=0, max_arity=1
+[Stage B]    Current: [35mx0^0.33 * nn0(z=(x1 * x2^-1)) * x1^-1^0.67[0m
+[Stage B polish] Running subtree:root.right candidate generation in guarded worker (max_seconds=300.0, mem_fraction=0.2).
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 1080/1080 cross-segment channel pairs exceed |cos|>0.95 (worst seg 1/out 1 ↔ seg 11/out 1 |cos|=1.0000). Grouped segment pairs: 10/120 exceed |cos|>0.95 (worst seg 7 ↔ seg 12 |cos|=0.9925). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=1), so channel-level directional crowding can appear before whole segments overlap.[0m
+Stopping at epoch 1/2000, lm_opt.state['halt']=True, loss=9.3171e-11, loss_val=8.4085e-11
+[Stage B polish] subtree full-shadow reject root.right: ((x1)**-1)**0.666667 -> (1/x1)**(2/3); val-loss=8.4085e-11 (shadow-full-policy(units-pinned; loss-below-floor-not-simpler))
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=1)]
+[Stage B] monomial_peel_priority shortlist: monomial_deg1[z_inv]@nn#leaf1 vars=(1, 2) (k=-0.858, rel=0.452); monomial_deg2[z_inv]@nn#leaf1 vars=(1, 2) (k=-0.858, rel=0.452); monomial_deg1@nn#leaf1 vars=(1, 2) (k=-0.858, rel=0.452); monomial_deg3[z_inv]@nn#leaf1 vars=(1, 2) (k=-0.858, rel=0.452); monomial_deg2@nn#leaf1 vars=(1, 2) (k=-0.858, rel=0.452); monomial_deg3@nn#leaf1 vars=(1, 2) (k=-0.858, rel=0.452)
+[Stage B] Rule monomial_peel_priority trying 6 globally ranked candidates
+[Stage B]  Greedy order (1 cands): monomial_deg1[z_inv](0p)
+[Stage B]  Priority trying 1D monomial (c·x^1) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[Stage B]    Candidate (monomial_deg1[z_inv]): params=0, val-loss=2.5041e-02
+[Stage B]    Reject (monomial_deg1[z_inv]): simpler-over-budget(thr=3.026e-09) | loss 8.439e-11->2.504e-02 (Δ+2.50e-02) | params 384->0 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Greedy order (1 cands): monomial_deg2[z_inv](0p)
+[Stage B]  Priority trying 1D monomial (c·x^2) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[Stage B]    Candidate (monomial_deg2[z_inv]): params=0, val-loss=1.2211e-01
+[Stage B]    Reject (monomial_deg2[z_inv]): simpler-over-budget(thr=3.026e-09) | loss 8.439e-11->1.221e-01 (Δ+1.22e-01) | params 384->0 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Greedy order (1 cands): monomial_deg1(0p)
+[Stage B]  Priority trying 1D monomial (c·x^1) rewrite on NN leaf vars (1, 2)
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[Stage B]    Candidate (monomial_deg1): params=0, val-loss=8.6191e-03
+[Stage B]    Reject (monomial_deg1): simpler-over-budget(thr=3.026e-09) | loss 8.439e-11->8.619e-03 (Δ+8.62e-03) | params 384->0 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Greedy order (1 cands): monomial_deg3[z_inv](0p)
+[Stage B]  Priority trying 1D monomial (c·x^3) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[Stage B]    Candidate (monomial_deg3[z_inv]): params=0, val-loss=4.7290e-01
+[Stage B]    Reject (monomial_deg3[z_inv]): simpler-over-budget(thr=3.026e-09) | loss 8.439e-11->4.729e-01 (Δ+4.73e-01) | params 384->0 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Greedy order (1 cands): monomial_deg2(0p)
+[Stage B]  Priority trying 1D monomial (c·x^2) rewrite on NN leaf vars (1, 2)
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[Stage B]    Candidate (monomial_deg2): params=0, val-loss=1.6629e-02
+[Stage B]    Reject (monomial_deg2): simpler-over-budget(thr=3.026e-09) | loss 8.439e-11->1.663e-02 (Δ+1.66e-02) | params 384->0 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Greedy order (1 cands): monomial_deg3(0p)
+[Stage B]  Priority trying 1D monomial (c·x^3) rewrite on NN leaf vars (1, 2)
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[Stage B]    Candidate (monomial_deg3): params=0, val-loss=2.4912e-02
+[Stage B]    Reject (monomial_deg3): simpler-over-budget(thr=3.026e-09) | loss 8.439e-11->2.491e-02 (Δ+2.49e-02) | params 384->0 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B] Rule subtree_separability found 0 targets
+[Stage B] Rule last_hard_trig_square found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=1)]
+[Stage B PhaseScan] local atom hint target=NN vars=(1, 2): z=(x0)**2, R2=0.976, omega≈3.142
+[Stage B PhaseScan] local atom hint target=NN vars=(1, 2): z=(x0)**-2, R2=0.976, omega≈3.142
+[Stage B] Rule univariate_nn found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=1)]
+[Stage B] symexp_denom_1d rejected: rel_rms=0.6179 > 0.05, compound vars=(1, 2)
+[Stage B] symexp_denom_1d_recip rejected: rel_rms=0.0756 > 0.05, compound vars=(1, 2)
+[Stage B] inv_poly: using degree-probe monomials, 3 valid terms, vars=(1, 2)
+[Stage B] inv_poly rejected: best rel_rms=0.0640 > 0.001, degree=2, vars=(1, 2)
+[Stage B] sqrt_poly: degree-probe active, sqrt=3 terms (probed=True), inv=3 terms (probed=True), vars=(1, 2)
+[Stage B] cbrt_poly: degree-probe active, cbrt=3 terms (probed=True), inv=3 terms (probed=True), vars=(1, 2)
+[Stage B]  one_minus_cos_over_z2 skip NN vars (1, 2): no trig hint
+[Stage B]  sparse_factor_1d skip NN vars (1, 2): screen failed for z=(x1 * (x2)**-1); best rel=4.13e-01, threshold=2.00e-02
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 6 sub-threshold trial(s) for vars=(1, 2): deg=(2,3)->(2,3) nnz=(3,4) rms=0.0010, deg=(3,2)->(3,2) nnz=(4,3) rms=0.0009, deg=(3,3)->(3,3) nnz=(3,4) rms=0.0005, deg=(2,4)->(2,4) nnz=(3,5) rms=0.0003, deg=(4,3)->(4,2) nnz=(5,3) rms=0.0003, deg=(3,4)->(3,4) nnz=(4,4) rms=0.0003
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 6 sub-threshold trial(s) for vars=(1, 2): deg=(2,3)->(2,3) nnz=(3,4) rms=0.0009, deg=(3,2)->(3,2) nnz=(4,3) rms=0.0010, deg=(3,3)->(3,3) nnz=(4,3) rms=0.0004, deg=(2,4)->(2,4) nnz=(3,5) rms=0.0002, deg=(4,2)->(4,2) nnz=(5,3) rms=0.0002, deg=(3,4)->(3,4) nnz=(4,4) rms=0.0004
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.0014 > 0.001, deg=(2,3), vars=(1, 2)
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 4 sub-threshold trial(s) for vars=(1, 2): deg=(2,2)->(2,2) nnz=(3,3) rms=0.0002, deg=(1,4)->(1,4) nnz=(2,4) rms=0.0004, deg=(2,3)->(2,3) nnz=(2,4) rms=0.0002, deg=(3,2)->(3,2) nnz=(3,3) rms=0.0002
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 5 sub-threshold trial(s) for vars=(1, 2): deg=(2,2)->(2,2) nnz=(2,3) rms=0.0152, deg=(2,3)->(2,3) nnz=(3,4) rms=0.0003, deg=(3,2)->(3,2) nnz=(4,3) rms=0.0003, deg=(3,4)->(3,4) nnz=(4,4) rms=0.0004, deg=(4,3)->(4,3) nnz=(5,3) rms=0.0004
+[Stage B] log_ratpoly candidate rejected: rms_rel(exp(f))=0.14%, threshold=0.1%, vars=(1, 2), deg=1/1
+[Stage B] symexp_denom_1d rejected: rel_rms=0.0756 > 0.05, compound vars=(1, 2)
+[Stage B] symexp_denom_1d_recip rejected: rel_rms=0.6179 > 0.05, compound vars=(1, 2)
+[Stage B] inv_poly: using degree-probe monomials, 3 valid terms, vars=(1, 2)
+[Stage B] inv_poly rejected: best rel_rms=0.0301 > 0.001, degree=2, vars=(1, 2)
+[Stage B] sqrt_poly: degree-probe active, sqrt=3 terms (probed=True), inv=3 terms (probed=True), vars=(1, 2)
+[Stage B] cbrt_poly: degree-probe active, cbrt=3 terms (probed=True), inv=3 terms (probed=True), vars=(1, 2)
+[Stage B]  one_minus_cos_over_z2 skip NN vars (1, 2): no trig hint
+[Stage B]  sparse_factor_1d skip NN vars (1, 2): screen failed for z=(x2 / x1); best rel=9.45e-02, threshold=2.00e-02
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 8 sub-threshold trial(s) for vars=(1, 2): deg=(1,4)->(1,4) nnz=(2,5) rms=0.0008, deg=(2,3)->(2,3) nnz=(3,4) rms=0.0006, deg=(3,2)->(3,2) nnz=(4,3) rms=0.0007, deg=(3,3)->(3,3) nnz=(3,4) rms=0.0004, deg=(2,4)->(2,4) nnz=(3,5) rms=0.0004, deg=(4,2)->(4,2) nnz=(5,3) rms=0.0003, deg=(3,4)->(3,4) nnz=(4,4) rms=0.0003, deg=(4,3)->(4,3) nnz=(5,3) rms=0.0003
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 7 sub-threshold trial(s) for vars=(1, 2): deg=(1,4)->(1,4) nnz=(2,4) rms=0.0008, deg=(3,2)->(3,2) nnz=(3,3) rms=0.0003, deg=(4,1)->(4,1) nnz=(4,2) rms=0.0003, deg=(2,3)->(2,3) nnz=(3,4) rms=0.0004, deg=(3,3)->(3,3) nnz=(4,3) rms=0.0002, deg=(2,4)->(2,4) nnz=(3,5) rms=0.0002, deg=(3,4)->(3,4) nnz=(3,5) rms=0.0002
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 8 sub-threshold trial(s) for vars=(1, 2): deg=(0,4)->(0,2) nnz=(1,2) rms=0.0004, deg=(0,2)->(0,2) nnz=(1,3) rms=0.0004, deg=(4,4)->(2,4) nnz=(2,2) rms=0.0004, deg=(0,3)->(0,3) nnz=(1,4) rms=0.0004, deg=(1,2)->(1,2) nnz=(2,3) rms=0.0004, deg=(2,1)->(2,1) nnz=(3,2) rms=0.0009, deg=(3,1)->(3,1) nnz=(4,2) rms=0.0004, deg=(4,1)->(4,1) nnz=(5,2) rms=0.0004
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 4 sub-threshold trial(s) for vars=(1, 2): deg=(2,1)->(2,0) nnz=(2,1) rms=0.0002, deg=(1,2)->(1,2) nnz=(2,3) rms=0.0007, deg=(1,3)->(1,3) nnz=(2,4) rms=0.0002, deg=(4,4)->(4,4) nnz=(3,3) rms=0.0003
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 13 sub-threshold trial(s) for vars=(1, 2): deg=(1,2)->(1,2) nnz=(2,3) rms=0.0152, deg=(2,1)->(2,1) nnz=(3,2) rms=0.0162, deg=(2,2)->(2,2) nnz=(2,3) rms=0.0152, deg=(1,3)->(1,3) nnz=(2,4) rms=0.0039, deg=(3,1)->(3,1) nnz=(4,2) rms=0.0052, deg=(4,1)->(4,1) nnz=(4,2) rms=0.0015, deg=(3,3)->(3,3) nnz=(3,3) rms=0.0005, deg=(1,4)->(1,4) nnz=(2,5) rms=0.0014, deg=(2,3)->(2,3) nnz=(3,4) rms=0.0009, deg=(3,2)->(3,2) nnz=(4,3) rms=0.0009, deg=(2,4)->(2,4) nnz=(3,5) rms=0.0002, deg=(4,2)->(4,2) nnz=(5,3) rms=0.0002, deg=(3,4)->(3,4) nnz=(4,4) rms=0.0002
+[Stage B] log_ratpoly candidate rejected: rms_rel(exp(f))=0.17%, threshold=0.1%, vars=(1, 2), deg=1/1
+[Stage B] RuleUniNN proposing 64 candidates for NN vars=(1, 2): ['monomial_deg1', 'monomial_deg2', 'monomial_deg3', 'poly', '1d_powexp', 'polylog', 'logshifted', 'cbrt_poly', 'cf_sharedpref_resid', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_sharedpref_resid', 'cf_combo', 'cf_combo', 'sqrt_ratpoly_1d', 'sqrt_ratpoly_1d[1]', 'sqrt_ratpoly_1d[2]', 'sqrt_ratpoly_1d[3]', 'sqrt_ratpoly_1d[4]', 'sqrt_ratpoly_1d[5]', 'sqrt_ratpoly_1d[6]', 'sqrt_ratpoly_1d[7]', 'sqrt_ratpoly_1d[8]', 'sqrt_ratpoly_1d[9]', 'sqrt_ratpoly_1d[10]', 'sqrt_ratpoly_1d[11]', 'sqrt_ratpoly_1d[12]', 'sqrt_ratpoly_1d[13]', 'sqrt_ratpoly_1d[14]', 'cbrt_ratpoly_1d', 'cbrt_ratpoly_1d[1]', 'cbrt_ratpoly_1d[2]', 'cbrt_ratpoly_1d[3]', 'cbrt_ratpoly_1d[4]', 'cbrt_ratpoly_1d[5]', 'cbrt_ratpoly_1d[6]', 'cbrt_ratpoly_1d[7]', 'cbrt_ratpoly_1d[8]', 'cbrt_ratpoly_1d[9]', 'cbrt_ratpoly_1d[10]', 'cbrt_ratpoly_1d[11]', 'ratpoly_1d', 'ratpoly_1d[1]', 'ratpoly_1d[2]', 'ratpoly_1d[3]', 'ratpoly_1d[4]', 'ratpoly_1d[5]', 'ratpoly_1d[6]', 'ratpoly_1d[7]', 'ratpoly_1d[8]', 'ratpoly_1d[9]', 'ratpoly_1d[10]', 'ratpoly_1d[11]', 'ratpoly_1d[12]', 'exp', 'exp_rat', 'tanh', 'leaftr_recip_poly3', 'leaftr_log_poly3', 'leaftr_sqrt_poly3']
+[Stage B]  Skipping reciprocal-coordinate alias polylog: closed-under-reciprocal:polylog
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[1]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[2]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[3]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[4]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[5]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[6]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[7]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[8]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[9]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[10]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[11]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[12]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[13]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[14]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[1]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[2]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[3]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[4]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[5]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[6]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[7]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[8]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[9]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[10]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[11]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[1]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[2]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[3]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[4]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[5]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[6]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[7]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[8]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[9]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[10]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[11]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[12]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias exp_rat: closed-under-reciprocal:exp_rat
+[Stage B] RuleUniNN proposing 69 candidates for NN vars=(1, 2): ['monomial_deg1', 'monomial_deg1[z_inv]', 'monomial_deg2', 'monomial_deg2[z_inv]', 'monomial_deg3', 'monomial_deg3[z_inv]', 'poly', 'poly[z_inv]', 'planck_p0', 'planck_p1', 'planck_p2', '1d_powexp', '1d_powexp[z_inv]', 'polylog', 'logshifted', 'logshifted[z_inv]', 'cf_combo', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'sqrt_ratpoly_1d', 'sqrt_ratpoly_1d[1]', 'sqrt_ratpoly_1d[2]', 'sqrt_ratpoly_1d[3]', 'sqrt_ratpoly_1d[4]', 'sqrt_ratpoly_1d[5]', 'sqrt_ratpoly_1d[6]', 'sqrt_ratpoly_1d[7]', 'sqrt_ratpoly_1d[8]', 'sqrt_ratpoly_1d[9]', 'sqrt_ratpoly_1d[10]', 'sqrt_ratpoly_1d[11]', 'cbrt_ratpoly_1d', 'cbrt_ratpoly_1d[1]', 'cbrt_ratpoly_1d[2]', 'cbrt_ratpoly_1d[3]', 'ratpoly_1d', 'ratpoly_1d[1]', 'ratpoly_1d[2]', 'ratpoly_1d[3]', 'ratpoly_1d[4]', 'exp', 'exp[z_inv]', 'exp_rat', 'tanh', 'tanh[z_inv]', 'leaftr_recip_poly3', 'leaftr_recip_poly3[z_inv]', 'leaftr_log_poly3', 'leaftr_log_poly3[z_inv]', 'leaftr_sqrt_poly3', 'leaftr_sqrt_poly3[z_inv]', 'cbrt_poly[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]']
+[Stage B]  Exhaustive order (69 cands): monomial_deg1(1p), monomial_deg1[z_inv](1p), monomial_deg2(1p), monomial_deg2[z_inv](1p), monomial_deg3(1p), monomial_deg3[z_inv](1p), poly(2p), poly[z_inv](2p), planck_p0(2p), planck_p1(2p), planck_p2(2p), polylog(2p), cf_combo[z_inv](2p), cf_combo[z_inv](2p), cf_combo[z_inv](2p), cf_combo[z_inv](2p), cf_combo(2p), cf_combo(2p), cf_combo(2p), cf_combo(2p), cf_combo(2p), logshifted(3p), logshifted[z_inv](3p), cf_combo(3p), cf_combo[z_inv](3p), cf_combo[z_inv](3p), cf_combo[z_inv](3p), cf_combo[z_inv](3p), cf_combo(3p), cf_combo(3p), cf_combo(3p), cf_combo(3p), exp(3p), exp[z_inv](3p), tanh(3p), tanh[z_inv](3p), cbrt_poly[z_inv](3p), cf_sharedpref_resid[z_inv](3p), cf_sharedpref_resid[z_inv](3p), leaftr_recip_poly3(4p), leaftr_recip_poly3[z_inv](4p), leaftr_log_poly3(4p), leaftr_log_poly3[z_inv](4p), leaftr_sqrt_poly3(4p), leaftr_sqrt_poly3[z_inv](4p), 1d_powexp(5p), 1d_powexp[z_inv](5p), ratpoly_1d(5p), cbrt_ratpoly_1d(6p), cbrt_ratpoly_1d[1](6p), cbrt_ratpoly_1d[2](6p), cbrt_ratpoly_1d[3](6p), exp_rat(6p), sqrt_ratpoly_1d(7p), sqrt_ratpoly_1d[1](7p), sqrt_ratpoly_1d[2](7p), sqrt_ratpoly_1d[6](7p), sqrt_ratpoly_1d[7](7p), sqrt_ratpoly_1d[8](7p), ratpoly_1d[1](7p), ratpoly_1d[2](7p), sqrt_ratpoly_1d[3](8p), sqrt_ratpoly_1d[4](8p), sqrt_ratpoly_1d[5](8p), sqrt_ratpoly_1d[9](8p), sqrt_ratpoly_1d[10](8p), sqrt_ratpoly_1d[11](8p), ratpoly_1d[3](8p), ratpoly_1d[4](8p)
+[Stage B]  Trying 1D monomial (c·x^1) rewrite on NN leaf vars (1, 2)
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 51
+Stopping at epoch 52/2000, lm_opt.state['halt']=True, loss=8.7249e-03, loss_val=8.1308e-03
+[Stage B]    Candidate (monomial_deg1): params=1, val-loss=8.1308e-03
+[Stage B]    Reject (monomial_deg1): simpler-over-budget(thr=2.697e-09) | loss 8.439e-11->8.131e-03 (Δ+8.13e-03) | params 384->1 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D monomial (c·x^1) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 53
+Stopping at epoch 54/2000, lm_opt.state['halt']=True, loss=6.8071e-04, loss_val=5.9699e-04
+[Stage B]    Candidate (monomial_deg1[z_inv]): params=1, val-loss=5.9699e-04
+[Stage B]    Reject (monomial_deg1[z_inv]): simpler-over-budget(thr=2.697e-09) | loss 8.439e-11->5.970e-04 (Δ+5.97e-04) | params 384->1 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D monomial (c·x^2) rewrite on NN leaf vars (1, 2)
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 53
+Stopping at epoch 54/2000, lm_opt.state['halt']=True, loss=1.7410e-02, loss_val=1.6424e-02
+[Stage B]    Candidate (monomial_deg2): params=1, val-loss=1.6424e-02
+[Stage B]    Reject (monomial_deg2): simpler-over-budget(thr=2.697e-09) | loss 8.439e-11->1.642e-02 (Δ+1.64e-02) | params 384->1 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D monomial (c·x^2) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 51
+Stopping at epoch 52/2000, lm_opt.state['halt']=True, loss=4.2764e-03, loss_val=3.9474e-03
+[Stage B]    Candidate (monomial_deg2[z_inv]): params=1, val-loss=3.9474e-03
+[Stage B]    Reject (monomial_deg2[z_inv]): simpler-over-budget(thr=2.697e-09) | loss 8.439e-11->3.947e-03 (Δ+3.95e-03) | params 384->1 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D monomial (c·x^3) rewrite on NN leaf vars (1, 2)
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 53
+Stopping at epoch 54/2000, lm_opt.state['halt']=True, loss=2.5627e-02, loss_val=2.4362e-02
+[Stage B]    Candidate (monomial_deg3): params=1, val-loss=2.4362e-02
+[Stage B]    Reject (monomial_deg3): simpler-over-budget(thr=2.697e-09) | loss 8.439e-11->2.436e-02 (Δ+2.44e-02) | params 384->1 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D monomial (c·x^3) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 53
+Stopping at epoch 54/2000, lm_opt.state['halt']=True, loss=1.0600e-02, loss_val=9.8100e-03
+[Stage B]    Candidate (monomial_deg3[z_inv]): params=1, val-loss=9.8100e-03
+[Stage B]    Reject (monomial_deg3[z_inv]): simpler-over-budget(thr=2.697e-09) | loss 8.439e-11->9.810e-03 (Δ+9.81e-03) | params 384->1 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D poly rewrite on NN leaf vars (1, 2), degree=1
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=2 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 58
+Stopping at epoch 59/2000, lm_opt.state['halt']=True, loss=8.3545e-04, loss_val=7.1046e-04
+[Stage B]    Candidate (poly): params=2, val-loss=7.1046e-04
+[Stage B]    Reject (poly): simpler-over-budget(thr=2.191e-09) | loss 8.439e-11->7.105e-04 (Δ+7.10e-04) | params 384->2 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D poly rewrite on NN leaf vars (1, 2), degree=1 [coord=1/z]
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 61
+Stopping at epoch 62/2000, lm_opt.state['halt']=True, loss=4.8776e-04, loss_val=4.1425e-04
+[Stage B]    Candidate (poly[z_inv]): params=2, val-loss=4.1425e-04
+[Stage B]    Reject (poly[z_inv]): simpler-over-budget(thr=2.191e-09) | loss 8.439e-11->4.143e-04 (Δ+4.14e-04) | params 384->2 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying reduced 1D Planck rewrite on NN leaf vars (1, 2) (p=0, tail_rms≈0.27)
+[Stage B custom_init Planck] compound vars=(1, 2), p=0, a≈0.415, logA≈0.0493, tail_rms≈0.27
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 2.001e-02, max: 5.001e+00, mean: 6.246e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 1.751e-02, max: 4.085e+00, mean: 6.094e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 1.707e-02, max: 5.001e+00, mean: 6.159e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=3.912e-01, true_median=1.087e-01, ratio=3.600e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 78
+Stopping at epoch 79/2000, lm_opt.state['halt']=True, loss=5.6960e-04, loss_val=4.8480e-04
+[Stage B]    Candidate (planck_p0): params=2, val-loss=4.8480e-04
+[Stage B]    Reject (planck_p0): simpler-over-budget(thr=2.191e-09) | loss 8.439e-11->4.848e-04 (Δ+4.85e-04) | params 384->2 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying reduced 1D Planck rewrite on NN leaf vars (1, 2) (p=1, tail_rms≈0.451)
+[Stage B custom_init Planck] compound vars=(1, 2), p=1, a≈1.56, logA≈1.2, tail_rms≈0.451
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 8.620e-03, max: 2.208e+00, mean: 2.308e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 7.678e-03, max: 1.749e+00, mean: 2.253e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.539e-03, max: 2.140e+00, mean: 2.289e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.440e-01, true_median=1.087e-01, ratio=1.326e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 65
+Stopping at epoch 66/2000, lm_opt.state['halt']=True, loss=7.3988e-04, loss_val=6.2780e-04
+[Stage B]    Candidate (planck_p1): params=2, val-loss=6.2780e-04
+[Stage B]    Reject (planck_p1): simpler-over-budget(thr=2.191e-09) | loss 8.439e-11->6.278e-04 (Δ+6.28e-04) | params 384->2 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying reduced 1D Planck rewrite on NN leaf vars (1, 2) (p=2, tail_rms≈0.633)
+[Stage B custom_init Planck] compound vars=(1, 2), p=2, a≈2.71, logA≈2.34, tail_rms≈0.633
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 7.262e-03, max: 1.872e+00, mean: 1.764e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 6.528e-03, max: 1.480e+00, mean: 1.722e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 6.389e-03, max: 1.811e+00, mean: 1.758e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.090e-01, true_median=1.087e-01, ratio=1.003e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 63
+Stopping at epoch 64/2000, lm_opt.state['halt']=True, loss=1.1293e-03, loss_val=9.5947e-04
+[Stage B]    Candidate (planck_p2): params=2, val-loss=9.5947e-04
+[Stage B]    Reject (planck_p2): simpler-over-budget(thr=2.191e-09) | loss 8.439e-11->9.595e-04 (Δ+9.59e-04) | params 384->2 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D polylog rewrite on NN leaf vars (1, 2), degree=1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 55
+Stopping at epoch 56/2000, lm_opt.state['halt']=True, loss=6.5762e-04, loss_val=5.5793e-04
+[Stage B]    Candidate (polylog): params=2, val-loss=5.5793e-04
+[Stage B]    Reject (polylog): simpler-over-budget(thr=2.191e-09) | loss 8.439e-11->5.579e-04 (Δ+5.58e-04) | params 384->2 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D compound macro tier-3 linear combo on NN leaf vars [1, 2], terms=['inv1p *(sinc(arg0))', '1/(arg0^2)'], screen_r2=0.999, ok_frac=1.000 [coord=1/z]
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 58
+Stopping at epoch 59/2000, lm_opt.state['halt']=True, loss=2.2934e-03, loss_val=2.0086e-03
+[Stage B]    Candidate (cf_combo[z_inv]): params=2, val-loss=2.0086e-03
+[Stage B]    Reject (cf_combo[z_inv]): simpler-over-budget(thr=2.191e-09) | loss 8.439e-11->2.009e-03 (Δ+2.01e-03) | params 384->2 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Skipping cf_combo[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_combo[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_combo[z_inv] (previously rejected on same target)
+[Stage B]  Trying 1D compound macro tier-3 linear combo on NN leaf vars [1, 2], terms=['sqrt1p *(inv_sin_half4(arg0))', 'sin_half_sq /((arg0*arg0^2))'], screen_r2=0.992, ok_frac=1.000
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 68
+Stopping at epoch 69/2000, lm_opt.state['halt']=True, loss=1.3745e-02, loss_val=1.2570e-02
+[Stage B]    Candidate (cf_combo): params=2, val-loss=1.2570e-02
+[Stage B]    Reject (cf_combo): simpler-over-budget(thr=2.191e-09) | loss 8.439e-11->1.257e-02 (Δ+1.26e-02) | params 384->2 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Trying 1D shifted-log rewrite on NN leaf vars (1, 2)
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=3 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 123
+Stopping at epoch 124/2000, lm_opt.state['halt']=True, loss=6.5605e-05, loss_val=5.8138e-05
+[Stage B]    Candidate (logshifted): params=3, val-loss=5.8138e-05
+[Stage B]    Reject (logshifted): simpler-over-budget(thr=1.940e-09) | loss 8.439e-11->5.814e-05 (Δ+5.81e-05) | params 384->3 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D shifted-log rewrite on NN leaf vars (1, 2) [coord=1/z]
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[Stage B]    Candidate (logshifted[z_inv]): params=3, val-loss=4.1490e-04
+[Stage B]    Reject (logshifted[z_inv]): simpler-over-budget(thr=1.940e-09) | loss 8.439e-11->4.149e-04 (Δ+4.15e-04) | params 384->3 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Skipping cf_combo[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_combo[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_combo[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_combo[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Trying exp-poly rewrite on NN leaf vars (1, 2), degree=2
+[Stage B] Initialising ExpPolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 68
+Stopping at epoch 69/2000, lm_opt.state['halt']=True, loss=2.2758e-04, loss_val=1.9661e-04
+[Stage B]    Candidate (exp): params=3, val-loss=1.9661e-04
+[Stage B]    Reject (exp): simpler-over-budget(thr=1.940e-09) | loss 8.439e-11->1.966e-04 (Δ+1.97e-04) | params 384->3 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying exp-poly rewrite on NN leaf vars (1, 2), degree=2 [coord=1/z]
+[Stage B] Initialising ExpPolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 73
+Stopping at epoch 74/2000, lm_opt.state['halt']=True, loss=6.2591e-05, loss_val=5.4247e-05
+[Stage B]    Candidate (exp[z_inv]): params=3, val-loss=5.4247e-05
+[Stage B]    Reject (exp[z_inv]): simpler-over-budget(thr=1.940e-09) | loss 8.439e-11->5.425e-05 (Δ+5.42e-05) | params 384->3 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying tanh rewrite on NN leaf vars (1, 2)
+[Stage B] Initialising TanhLinearLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[Stage B]    Candidate (tanh): params=3, val-loss=7.1047e-04
+[Stage B]    Reject (tanh): simpler-over-budget(thr=1.940e-09) | loss 8.439e-11->7.105e-04 (Δ+7.10e-04) | params 384->3 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying tanh rewrite on NN leaf vars (1, 2) [coord=1/z]
+[Stage B] Initialising TanhLinearLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 1901/2000, nval_worse=500
+[Stage B]    Candidate (tanh[z_inv]): params=3, val-loss=4.1427e-04
+[Stage B]    Reject (tanh[z_inv]): simpler-over-budget(thr=1.940e-09) | loss 8.439e-11->4.143e-04 (Δ+4.14e-04) | params 384->3 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying cbrt/invcbrt(poly) rewrite on NN leaf vars (1, 2), degree=2 [coord=1/z]
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 6.502e-03, max: 1.952e+00, mean: 1.753e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 6.366e-03, max: 1.353e+00, mean: 1.716e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 6.254e-03, max: 1.683e+00, mean: 1.739e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=1.087e-01, true_median=1.087e-01, ratio=1.000e+00
+[Stage B] Lifted prefit enabled: link=inv_cube, base_link=identity, prefit_epochs=200
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+epochs_min=50 does not align with iter_check=100; the validation-based check will run at the next fresh validation epoch (100).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 75
+Stopping at epoch 76/200, lm_opt.state['halt']=True, loss=5.4888e-21, loss_val=1.2671e-20
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+epochs_min=50 does not align with iter_check=100; the validation-based check will run at the next fresh validation epoch (100).
+Stopping at epoch 1/200, lm_opt.state['halt']=True, loss=8.4300e-33, loss_val=7.5641e-33
+[Stage B]    Candidate (cbrt_poly[z_inv]): params=3, val-loss=7.5641e-33
+[Stage B]  Trying 1D compound macro shared-prefactor+residual macro on NN leaf vars [1, 2], pref=arg0, macro=sinc_sq(arg0), screen_r2=0.999, ok_frac=1.000 [coord=1/z]
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 65
+Stopping at epoch 66/2000, lm_opt.state['halt']=True, loss=1.5283e-04, loss_val=1.3219e-04
+[Stage B]    Candidate (cf_sharedpref_resid[z_inv]): params=3, val-loss=1.3219e-04
+[Stage B]    Reject (cf_sharedpref_resid[z_inv]): simpler-over-budget(thr=1.940e-09) | loss 8.439e-11->1.322e-04 (Δ+1.32e-04) | params 384->3 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Skipping cf_sharedpref_resid[z_inv] (previously rejected on same target)
+[Stage B]    [32mAccepted[0m rewrite (cbrt_poly[z_inv], loss-below-floor-simpler; homogeneous-gauge-scope-improved HomogeneousGaugeGlobalScore(total_unresolved_scopes=1, total_ratio_nn_atoms_inside_unresolved_scopes=1, sum_effective_arity_sq_inside_unresolved_scopes=1, max_effective_arity_inside_unresolved_scopes=1, analytic_factor_count_inside_unresolved_scopes=2, analytic_complexity_inside_unresolved_scopes=5)->HomogeneousGaugeGlobalScore(total_unresolved_scopes=0, total_ratio_nn_atoms_inside_unresolved_scopes=0, sum_effective_arity_sq_inside_unresolved_scopes=0, max_effective_arity_inside_unresolved_scopes=0, analytic_factor_count_inside_unresolved_scopes=0, analytic_complexity_inside_unresolved_scopes=0))
+[Stage B]    NN metrics: total=0, multivar=0, max_arity=0
+[Stage B]    Current: [35mx0^0.33 * poly0(z=((x1 * x2^-1)^-1))^-0.33 * x1^-1^0.67[0m
+[Stage B polish] skipped: accepted state is already terminal; deferring cleanup (NN=0, params=3, following_min_params=none, loss=7.564e-33, floor=4.525e-10, noise_floor=0.000e+00, noise_n_eff=2000.0).
+[Stage B] Terminal state reached; stopping exhaustive search (NN=0, params=3, following_min_params=4, loss=7.564e-33, floor=4.525e-10, noise_floor=0.000e+00, noise_n_eff=2000.0).
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 0 targets
+[Stage B] Rule subtree_separability found 0 targets
+[Stage B] Rule last_hard_trig_square found 0 targets
+[Stage B] Rule univariate_nn found 0 targets
+[Stage B] Rule log_ratio found 0 targets
+[Stage B] Rule power_product found 0 targets
+[Stage B] Rule joint_product_monomial_closure found 0 targets
+[Stage B] Rule overlap_prefactor_peel found 0 targets
+[Stage B] Rule overlap_counterterm_peel found 0 targets
+[Stage B] Rule common_prefactor found 0 targets
+[Stage B] Rule additive_gauge_transfer found 0 targets
+[Stage B] Rule multiplicative_homogeneity_transfer found 0 targets
+[Stage B] Rule univariate_mono found 0 targets
+[Stage B] Rule nn_leaf_separability found 0 targets
+[Stage B] Rule counterterm_mul_split found 0 targets
+[Stage B] Rule counterfactor_add_split found 0 targets
+[Stage B] Terminal state reached after accept; done (NN=0, params=3, following_min_params=none, loss=7.564e-33, floor=4.525e-10, noise_floor=0.000e+00, noise_n_eff=2000.0).
+[Stage B] Pareto(loss,complexity): front=4 trackable=30 outcomes=['accept', 'reject']
+[Stage B]   Pareto step=48 accept cbrt_poly[z_inv]: loss=7.564e-33 cx=31.200 (ast=31.200, map=0.000:-/none) params=3
+[Stage B]   Pareto step=31 reject logshifted: loss=5.814e-05 cx=26.000 (ast=26.000, map=0.000:-/none) params=3
+[Stage B]   Pareto step=17 reject poly[z_inv]: loss=4.143e-04 cx=24.000 (ast=24.000, map=0.000:-/none) params=2
+[Stage B]   Pareto step=16 reject poly: loss=7.105e-04 cx=21.500 (ast=21.500, map=0.000:-/none) params=2
+[PruneParam] 0 NN atoms, 3 prunable parameters — running per-parameter pruning
+[PruneParam]   Param coeffs[1] in 6173180832 (poly): val=9.327e-16, sig=1.394e-15
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 82
+Stopping at epoch 83/300, lm_opt.state['halt']=True, loss=6.6145e-33, loss_val=5.8670e-33
+[PruneParam]   Zeroed coeffs[1] in 6173180832, refit 300 epochs
+[PruneParam]   MSE: 7.564e-33 -> 5.867e-33, AIC: -147917.8 -> -148427.9 — ACCEPTED
+[PruneParam]   Param coeffs[1] in 6173604064 (poly): val=-3.285e-15, sig=4.910e-15
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 78
+Stopping at epoch 79/300, lm_opt.state['halt']=True, loss=6.6007e-33, loss_val=5.8228e-33
+[PruneParam]   Zeroed coeffs[1] in 6173604064, refit 300 epochs
+[PruneParam]   MSE: 5.867e-33 -> 5.823e-33, AIC: -148427.9 -> -148445.1 — ACCEPTED
+[PruneParam]   Param coeffs[1] in 6173663360 (poly): val=-8.979e-16, sig=1.342e-15
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 85
+Stopping at epoch 86/300, lm_opt.state['halt']=True, loss=6.6113e-33, loss_val=5.8212e-33
+[PruneParam]   Zeroed coeffs[1] in 6173663360, refit 300 epochs
+[PruneParam]   MSE: 5.823e-33 -> 5.821e-33, AIC: -148445.1 -> -148447.6 — ACCEPTED
+[PruneParam]   Param coeffs[1] in 6173658896 (poly): val=-3.827e-16, sig=5.722e-16
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 82
+Stopping at epoch 83/300, lm_opt.state['halt']=True, loss=6.6429e-33, loss_val=5.8887e-33
+[PruneParam]   Zeroed coeffs[1] in 6173658896, refit 300 epochs
+[PruneParam]   MSE: 5.821e-33 -> 5.889e-33, AIC: -148447.6 -> -148426.6 — REJECTED (stop)
+[PruneParam] Pruned 3 of 6 parameters. Final: 0 params, MSE=5.821e-33, AIC=-148447.6
+[Prune] Skipping: only 1 additive term(s)
+[PruneNested] No nested additive sites with >= 2 terms
+[Stage B] Shuffle diagnostic skipped: input has only 3 columns, axes=(2, 3) not available.
+[Stage B] Phi diagnostic (phi_true=y^2): max|Δ|=0.71, rmse=0.136
+[Stage B] y_true stats: min=0.00598, max=1.48, median=0.109
+[Stage B] y_pred stats: min=0.00598, max=1.48, median=0.109
+[Stage C] pretty_print_state FULL expr: (x0)**0.3333333333333333 * (4 - ((x1*(x2)^-1)^-1)^2)**-0.3333333333333333 * (1/(x1))**0.6666666666666666
+[Stage C] Running SymPy simplification in guarded worker (max_seconds=300.0, mem_fraction=0.2).
+[Stage C] Attempting SymPy simplification of φ(y)...
+[Stage C] SymPy variable assumptions from data: x0>0, x1>0, x2>0
+[Stage C] baseline pretty_print max_err≈5e-16 vs model, tol≈1.09e-09
+[SymPy] _nsimplify_floats() hit recursion limit; skipping
+[SymPy] After trigsimp, budget remaining: 59.9s
+[SymPy] Starting simplify()...
+[SymPy] simplify() completed
+[SymPy] aggressive_simplify result: x0**(1/3)/(4*x1**2 - x2**2)**(1/3)
+[Stage C] aggressive_simplify completed, budget remaining: 59.9s
+[Stage C] [32mAccepted[0m SymPy candidate: sympy, ops=9, abs=0, abs_extra=0, score=10.1, max_err=6.11e-16, tol≈5.47e-09
+[Stage B] Final model: params=3, val-loss=5.8212e-33
+[Stage B] recomputed final MSE: 5.82124e-33 RMS: 3.48341e-17
+[Stage B] stored val_loss: 5.8212e-33
+[Stage B] Final NN metrics: total=0, multivar=0, max_arity=0
+[Stage B] [32mAccepted[0m patterns: monomial_pow1_3, monomial_pow2_3[z_inv], cbrt_poly[z_inv]
+[Stage B] After pruning/simplification: x0**(1/3)/(4*x1**2 - x2**2)**(1/3)
+[36m[Stage B] Final AST:[0m (((x0 ** 0.333333) * (poly((x1*(x2)^-1)^-1) ** -0.333333)) * ((x1 ** -1) ** 0.666667))
+[36m[Stage B] Final expression (in φ(y)-space):[0m x0**(1/3)/(4*x1**2 - x2**2)**(1/3)
+[36m[Stage B] Final expression (in original y-space):[0m x0**(1/3)/(4*x1**2 - x2**2)**(1/3)
+[A<->B] Saved after-stageB checkpoint to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.state.pkl
+[A<->B] No multivariate NN atoms remain; converged.
+
+Elapsed time: 1.0485664996181407 hours
+[GS] Wrote GS report to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.gs_report.json
+[Stage A provisional] 1/1 confirmed (confirmed_terminal_stageB)
+[Truth Eval] Loaded 120 canaries from aif_canaries.json
+
+Wrote JSON report to examples/jacobi_tidal/results/v1_shuffled_cbrtpoly_report.json
+Wrote simplification path to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.path
+
+=== Simplification Path ===
+
+Step 0 [Stage A] pure NN surrogate (y_op=identity)
+  NN[x0, x1, x2]
+  mse_raw=8.7297e-10 params=960
+
+Step 1 [Stage A] separability/compound detection (y_op=identity)
+  (NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))
+  mse_raw=3.5444e-10 params=1152
+  base_loss=8.7297e-10
+
+Step 2 [Stage prune] parameter pruning (params 3 -> 3)
+  (((x0)**0.333333 * (poly((x2 / x1)))**-0.333333) * ((x1)**-1)**0.666667)
+  mse_raw=5.8212e-33 params=3 ast_cost=31.2
+  base_loss=7.5641e-33
+
+Step 3 [Stage C] SymPy simplification (ops=None, max_err=6.106226635438361e-16)
+  x0**(1/3)/(4*x1**2 - x2**2)**(1/3)
+  mse_raw=5.8212e-33 params=3
+  base_loss=5.8212e-33
+
+=== Final: x0**(1/3)/(4*x1**2 - x2**2)**(1/3) ===
+
+--- Accuracy Progression ---
+  Stage A      mse_raw=  8.7297e-10  params=  960
+  Stage A      mse_raw=  3.5444e-10  params= 1152  (2.5e+00x better)
+  Stage prune  mse_raw=  5.8212e-33  params=    3  (6.1e+22x better)
+  Stage C      mse_raw=  5.8212e-33  params=    3  (unchanged)
+[FinalPolish] Running in guarded worker (max_seconds=300.0, mem_fraction=0.2).
+[Truth Eval] Loaded 120 canaries from aif_canaries.json
+[FinalPolish] Updated JSON report with final_polish: examples/jacobi_tidal/results/v1_shuffled_cbrtpoly_report.json
+
+=== Final Pareto Polish ===
+status: success
+recommended: x0**(1/3)/(4*x1**2 - x2**2)**(1/3)
+val_mse=3.6834e-33 complexity=13.1
+seed_nrmse=0.0000e+00
+frontier_dir: <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full_polish
+
+=== Final Selected Result ===
+source: stageB
+expr: x0**(1/3)/(4*x1**2 - x2**2)**(1/3)

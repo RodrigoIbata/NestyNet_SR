@@ -1,0 +1,19 @@
+Damped Harmonic Oscillator (DHO) Synthetic Data
+========================================================
+
+Equation:
+  y'' + gamma*y' + omega^2*y = 0
+
+Parameters:
+  gamma = 0.4
+  omega = 2.0
+  y0    = 1.0
+  v0    = 0.2
+  x0 range = [0.0, 10.0]
+  points   = 5000
+  noise    = 0.0
+
+Expected DE discovery (implicit):
+  u_x0x0 + c_u*u + c_du*u_x0 = 0
+  c_u  ~= omega^2 = 4
+  c_du ~= gamma   = 0.4

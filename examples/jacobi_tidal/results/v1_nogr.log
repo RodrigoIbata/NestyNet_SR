@@ -1,0 +1,1366 @@
+Running on fragarach-2-1.home with device cpu
+enforce_units=True, factorized symbolic search=OFF, continuous skeleton refinement=ON, outer-peel-autorun(deprecated)=ON
+[GS] Stage-A symmetry layer enabled (mode=propose, policy=augment, known=True, affine=True, unit_torus=False)
+[Data] Overrides: batch_size=2000, ndata_train=6000, ndata_val=2000, data_slice=0
+Median of y values: 0.11048863000693729
+Median absolute deviation of y values: 0.06888620195283074
+Number of x variables: 3
+MAD^2 of y values: 0.004745308819486181
+RMS of y values: 0.25269601114923845
+Log-space dynamic range of |y|: 2.59 decades
+[Units] Loaded basis=('L', 'T', 'M'); y_units=[1, 0, 0]; x_units=[[3, -2, 0], [0, -1, 0], [0, -1, 0]]
+[PhaseScan] Found 6 phase-coordinate hint(s) from the identity training split.
+[PhaseScan]   (x1 * (x2)**-1): omega_obs=6.28319, score=9.7e-05, R2_phase=0.00515, R2_trend=0.0045, cycles=0.389, unit=dimensionless, split_R2=0.00221, null_R2=0.00377
+[PhaseScan]   (sqrt(x1) * 1/sqrt(x2)): omega_obs=12.5664, score=8.71e-05, R2_phase=0.0051, R2_trend=0.00449, cycles=0.401, unit=dimensionless, split_R2=0.00235, null_R2=0.00377
+[PhaseScan]   (1/sqrt(x1) * sqrt(x2)): omega_obs=12.5664, score=3.99e-05, R2_phase=0.00477, R2_trend=0.00451, cycles=0.43, unit=dimensionless, split_R2=0.00258, null_R2=0.00367
+[PhaseScan]   ((x1)**2 * (x2)**-2): omega_obs=3.14159, score=2.89e-05, R2_phase=0.00476, R2_trend=0.00453, cycles=0.371, unit=dimensionless, split_R2=0.00208, null_R2=0.00361
+[PhaseScan]   ((x1)**-1 * x2): omega_obs=6.28319, score=2e-05, R2_phase=0.00465, R2_trend=0.00453, cycles=0.447, unit=dimensionless, split_R2=0.00263, null_R2=0.00363
+[PhaseScan]   ((x1)**-2 * (x2)**2): omega_obs=3.14159, score=1.86e-05, R2_phase=0.0047, R2_trend=0.00459, cycles=0.49, unit=dimensionless, split_R2=0.00256, null_R2=0.00368
+[PhaseScan Context] No contextual phase hints found.
+[OuterLinkScan] No inverse-link hints found.
+
+Criteria (base, in units of MAD(φ(y))^2): loss acceptable: 1.000000e-03, loss target: 1.000000e-07, chisq_tol: 1.000000e-10, precision derivs d2y: 1.000000e-03
+
+[Units] Skipping y-transforms incompatible with y units (L): log, logneg, sqrt1p, exp, expneg, arctan, arcsin, arccos, sin, cos, tan
+[Stage A] Running standard separability search on pure NN expression
+
+
+Size of datasets: training: 6000, val: 2000
+Using MAD-normalised LM thresholds for y_op None: MAD(φ(y))≈0.069, scale=0.00476
+Initial model (AST): NN[x0, x1, x2]
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:1 (full), number of leaves: 1, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() (NN[x0, x1, x2]), parameters: 960
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=960 (trivially separable union)
+Stopping at epoch 801/2500, lm_opt.state['halt']=True, loss=9.4499e-10, loss_val=1.2173e-09
+acceptable losses (raw) target=4.7604e-10, acceptable=4.7604e-06 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+[32mADOPTING[0m best val-loss 1.2173e-09 (trial 1/1, dual_layer=True)
+Saving initial model which converged with loss 0.000000
+Discovering approximate invariance features from gradients...
+Discovered 1 candidate features:
+  feat_0_0_1       kind=integer_linear  coeffs=[+0.00, +0.00, +1.00]
+Discovering approximate scaling / homogeneity features...
+Discovered 3 scaling candidates:
+  S=[0]  k≈  0.333  rel_std= 0.018  n=6000
+  S=[1,2]  k≈ -0.667  rel_std= 0.005  n=6000
+  S=[0,1,2]  k≈ -0.334  rel_std= 0.020  n=6000
+    [x1] reciprocal probe (negative-k singularity detected)
+    [x1] reciprocal: rel_std=0.1297>0.08, no gradient fallback available
+[Oracle Probe] No scaling verified by direct evaluation.
+  [Trig Scaling] Sampled 5000 points, probing 3 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=1.273e-02)
+  [Trig Scaling] x0: no viable ω candidates (span=43)
+  [Trig Scaling] x1: no viable ω candidates (span=204)
+  [Trig Scaling] x2: no viable ω candidates (span=181)
+  [Trig Scaling] No monomial-in-trig detected.
+[Early Compound] Checked 1 single-var scaling specs, 0 qualify (need ≥2 for compound)
+[Early PureDiff] No valid power-difference proposals found.
+Checking for low-degree polynomial fit in x (degree 2)...
+Poly-in-x (deg 2) fit: rms_abs=1.377e-01, rms_rel=5.778e-01, n_terms=10, n=6000
+Checking for low-degree polynomial fit in f(x)^2 (degree 2)...
+Poly-in-f^2 (deg 2) fit: rms_abs=2.040e-01, rms_rel=7.557e-01, n_terms=10, n=6000
+Checking for rational poly/poly fit f(x) ≈ P(x)/Q(x)...
+Rational fit rat_degN2_degD2: deg_num=2, deg_den=2, rms_abs=7.621e-02, rms_rel=3.198e-01, n_terms_num=3, n_terms_den=4, n=6000, sigma_min=7.071e-02, sigma_ratio=6.146e-03
+Checking for trig-like behaviour along coordinate axes...
+  [FFT hint] axis 0: omega~0.22, strength=104, span=[0.0202,28.6]
+  [FFT hint] axis 1: omega~0.0491, strength=74.5, span=[2.03,130]
+  [FFT hint] axis 2: omega~0.233, strength=55.2, span=[2.03,137]
+No oracle-derived trig axis.
+Discovering K-based preferred directions...
+Found 3 preferred directions from K:
+  dir 0: u=[+1.000, +0.000, +0.000]
+  dir 1: u=[+0.000, +1.000, +0.000]
+  dir 2: u=[+0.000, +0.000, +1.000]
+  dir 0: omega≈0.219, trig_strength≈102.5
+  dir 1: omega≈0.135, trig_strength≈35.0
+  dir 2: omega≈0.228, trig_strength≈56.5
+Checking for approximate even/odd parity along coordinate axes...
+Detected parity candidates on 3 axes:
+  axis= 0  origin≈   0.767  kind=none  rms_rel_even=1.96e+04  rms_rel_odd=1.96e+04  n=6000
+  axis= 1  origin≈    17.4  kind=none  rms_rel_even=7.95e+02  rms_rel_odd=7.95e+02  n=6000
+  axis= 2  origin≈    18.6  kind=none  rms_rel_even=7.03e+02  rms_rel_odd=7.03e+02  n=6000
+Checking for approximately radial dependence over small variable groups...
+No clear radial structure detected.
+Checking for preferred origins / translation structure along axes...
+No strong translation structure detected.
+Checking for saturating / sigmoidal behaviour along coordinate axes...
+No clear saturating behaviour detected along single axes.
+Checking for near-constant directions (parameter-like variables)...
+No strongly parameter-like directions detected.
+Initial separability check with precision 0.1
+symb: [0, 1, 2], index: 0, var_x: torch.Size([6000, 3]), y_vals: torch.Size([6000, 1]), dydx_vals: torch.Size([6000, 1, 3]), d2ydx2_vals: torch.Size([6000, 1, 3, 3])
+Trying transformation identity
+Median of model: 0.09825851499042343, median absolute deviation: 0.06899551268957099, precision: 0.1, 0.1
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=4.88e-03
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=8.81e-03
+  overlapping candidate: x[0, 2] + x[1, 2], shared=1, max-metric=3.31e-02
+Found separability candidate separability for op identity, 0
+
+Trying transformation square
+Median of model: 0.009654735768123266, median absolute deviation: 0.009210593836802823, precision: 0.1, 0.1
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=9.27e-03
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=2.60e-02
+  overlapping candidate: x[0, 2] + x[1, 2], shared=1, max-metric=9.35e-02
+Found separability candidate separability for op square, 1
+
+Trying transformation reciprocal
+Median of model: 10.176489441913086, median absolute deviation: 7.057029953795574, precision: 0.1, 0.1
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=2.25e-03
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=9.53e-03
+  overlapping candidate: x[0, 2] + x[1, 2], shared=1, max-metric=3.53e-02
+Found separability candidate separability for op reciprocal, 2
+
+Trying transformation sqrt
+Median of model: 0.313462142834543, median absolute deviation: 0.1258906871073719, precision: 0.1, 0.1
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=3.58e-03
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=4.01e-03
+  overlapping candidate: x[0, 2] + x[1, 2], shared=1, max-metric=1.60e-02
+Found separability candidate separability for op sqrt, 3
+
+Recap:
+Transformation identity is a candidate for separability: True
+Transformation square is a candidate for separability: True
+Transformation reciprocal is a candidate for separability: True
+Transformation sqrt is a candidate for separability: True
+
+Initial fit suggests separability candidates for y_op None.
+
+======================================================================
+  [Stage A] SEPARABILITY SEARCH
+======================================================================
+All multiplicative for x[0], complement x[1, 2] (in NN[0, 1, 2])
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=4.55e-03
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=8.67e-03
+[Variable Extension] Detecting compound structure for NN[0, 1, 2]...
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=720, output_major=False, id=5142076608, primary=base_model
+[nestynet.optimizer] [LM] num_params: 720
+[LM][bucket] solving P=720 (trivially separable union)
+[nestynet.optimizer] [LM] Iter 0, chisq: 1589.466517635925, improvement: 16537.216022121676, val-set chisq: 1585.9155959223679, nacc: 1, nacc_lin: 0, skipped_Quad: 0, acc_frac: 1.0, lambda: 33.333333333333336, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 100, chisq: 1.3132031739754213e-06, improvement: 1589.4665163227216, val-set chisq: 1.3109612213460414e-06, nacc: 68, nacc_lin: 63, skipped_Quad: 0, acc_frac: 0.67, lambda: 4.1856684267214265e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 200, chisq: 1.1017179498171773e-06, improvement: 2.1148522415824395e-07, val-set chisq: 1.1020625708562173e-06, nacc: 128, nacc_lin: 63, skipped_Quad: 27, acc_frac: 0.6, lambda: 8.980276577408404e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 300, chisq: 9.748575295053947e-07, improvement: 1.2686042031178266e-07, val-set chisq: 9.883242787110978e-07, nacc: 187, nacc_lin: 63, skipped_Quad: 57, acc_frac: 0.59, lambda: 2.890053362513416e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 400, chisq: 8.883806184418791e-07, improvement: 8.647691106351554e-08, val-set chisq: 9.182119372363573e-07, nacc: 247, nacc_lin: 63, skipped_Quad: 81, acc_frac: 0.6, lambda: 6.200557682293201e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 500, chisq: 7.943426738644571e-07, improvement: 9.403794457742201e-08, val-set chisq: 8.470791025435606e-07, nacc: 306, nacc_lin: 63, skipped_Quad: 93, acc_frac: 0.59, lambda: 1.9954778034621887e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 600, chisq: 7.232320186378994e-07, improvement: 7.111065522655776e-08, val-set chisq: 7.893348133131557e-07, nacc: 366, nacc_lin: 72, skipped_Quad: 113, acc_frac: 0.6, lambda: 4.2812618564739724e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 700, chisq: 6.75669387571909e-07, improvement: 4.756263106599038e-08, val-set chisq: 7.442633378004344e-07, nacc: 425, nacc_lin: 73, skipped_Quad: 144, acc_frac: 0.59, lambda: 1.3778055851007815e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Maximum iterations reached (800); halting.
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:540: RuntimeWarning: divide by zero encountered in matmul
+  fields = x @ A_phys.T + b_phys
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:540: RuntimeWarning: overflow encountered in matmul
+  fields = x @ A_phys.T + b_phys
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:540: RuntimeWarning: invalid value encountered in matmul
+  fields = x @ A_phys.T + b_phys
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:238: RuntimeWarning: divide by zero encountered in matmul
+  col_residuals = np.linalg.norm(D_train @ basis, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:238: RuntimeWarning: overflow encountered in matmul
+  col_residuals = np.linalg.norm(D_train @ basis, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:238: RuntimeWarning: invalid value encountered in matmul
+  col_residuals = np.linalg.norm(D_train @ basis, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:630: RuntimeWarning: divide by zero encountered in matmul
+  col_residuals = np.linalg.norm(D[idx] @ basis_b, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:630: RuntimeWarning: overflow encountered in matmul
+  col_residuals = np.linalg.norm(D[idx] @ basis_b, axis=0)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_gs/affine_algebra.py:630: RuntimeWarning: invalid value encountered in matmul
+  col_residuals = np.linalg.norm(D[idx] @ basis_b, axis=0)
+[Stage A GS] audited=28, accepted=4, proposals=0
+    [x1] reciprocal probe (negative-k singularity detected)
+    [x1] reciprocal: rel_std=0.1297>0.08, no gradient fallback available
+  [Trig Scaling] Sampled 5000 points, probing 3 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=1.273e-02)
+  [Trig Scaling] x0: no viable ω candidates (span=43)
+  [Trig Scaling] x1: no viable ω candidates (span=204)
+  [Trig Scaling] x2: no viable ω candidates (span=181)
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_core/separability_math.py:2778: RuntimeWarning: divide by zero encountered in matmul
+  coeff = (V @ a_vec) / den
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_core/separability_math.py:2778: RuntimeWarning: overflow encountered in matmul
+  coeff = (V @ a_vec) / den
+<WORKSPACE>/NestyNet_SR/nestynet_sr/sr_core/separability_math.py:2778: RuntimeWarning: invalid value encountered in matmul
+  coeff = (V @ a_vec) / den
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-3) * x2) with extra x0
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-3) * x2) with extra x1
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-3) * x2) with extra x2
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-4) * x2) with extra x0
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-4) * x2) with extra x1
+[Compound RetainAxis] Adding wrapper z=((x0 * (x1)**-4) * x2) with extra x2
+[Compound DiffProd] Gradient-ratio found x1^1 - x2^1, ratio_conf=0.885, trying multiplier variables...
+[Compound DiffProd] Testing (x1^1 - x2^1) * x0: conf=0.3406, threshold=0.90, outer_power=0
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x1 * (x2)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x1 * (x2)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x2 * (x1)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x2 * (x1)**-1)) for parent=('tag', 'A0') source=stageA_logexp conf=0.930 unit=unit_valid
+[Compound Exhaustion] High-confidence proposal (conf=0.948), trying...
+[Compound] Preserving 6 arity-2 backup proposal(s) beyond primary compound shortlist.
+[Compound] Normalized proposal shortlist:
+[Compound]   1. kind=monomial, conf=0.923, support=3, z=((x0 * (x1)**-3) * x2)
+[Compound]   2. kind=monomial, conf=0.920, support=3, z=((x0 * (x1)**-4) * x2)
+[Compound]   3. kind=monomial, conf=0.918, support=3, z=((x0 * (x1)**-3) * x2)
+[Compound]   4. kind=monomial, conf=0.918, support=3, z=((x0 * (x1)**-3) * x2)
+[Compound]   5. kind=monomial, conf=0.918, support=3, z=((x0 * (x1)**-3) * x2)
+[Compound]   6. kind=monomial, conf=0.915, support=3, z=((x0 * (x1)**-4) * x2)
+[Compound]   7. kind=monomial, conf=0.948, support=2, z=(x1 * (x2)**-1)
+[Compound]   8. kind=monomial, conf=0.909, support=2, z=(x0 * x2)
+[Compound]   9. kind=monomial, conf=0.909, support=2, z=(x0 * (x1)**-3)
+[Compound]   10. kind=monomial, conf=0.909, support=2, z=((x1)**-3 * x2)
+[Compound]   11. kind=monomial, conf=0.906, support=2, z=(x0 * (x1)**-4)
+[Compound]   12. kind=monomial, conf=0.906, support=2, z=((x1)**-4 * x2)
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound before screening: compound reduces dimensional rank: 2 -> 1; remaining variables cannot span output dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units/Buckingham] Skipping compound after forced monomial probe: compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+Checking separability of None(y) in input space with precision 0.001
+All multiplicative for x[0], complement x[1, 2] (in NN[0, 1, 2])
+All additive for x[0, 1], complement x[2] (in NN[0, 1, 2])
+  overlapping candidate: x[0, 1] + x[0, 2], shared=1, max-metric=4.88e-03
+  overlapping candidate: x[0, 1] + x[1, 2], shared=1, max-metric=8.81e-03
+Setting number of segments: 16 (variant: no_offset)
+[Teacher init] Training left factor on 2000 profile samples...
+[Teacher init] Left factor trained, final loss: 3.210e-01
+[Teacher init] Training right factor on 2000 profile samples...
+[Teacher init] Right factor trained, final loss: 5.031e+02
+[Teacher init] Scale check: left_rms=7.935e-01, right_rms=2.245e+01, ratio=28.30
+[rescale_leaf] left: leaf type=DualSegmentedAdaptor, factor=5.3194
+[rescale_leaf] left: scaled a_fit via base_model
+[rescale_leaf] left: scaled a_pieces_fixed[15] via base_model
+[rescale_leaf] right: leaf type=DualSegmentedAdaptor, factor=0.1880
+[rescale_leaf] right: scaled a_fit via base_model
+[rescale_leaf] right: scaled a_pieces_fixed[15] via base_model
+[Teacher init] Final gauge norm: left x5.32, right x0.19
+***Training candidate separable model (variant: no_offset)***, acceptance threshold (raw) 1.2173e-07 (base 1.0000e-03)
+    Proposed: (NN[x0] * NN[x1, x2])
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1024 (trivially separable union)
+[trial] Stopping at epoch 501/2500, lm_opt.state['halt']=True, loss=7.7618e-11, loss_val=1.0003e-10
+[32mAccepted[0m separation (variant: no_offset), val-loss 1.0003e-10
+[Stage A]   Current: [35mIdentity()(nn0(x0) * nn1(x1, x2))[0m
+[Shadow] pruned stale coordinate evidence after separation: parents=1, shadows=4, consumed=0
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:2 (full), number of leaves: 2, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() ((NN[x0] * NN[x1, x2])), parameters: 1024
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 1/2500, lm_opt.state['halt']=True, loss=7.7261e-11, loss_val=1.0034e-10
+acceptable losses (raw) target=4.7604e-10, acceptable=4.7604e-06 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+[32mADOPTING[0m best val-loss 1.0034e-10 (trial 1/1, dual_layer=True)
+
+======================================================================
+  [Stage A] SEPARABILITY SEARCH — restart (pass 2)
+======================================================================
+All additive for x[1], complement x[2] (in NN[1, 2])
+[Stage A Monomial] Trying monomial_deg1 on NN[0] as rpoly (k≈0.333, rel=1.93e-05); accept_threshold=4.7604e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 439/1920 cross-segment channel pairs exceed |cos|>0.95 (worst seg 1/out 1 ↔ seg 9/out 0 |cos|=1.0000). Grouped segment pairs: 0/120 exceed |cos|>0.95 (worst seg 3 ↔ seg 11 |cos|=0.9304). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=2), so channel-level directional crowding can appear before whole segments overlap.[0m
+[LM][bucket] solving P=640 (trivially separable union)
+[trial] Validation patience exceeded at epoch 601/2500, nval_worse=500
+[Variable Extension] Detecting compound structure for NN[1, 2]...
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (G_Model, segments=48, outputs=1, seg_width=2): 21/1128 cross-segment channel pairs exceed |cos|>0.95 (worst seg 5/out 0 ↔ seg 37/out 0 |cos|=0.9930). Grouped segment pairs: 21/1128 exceed |cos|>0.95 (worst seg 5 ↔ seg 37 |cos|=0.9930). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=4), so channel-level directional crowding can appear before whole segments overlap.[0m
+[NestyNet][param_refresh] discovered 1 base model(s):
+  #0: base=G_Model, params=384, output_major=False, id=5142080160, primary=base_model
+[nestynet.optimizer] [LM] num_params: 384
+[LM][bucket] solving P=384 (trivially separable union)
+[nestynet.optimizer] [LM] Iter 0, chisq: 1620.6296960998, improvement: 9620.729046638944, val-set chisq: 1620.7581167728508, nacc: 1, nacc_lin: 0, skipped_Quad: 0, acc_frac: 1.0, lambda: 33.333333333333336, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 100, chisq: 5.632459703207826e-06, improvement: 1620.6296904673402, val-set chisq: 3.958103523535597e-06, nacc: 69, nacc_lin: 68, skipped_Quad: 0, acc_frac: 0.68, lambda: 7.092938361732527e-09, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 200, chisq: 2.6955621154759685e-06, improvement: 2.9368975877318577e-06, val-set chisq: 2.2547517484826405e-06, nacc: 127, nacc_lin: 68, skipped_Quad: 16, acc_frac: 0.58, lambda: 3.423998724158655e-07, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 300, chisq: 1.904398918375957e-06, improvement: 7.911631971000115e-07, val-set chisq: 1.6044979347558867e-06, nacc: 187, nacc_lin: 68, skipped_Quad: 28, acc_frac: 0.6, lambda: 7.346127884220166e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 400, chisq: 1.4520860546290175e-06, improvement: 4.5231286374693955e-07, val-set chisq: 1.223572438733493e-06, nacc: 246, nacc_lin: 68, skipped_Quad: 52, acc_frac: 0.59, lambda: 2.3641478533805887e-07, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 500, chisq: 1.121632510614955e-06, improvement: 3.3045354401406254e-07, val-set chisq: 9.47600866731482e-07, nacc: 306, nacc_lin: 68, skipped_Quad: 70, acc_frac: 0.6, lambda: 5.072236839809541e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 600, chisq: 7.763738917544458e-07, improvement: 3.4525861886050916e-07, val-set chisq: 6.626370827880097e-07, nacc: 366, nacc_lin: 69, skipped_Quad: 98, acc_frac: 0.6, lambda: 1.088239321509955e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Iter 700, chisq: 5.608682840415925e-07, improvement: 2.155056077128533e-07, val-set chisq: 4.893416874467218e-07, nacc: 425, nacc_lin: 69, skipped_Quad: 112, acc_frac: 0.59, lambda: 3.502196934848516e-08, lbfgs: 0
+[nestynet.optimizer] [LM] Maximum iterations reached (800); halting.
+[Stage A GS] audited=13, accepted=2, proposals=0
+    [x0] reciprocal probe (negative-k singularity detected)
+    [x0] reciprocal: rel_std=0.5659>0.08, no gradient fallback available
+  [Trig Scaling] Sampled 5000 points, probing 2 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=4.744e-04)
+  [Trig Scaling] x0: no viable ω candidates (span=204)
+  [Trig Scaling] x1: no viable ω candidates (span=181)
+[Compound LogDeriv] Recovered 1 proposal(s) (sigma_ratio=0.002327660332568803) for vars=(1, 2)
+[Compound RetainAxis] Adding wrapper z=(x1 * (x2)**-1) with extra x1
+[Compound RetainAxis] Adding wrapper z=(x1 * (x2)**-1) with extra x2
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x1 * (x2)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:log z=log((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded log((x2 * (x1)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_ratio:exp z=exp((x2 * (x1)**-1)) (conf=0.930); coordinate lift is not committed in Stage A
+[Shadow] recorded exp((x2 * (x1)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Compound Exhaustion] High-confidence proposal (conf=0.998), trying...
+[Compound] Normalized proposal shortlist:
+[Compound]   1. kind=monomial, conf=0.998, support=2, z=(x1 * (x2)**-1)
+[Compound]   2. kind=linear, conf=0.939, support=2, z=((-2 * x1) + x2)
+[Compound]   3. kind=monomial, conf=0.993, support=2, z=(x1 * (x2)**-1)
+[Compound]   4. kind=monomial, conf=0.993, support=2, z=(x1 * (x2)**-1)
+[Units/Buckingham] Skipping compound before screening: compound reduces dimensional rank: 1 -> 0; remaining variables cannot span output dimension
+[Compound] 1D compound detected (all vars in z), boosting segments to 32
+[Compound] Proposal (linear) conf 0.939, screen=0.994; trying sq:(((-2 * x1) + x2))**2
+[Distill] epoch 1/2000: loss=9.4318e+10
+[Distill] epoch 1000/2000: loss=4.6483e+02
+[Distill] epoch 2000/2000: loss=1.7461e+00
+[Distill] Final: loss=1.7461e+00 (did not converge below 1.0000e-04)
+[Compound] Training candidate (sq); accept_threshold=4.7604e-08
+[Compound] Structural arity reduction target enabled: arity signature (1, 2, 1) → (0, 1, 0), target-quality threshold 4.7604e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1152 (trivially separable union)
+[trial] Early abandonment at epoch 1001/2500: best_val_loss=4.1133e-04 > 1.1901e-07 (2.5x accept_threshold 4.7604e-08)
+[Compound] Rejected (sq) (linear) z=(((-2 * x1) + x2))**2, val-loss 4.1133e-04
+[Compound] Proposal (linear) conf 0.939, screen=0.994; trying abs:sqrt((((-2 * x1) + x2))**2)
+[Distill] epoch 1/2000: loss=2.3941e+07
+[Distill] epoch 1000/2000: loss=2.4996e+01
+[Distill] epoch 2000/2000: loss=6.4569e+00
+[Distill] Final: loss=6.4569e+00 (did not converge below 1.0000e-04)
+[Compound] Training candidate (abs); accept_threshold=4.7604e-08
+[Compound] Structural arity reduction target enabled: arity signature (1, 2, 1) → (0, 1, 0), target-quality threshold 4.7604e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[trial] Validation patience exceeded at epoch 1001/2500, nval_worse=500
+[Compound] Rejected (abs) (linear) z=sqrt((((-2 * x1) + x2))**2), val-loss 4.1519e-04
+[Compound] Proposal (linear) conf 0.939, screen=0.994; trying z:((-2 * x1) + x2)
+[Distill] epoch 1/2000: loss=4.6229e+07
+[Distill] epoch 1000/2000: loss=2.1796e+02
+[Distill] epoch 2000/2000: loss=1.3236e+00
+[Distill] Final: loss=1.3236e+00 (did not converge below 1.0000e-04)
+[Compound] Training candidate (z); accept_threshold=4.7604e-08
+[Compound] Structural arity reduction target enabled: arity signature (1, 2, 1) → (0, 1, 0), target-quality threshold 4.7604e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[trial] Validation patience exceeded at epoch 1001/2500, nval_worse=500
+[Compound] Rejected (z) (linear) z=((-2 * x1) + x2), val-loss 4.1544e-04
+[Compound] Trying same-arity wrapper: arity 2 → 2; will require confirmed separability payoff
+[Compound] Proposal (monomial) conf 0.993; trying z:(x1 * (x2)**-1), extras=[1]
+[Distill] epoch 1/2000: loss=1.7644e+08
+[Distill] epoch 1000/2000: loss=1.5258e+01
+[Distill] epoch 2000/2000: loss=1.1545e+01
+[Distill] Final: loss=1.1545e+01 (did not converge below 1.0000e-04)
+[Compound] Training candidate (z); accept_threshold=4.7604e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1024 (trivially separable union)
+[trial] Stopping at epoch 301/2500, lm_opt.state['halt']=True, loss=1.4002e-11, loss_val=1.4001e-11
+[32m[Compound] LM fit passed[0m (z) (monomial) z=(x1 * (x2)**-1), val-loss 1.4001e-11
+All additive for x['z'], complement x[1] (in NN['z', 1])
+[Compound] Wrapper z enables separability (z separates from extras)
+[Compound] Retained-axis overlap confirmed for x1: retained-axis power-like factor k=-0.6667, rel_std=0.0001732, n=5000
+[Compound] Skipping rat_inv (redundant: z already accepted)
+[Compound] Skipping rat_z2 (redundant: z already accepted)
+[32m[Compound] Selected[0m best variant (z) (monomial) z=(x1 * (x2)**-1) (pattern=(1, -1)), val-loss 1.4001e-11
+[Stage A]   Current: [35mIdentity()(nn0(x0) * nn1(z=(x1 * x2^-1), x1))[0m
+[Stage A Monomial] Trying monomial_deg1 on NN[0] as rpoly (k≈0.333, rel=6.15e-06); accept_threshold=4.7604e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 460/1920 cross-segment channel pairs exceed |cos|>0.95 (worst seg 2/out 3 ↔ seg 15/out 0 |cos|=1.0000). Grouped segment pairs: 1/120 exceed |cos|>0.95 (worst seg 5 ↔ seg 7 |cos|=0.9624). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=2), so channel-level directional crowding can appear before whole segments overlap.[0m
+[LM][bucket] solving P=640 (trivially separable union)
+[trial] Validation patience exceeded at epoch 601/2500, nval_worse=500
+All additive for x['z'], complement x[1] (in NN['z', 1])
+[Compound] Existing compound separates from extras [1], but checking only extensions that consume the separated coordinate.
+[Variable Extension] Checking iterative extension for compound atom NN[1, 2]...
+    [x0] reciprocal probe (negative-k singularity detected)
+    [x0] reciprocal: ratio test failed (n_valid_k=0<100), no gradient fallback
+    [x1] reciprocal probe (negative-k singularity detected)
+  [Trig Scaling] Sampled 5000 points, probing 2 trivial + 0 compound target(s)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=1.294e-02)
+  [Trig Scaling] x0: span=0.389, 15 ω candidates
+  [Trig Scaling] x0 ACCEPTED: sin(4·z)^0.791  rel_std=0.0678
+  [Trig Scaling] x1: no viable ω candidates (span=204)
+[Local Oracle] Fresh path: 1 scaling, 1 trig specs
+  [Local Oracle] x[1]: k≈-0.712, rel_std=0.0644
+  [Local Oracle] leaf z: sin, ω=4, k=0.79, rel_std=0.0678
+[Shadow] recorded sin((4 * (x1 * (x2)**-1))) for parent=('tag', 'A0_R') source=local_oracle_trig conf=0.932 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_input:log z=log((x1 * (x2)**-1)) (conf=0.900); coordinate lift is not committed in Stage A
+[Shadow] merged log((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Stage A LogExp] Shadowed dimless_input:exp z=exp((x1 * (x2)**-1)) (conf=0.900); coordinate lift is not committed in Stage A
+[Shadow] merged exp((x1 * (x2)**-1)) for parent=('tag', 'A0_R') source=stageA_logexp conf=0.930 unit=unit_valid
+[Compound Exhaustion] High-confidence proposal (conf=0.900), trying...
+[Compound] Normalized proposal shortlist:
+[Compound]   1. kind=passthrough, conf=0.900, support=1, z=(x1 * (x2)**-1)
+[Compound] Skipping proposal: raw extra(s) x1 already appear inside compound (x1 * (x2)**-1); overlap coordinate splits are Stage-A gauge moves, not confirmed simplifications
+Checking separability of None(y) in input space with precision 0.001
+All multiplicative for x['z'], complement x[1] (in NN['z', 1])
+Setting number of segments: 16 (variant: no_offset)
+[Teacher init] Training left factor on 2000 profile samples...
+[Teacher init] Left factor trained, final loss: 8.313e-03
+[Teacher init] Training right factor on 2000 profile samples...
+[Teacher init] Right factor trained, final loss: 8.063e+00
+[Teacher init] Scale check: left_rms=3.395e-01, right_rms=2.900e+00, ratio=8.54
+[rescale_leaf] left: leaf type=DualSegmentedAdaptor, factor=2.9223
+[rescale_leaf] left: scaled a_fit via base_model
+[rescale_leaf] left: scaled a_pieces_fixed[15] via base_model
+[rescale_leaf] right: leaf type=DualSegmentedAdaptor, factor=0.3422
+[rescale_leaf] right: scaled a_fit via base_model
+[rescale_leaf] right: scaled a_pieces_fixed[15] via base_model
+[Teacher init] Final gauge norm: left x2.92, right x0.34
+***Training candidate separable model (variant: no_offset)***, acceptance threshold (raw) 4.7604e-08 (base 1.0000e-03)
+    Proposed: (NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1152 (trivially separable union)
+[trial] Stopping at epoch 801/2500, lm_opt.state['halt']=True, loss=2.1686e-10, loss_val=3.5458e-10
+[32mAccepted[0m separation (variant: no_offset), val-loss 3.5458e-10
+[Stage A]   Current: [35mIdentity()(nn0(x0) * nn1(z=(x1 * x2^-1)) * nn2(x1))[0m
+[Shadow] pruned stale coordinate evidence after separation: parents=1, shadows=5, consumed=0
+Setting number of segments: 16, dual_layer: True
+
+[34mSeparability Pass:3 (full), number of leaves: 3, y-transformation: None(y), trial 1/1, dual_layer: True[0m
+Current model: Identity() ((NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))), parameters: 1152
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 1/2500, lm_opt.state['halt']=True, loss=2.1469e-10, loss_val=3.5131e-10
+acceptable losses (raw) target=4.7604e-10, acceptable=4.7604e-06 (base units: target=1.0000e-07, acceptable=1.0000e-03)
+[32mADOPTING[0m best val-loss 3.5131e-10 (trial 1/1, dual_layer=True)
+
+======================================================================
+  [Stage A] SEPARABILITY SEARCH — restart (pass 3)
+======================================================================
+[Stage A Monomial] Trying monomial_deg1 on NN[0] as rpoly (k≈0.333, rel=9.48e-06); accept_threshold=4.7604e-08
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=768 (trivially separable union)
+[trial] Validation patience exceeded at epoch 601/2500, nval_worse=500
+[Stage A Monomial] Skipping NN[1, 2]: shared multiplicative NN support; leaving gauge-sensitive peel to Stage B.
+[Stage A Monomial] Skipping NN[1]: shared multiplicative NN support; leaving gauge-sensitive peel to Stage B.
+[Units] Stage A summary (identity): skipped 13 unit-incompatible proposal(s).
+[Units]   - compound_buckingham: 13
+[Units]       11× compound destroys dimensionless freedom: 1 -> 0 (need >= 1); forces monomial; no small unit-forced monomial power matches target dimension
+[Units]       1× compound reduces dimensional rank: 2 -> 1; remaining variables cannot span output dimension
+[Units]       1× compound reduces dimensional rank: 1 -> 0; remaining variables cannot span output dimension
+[Reference] Saved pre-separability model to <WORKSPACE>/NestyNet_SR/results_ref/jacobi_v1_full.mod
+[Stage A] Using identity separability results
+
+Saved Stage-A checkpoint to <WORKSPACE>/NestyNet_SR/results/jacobi_v1_full.state.pkl
+[36mFinal model: Identity() ((NN[x0] * (NN[(x1 * (x2)**-1)] * NN[x1]))), rest: None, None[0m
+[Stage B] y-transform adjudication shortlist:
+  - identity     source=baseline
+[Units] Enforcing units in Stage B (policy=free_const_only, y_transform=identity).
+
+======================================================================
+  [Stage B] ANALYTICAL REWRITING — identity(y)-space
+======================================================================
+
+
+Size of datasets: training: 6000, val: 2000
+[Stage B] Using MAD-normalised thresholds: MAD(y)≈0.069, scale=0.00476
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=1152 (trivially separable union)
+Stopping at epoch 1/2000, lm_opt.state['halt']=True, loss=2.1444e-10, loss_val=3.5120e-10
+
+[Stage B] Initial model: params=1152, val-loss=3.5120e-10
+[Stage B] Initial NN metrics: total=3, multivar=0, max_arity=1
+[Stage B] Found 3 scaling candidates:
+  axis 0: k≈0.333, rel_std=0.000, n=6000
+  joint [1,2]: k≈-0.667, rel_std=0.000, n=6000
+  joint [0,1,2]: k≈-0.333, rel_std=0.001, n=6000
+[Stage B] FFT trig-axis candidates (informational):
+[Stage B]   axis 0: omega≈0.220, strength=104.5, span=[0.0202,28.6]
+[Stage B] Found 1 nontrivial target(s) for trig probing:
+[Stage B]   x1*x2**-1 (kind=ratio, indices=(1, 2))
+    [x1] reciprocal probe (negative-k singularity detected)
+    [x1] reciprocal: rel_std=0.2362>0.08, no gradient fallback available
+    [x1*x2**-1] reciprocal probe (negative-k singularity detected)
+  [Trig Scaling] Sampled 5000 points, probing 2 trivial + 1 compound target(s) (skipping axes [0] as polynomial)
+  [Trig Scaling] |F| filter: 4750/5000 points pass (5th-pct=1.273e-02)
+  [Trig Scaling] x1: no viable ω candidates (span=204)
+  [Trig Scaling] x2: no viable ω candidates (span=181)
+  [Trig Scaling] x1*x2**-1: span=0.389, 15 ω candidates
+  [Trig Scaling] x1*x2**-1 ACCEPTED: sin(4·z)^0.902  rel_std=0.0698
+[Stage B] Oracle trig probe found 1 spec(s):
+[Stage B]   x1*x2**-1: sin(ω=4)^0.90, rel_std=0.070
+[Stage B] Using 1 oracle trig spec(s)
+[Stage B] trig_by_axis: [1]
+[Stage B] Trig argument-structure hints:
+  axis 1: none
+[Stage B]   Separability rules: ['nonsense_units_zero_prune', 'monomial_peel_priority', 'subtree_separability', 'last_hard_trig_square', 'univariate_nn', 'log_ratio', 'power_product', 'joint_product_monomial_closure', 'overlap_prefactor_peel', 'overlap_counterterm_peel', 'common_prefactor', 'additive_gauge_transfer', 'multiplicative_homogeneity_transfer', 'univariate_mono', 'nn_leaf_separability', 'counterterm_mul_split', 'counterfactor_add_split']
+[Stage B]   Specialized rules: ['compound_fn_macros', 'inverse_trig_outer_rational_closure', 'monomial_prefactor_compound', 'compound_planck', 'affine_decomp', 'nonlinear_substitution', 'univariate_oracle_invariants', 'homogeneity_peel', 'product_homogeneity', 'ratio_invariance', 'coupled_leaf_ratio', 'metric_distance', 'inverse_trig_outer_closure', 'phase_hint_trig_closure', 'phase_hint_reciprocal_trig_power', 'phase_context_trig_closure', 'barycentric', 'logexp_compound', 'r1_operator_certificate', 'univariate_mul_peel', 'outer_transform_split_nn', 'multid_nn', 'poly_split', 'preconditioner_fallback_nn', 'last_hard_trig_power', 'last_hard_atom_rescue']
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 3 targets
+[Stage B]   target order (arity-asc): [vars=(0,)(arity=1), vars=(1, 2)(arity=1), vars=(1,)(arity=1)]
+[Stage B] monomial_peel_priority shortlist: monomial_pow1_3@nn#leaf0 vars=(0,) (k=0.333, rel=9.51e-06); monomial_deg1[z_inv]@nn#leaf0 vars=(0,) (k=0.333, rel=9.51e-06); monomial_deg2[z_inv]@nn#leaf0 vars=(0,) (k=0.333, rel=9.51e-06); monomial_deg3[z_inv]@nn#leaf0 vars=(0,) (k=0.333, rel=9.51e-06); monomial_pow2_3[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=1.06e-05); monomial_deg1[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=1.06e-05); monomial_deg2[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=1.06e-05); monomial_deg3[z_inv]@nn#leaf2 vars=(1,) (k=-0.667, rel=1.06e-05)
+[Stage B] Rule monomial_peel_priority trying 14 globally ranked candidates
+[Stage B]  Greedy order (1 cands): monomial_pow1_3(1998p)
+[Stage B]  Priority trying fixed third-power monomial (z^0.333, k≈0.333, rel=9.51e-06) on NN leaf vars (0,)
+[DBG-roundtrip] pre-fit:monomial_pow1_3: model_med=1.0099e-01 reuse_recon_med=1.0099e-01 ratio=1.000e+00 target_med=1.010e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=768 (trivially separable union)
+Stopping at epoch 501/2000, lm_opt.state['halt']=True, loss=2.3841e-11, loss_val=5.1733e-12
+[Stage B]    Candidate (monomial_pow1_3): params=768, val-loss=5.1733e-12
+[Stage B]    [32mAccepted[0m rewrite (monomial_pow1_3, loss-below-floor-simpler)
+[DBG-accept] accept:monomial_pow1_3:post-set-state: model_med=1.0100e-01 target_med=1.010e-01
+[DBG-accept] accept:monomial_pow1_3:post-renorm: model_med=1.0100e-01 target_med=1.010e-01
+[DBG-accept] accept:monomial_pow1_3:post-annotate: model_med=1.0100e-01 target_med=1.010e-01
+[Stage B]    NN metrics: total=2, multivar=0, max_arity=1
+[Stage B]    Current: [35mx0^0.33 * nn0(z=(x1 * x2^-1)) * nn1(x1)[0m
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 2 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=1), vars=(1,)(arity=1)]
+[Stage B] monomial_peel_priority shortlist: monomial_deg1[z_inv]@nn#leaf1 vars=(1, 2) (k=-0.00354, rel=0.189); monomial_deg1@nn#leaf1 vars=(1, 2) (k=-0.00354, rel=0.189); monomial_deg2[z_inv]@nn#leaf1 vars=(1, 2) (k=-0.00354, rel=0.189); monomial_deg2@nn#leaf1 vars=(1, 2) (k=-0.00354, rel=0.189); monomial_deg3[z_inv]@nn#leaf1 vars=(1, 2) (k=-0.00354, rel=0.189); monomial_deg3@nn#leaf1 vars=(1, 2) (k=-0.00354, rel=0.189); monomial_deg1[z_inv]@nn#leaf2 vars=(1,) (k=0.606, rel=0.724); monomial_deg2[z_inv]@nn#leaf2 vars=(1,) (k=0.606, rel=0.724)
+[Stage B] Rule monomial_peel_priority trying 9 globally ranked candidates
+[Stage B]  Greedy order (1 cands): monomial_deg1[z_inv](999p)
+[Stage B]  Priority trying 1D monomial (c·x^1) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[DBG-roundtrip] pre-fit:monomial_deg1[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 1080/1080 cross-segment channel pairs exceed |cos|>0.95 (worst seg 0/out 1 ↔ seg 5/out 2 |cos|=1.0000). Grouped segment pairs: 8/120 exceed |cos|>0.95 (worst seg 4 ↔ seg 15 |cos|=1.0000). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=1), so channel-level directional crowding can appear before whole segments overlap.[0m
+[LM][bucket] solving P=384 (trivially separable union)
+Validation patience exceeded at epoch 701/2000, nval_worse=500
+[Stage B]    Candidate (monomial_deg1[z_inv]): params=384, val-loss=4.9756e-04
+[Stage B]    Reject (monomial_deg1[z_inv]): simpler-over-budget(thr=6.576e-10) | loss 5.173e-12->4.976e-04 (Δ+4.98e-04) | params 768->384 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Greedy order (1 cands): monomial_deg1(999p)
+[Stage B]  Priority trying 1D monomial (c·x^1) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:monomial_deg1: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 1080/1080 cross-segment channel pairs exceed |cos|>0.95 (worst seg 0/out 1 ↔ seg 5/out 2 |cos|=1.0000). Grouped segment pairs: 8/120 exceed |cos|>0.95 (worst seg 4 ↔ seg 15 |cos|=1.0000). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=1), so channel-level directional crowding can appear before whole segments overlap.[0m
+Validation patience exceeded at epoch 701/2000, nval_worse=500
+[Stage B]    Candidate (monomial_deg1): params=384, val-loss=2.1705e-03
+[Stage B]    Reject (monomial_deg1): simpler-over-budget(thr=6.576e-10) | loss 5.173e-12->2.170e-03 (Δ+2.17e-03) | params 768->384 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Greedy order (1 cands): monomial_deg2[z_inv](999p)
+[Stage B]  Priority trying 1D monomial (c·x^2) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[DBG-roundtrip] pre-fit:monomial_deg2[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 1080/1080 cross-segment channel pairs exceed |cos|>0.95 (worst seg 0/out 1 ↔ seg 5/out 2 |cos|=1.0000). Grouped segment pairs: 8/120 exceed |cos|>0.95 (worst seg 4 ↔ seg 15 |cos|=1.0000). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=1), so channel-level directional crowding can appear before whole segments overlap.[0m
+Validation patience exceeded at epoch 1101/2000, nval_worse=500
+[Stage B]    Candidate (monomial_deg2[z_inv]): params=384, val-loss=2.4558e-03
+[Stage B]    Reject (monomial_deg2[z_inv]): simpler-over-budget(thr=6.576e-10) | loss 5.173e-12->2.456e-03 (Δ+2.46e-03) | params 768->384 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Greedy order (1 cands): monomial_deg2(999p)
+[Stage B]  Priority trying 1D monomial (c·x^2) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:monomial_deg2: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 1080/1080 cross-segment channel pairs exceed |cos|>0.95 (worst seg 0/out 1 ↔ seg 5/out 2 |cos|=1.0000). Grouped segment pairs: 8/120 exceed |cos|>0.95 (worst seg 4 ↔ seg 15 |cos|=1.0000). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=1), so channel-level directional crowding can appear before whole segments overlap.[0m
+Validation patience exceeded at epoch 1201/2000, nval_worse=500
+[Stage B]    Candidate (monomial_deg2): params=384, val-loss=7.2150e-03
+[Stage B]    Reject (monomial_deg2): simpler-over-budget(thr=6.576e-10) | loss 5.173e-12->7.215e-03 (Δ+7.21e-03) | params 768->384 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Greedy order (1 cands): monomial_deg3[z_inv](999p)
+[Stage B]  Priority trying 1D monomial (c·x^3) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[DBG-roundtrip] pre-fit:monomial_deg3[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 1080/1080 cross-segment channel pairs exceed |cos|>0.95 (worst seg 0/out 1 ↔ seg 5/out 2 |cos|=1.0000). Grouped segment pairs: 8/120 exceed |cos|>0.95 (worst seg 4 ↔ seg 15 |cos|=1.0000). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=1), so channel-level directional crowding can appear before whole segments overlap.[0m
+Validation patience exceeded at epoch 601/2000, nval_worse=500
+[Stage B]    Candidate (monomial_deg3[z_inv]): params=384, val-loss=4.9869e-03
+[Stage B]    Reject (monomial_deg3[z_inv]): simpler-over-budget(thr=6.576e-10) | loss 5.173e-12->4.987e-03 (Δ+4.99e-03) | params 768->384 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Greedy order (1 cands): monomial_deg3(999p)
+[Stage B]  Priority trying 1D monomial (c·x^3) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:monomial_deg3: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising RPolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [95m[LM] Potential K-colinearity issue in rm[0].providers[0] (_Composite, segments=16, outputs=1, seg_width=1): 1080/1080 cross-segment channel pairs exceed |cos|>0.95 (worst seg 0/out 1 ↔ seg 5/out 2 |cos|=1.0000). Grouped segment pairs: 8/120 exceed |cos|>0.95 (worst seg 4 ↔ seg 15 |cos|=1.0000). This can make LM/direct_solve ill-conditioned; consider increasing seg_width, reducing segment count, or using a more diversity-preserving initialization. This model uses low-dimensional K-vectors (Nx*seg_width=1), so channel-level directional crowding can appear before whole segments overlap.[0m
+[Stage B]    Candidate (monomial_deg3): params=384, val-loss=1.4417e-02
+[Stage B]    Reject (monomial_deg3): simpler-over-budget(thr=6.576e-10) | loss 5.173e-12->1.442e-02 (Δ+1.44e-02) | params 768->384 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Greedy order (1 cands): monomial_deg1[z_inv](999p)
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=((x1 * (x2)**-1)) target=T^-1/3 basis=['dimless-only']) rule=monomial_peel_priority cand=monomial_deg1[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Greedy order (1 cands): monomial_deg2[z_inv](999p)
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=((x1 * (x2)**-1)) target=T^-4/3 basis=['dimless-only']) rule=monomial_peel_priority cand=monomial_deg2[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Greedy order (1 cands): monomial_deg3[z_inv](999p)
+[Stage B]  Precheck reject (units: nn-output-unreachable leaf1 inputs=((x1 * (x2)**-1)) target=T^-7/3 basis=['dimless-only']) rule=monomial_peel_priority cand=monomial_deg3[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B] Rule subtree_separability found 0 targets
+[Stage B] Rule last_hard_trig_square found 0 targets
+[Stage B] Rule univariate_nn found 2 targets
+[Stage B]   target order (arity-asc): [vars=(1, 2)(arity=1), vars=(1,)(arity=1)]
+[Stage B] symexp_denom_1d rejected: rel_rms=0.1369 > 0.05, compound vars=(1, 2)
+[Stage B] symexp_denom_1d_recip rejected: rel_rms=0.0506 > 0.05, compound vars=(1, 2)
+[Stage B] inv_poly: using degree-probe monomials, 3 valid terms, vars=(1, 2)
+[Stage B] inv_poly probe: 2 sub-threshold trial(s) for vars=(1, 2): deg=1 rms=0.0001 n=2, deg=2 rms=0.0000 n=3
+[Stage B] sqrt_poly: degree-probe active, sqrt=3 terms (probed=True), inv=3 terms (probed=True), vars=(1, 2)
+[Stage B]  one_minus_cos_over_z2 skip NN vars (1, 2): screen failed for z=(x1 * (x2)**-1); exact best rel=9.63e+00 at omega≈0.5; affine best rel=2.58e+00, offset_rel=1.79e-03 at omega≈0.5; thresholds rel<=2.00e-02, offset_rel<=1.50e-01
+[Stage B]  sparse_factor_1d skip NN vars (1, 2): screen failed for z=(x1 * (x2)**-1); best rel=2.71e+00, threshold=2.00e-02
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 6 sub-threshold trial(s) for vars=(1, 2): deg=(0,3)->(0,3) nnz=(1,4) rms=0.0000, deg=(2,1)->(2,1) nnz=(3,2) rms=0.0006, deg=(0,4)->(0,4) nnz=(1,5) rms=0.0000, deg=(4,4)->(2,4) nnz=(2,4) rms=0.0003, deg=(2,4)->(2,4) nnz=(3,5) rms=0.0000, deg=(4,3)->(4,3) nnz=(5,4) rms=0.0000
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 10 sub-threshold trial(s) for vars=(1, 2): deg=(0,3)->(0,3) nnz=(1,4) rms=0.0000, deg=(1,2)->(1,2) nnz=(2,3) rms=0.0000, deg=(2,1)->(2,1) nnz=(3,2) rms=0.0000, deg=(3,1)->(3,0) nnz=(4,1) rms=0.0000, deg=(4,3)->(4,0) nnz=(4,1) rms=0.0000, deg=(0,4)->(0,4) nnz=(1,5) rms=0.0000, deg=(1,3)->(1,3) nnz=(2,4) rms=0.0000, deg=(2,2)->(2,2) nnz=(3,3) rms=0.0000, deg=(2,4)->(2,4) nnz=(3,5) rms=0.0000, deg=(4,2)->(4,2) nnz=(5,3) rms=0.0000
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 6 sub-threshold trial(s) for vars=(1, 2): deg=(0,3)->(0,3) nnz=(1,4) rms=0.0000, deg=(0,4)->(0,4) nnz=(1,5) rms=0.0000, deg=(1,4)->(1,4) nnz=(2,5) rms=0.0000, deg=(2,4)->(2,4) nnz=(3,5) rms=0.0000, deg=(3,4)->(3,4) nnz=(4,5) rms=0.0000, deg=(4,4)->(4,4) nnz=(5,5) rms=0.0000
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 10 sub-threshold trial(s) for vars=(1, 2): deg=(0,3)->(0,3) nnz=(1,4) rms=0.0000, deg=(1,2)->(1,2) nnz=(2,3) rms=0.0000, deg=(2,1)->(2,1) nnz=(3,2) rms=0.0000, deg=(3,1)->(3,0) nnz=(4,1) rms=0.0000, deg=(4,3)->(4,0) nnz=(4,1) rms=0.0000, deg=(0,4)->(0,4) nnz=(1,5) rms=0.0000, deg=(1,3)->(1,3) nnz=(2,4) rms=0.0000, deg=(2,2)->(2,2) nnz=(3,3) rms=0.0000, deg=(1,4)->(1,4) nnz=(2,5) rms=0.0000, deg=(2,4)->(2,4) nnz=(3,5) rms=0.0001
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 13 sub-threshold trial(s) for vars=(1, 2): deg=(0,2)->(0,2) nnz=(1,3) rms=0.0012, deg=(0,3)->(0,3) nnz=(1,4) rms=0.0000, deg=(1,2)->(1,2) nnz=(2,3) rms=0.0001, deg=(2,2)->(2,1) nnz=(3,2) rms=0.0000, deg=(2,3)->(2,3) nnz=(2,3) rms=0.0026, deg=(0,4)->(0,4) nnz=(1,5) rms=0.0000, deg=(3,1)->(3,1) nnz=(4,2) rms=0.0002, deg=(1,4)->(1,4) nnz=(2,5) rms=0.0000, deg=(3,2)->(3,2) nnz=(4,3) rms=0.0000, deg=(4,1)->(4,1) nnz=(5,2) rms=0.0001, deg=(4,2)->(4,2) nnz=(5,3) rms=0.0000, deg=(4,3)->(4,3) nnz=(5,4) rms=0.0000, deg=(4,4)->(4,4) nnz=(5,5) rms=0.0000
+[Stage B] symexp_denom_1d rejected: rel_rms=0.0506 > 0.05, compound vars=(1, 2)
+[Stage B] symexp_denom_1d_recip rejected: rel_rms=0.1369 > 0.05, compound vars=(1, 2)
+[Stage B] inv_poly: using degree-probe monomials, 3 valid terms, vars=(1, 2)
+[Stage B] inv_poly probe: 2 sub-threshold trial(s) for vars=(1, 2): deg=1 rms=0.0000 n=2, deg=2 rms=0.0000 n=3
+[Stage B] sqrt_poly: degree-probe active, sqrt=3 terms (probed=True), inv=3 terms (probed=True), vars=(1, 2)
+[Stage B]  one_minus_cos_over_z2 skip NN vars (1, 2): screen failed for z=(x2 / x1); exact best rel=2.14e+01 at omega≈0.5; affine best rel=5.66e+00, offset_rel=2.99e-03 at omega≈0.5; thresholds rel<=2.00e-02, offset_rel<=1.50e-01
+[Stage B]  sparse_factor_1d skip NN vars (1, 2): screen failed for z=(x2 / x1); best rel=6.87e+00, threshold=2.00e-02
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 2 sub-threshold trial(s) for vars=(1, 2): deg=(3,3)->(3,3) nnz=(2,3) rms=0.0000, deg=(0,4)->(0,4) nnz=(1,5) rms=0.0008
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 5 sub-threshold trial(s) for vars=(1, 2): deg=(0,4)->(0,4) nnz=(1,5) rms=0.0008, deg=(2,2)->(2,2) nnz=(3,3) rms=0.0000, deg=(4,1)->(4,0) nnz=(5,1) rms=0.0008, deg=(3,3)->(3,3) nnz=(4,4) rms=0.0003, deg=(4,4)->(4,4) nnz=(5,5) rms=0.0000
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 4 sub-threshold trial(s) for vars=(1, 2): deg=(0,4)->(0,4) nnz=(1,5) rms=0.0008, deg=(2,4)->(2,4) nnz=(3,5) rms=0.0008, deg=(3,4)->(3,4) nnz=(4,5) rms=0.0008, deg=(4,4)->(4,4) nnz=(5,5) rms=0.0008
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 8 sub-threshold trial(s) for vars=(1, 2): deg=(0,4)->(0,4) nnz=(1,5) rms=0.0008, deg=(2,2)->(2,2) nnz=(3,3) rms=0.0000, deg=(4,1)->(4,0) nnz=(5,1) rms=0.0008, deg=(2,3)->(2,3) nnz=(3,4) rms=0.0000, deg=(3,2)->(3,2) nnz=(4,3) rms=0.0000, deg=(3,3)->(3,3) nnz=(4,4) rms=0.0000, deg=(3,4)->(3,4) nnz=(4,5) rms=0.0000, deg=(4,3)->(4,3) nnz=(5,4) rms=0.0000
+[Stage B] ratpoly_1d degree probe: 1 valid pair(s), min_deg=(0,0), vars=(1, 2)
+[Stage B] ratpoly_1d probe: 8 sub-threshold trial(s) for vars=(1, 2): deg=(0,3)->(0,3) nnz=(1,4) rms=0.0062, deg=(2,2)->(2,2) nnz=(3,2) rms=0.0001, deg=(2,4)->(2,2) nnz=(2,3) rms=0.0002, deg=(3,1)->(3,1) nnz=(3,2) rms=0.0060, deg=(4,4)->(3,3) nnz=(1,4) rms=0.0001, deg=(0,4)->(0,4) nnz=(1,5) rms=0.0008, deg=(4,1)->(4,1) nnz=(4,2) rms=0.0008, deg=(4,3)->(4,3) nnz=(2,4) rms=0.0008
+[Stage B] RuleUniNN proposing 60 candidates for NN vars=(1, 2): ['monomial_deg1', 'monomial_deg2', 'monomial_deg3', 'poly', 'expm1', 'polylog', 'logshifted', 'inv_poly', 'inv_poly[1]', 'sqrt_poly', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'sqrt_ratpoly_1d', 'sqrt_ratpoly_1d[1]', 'sqrt_ratpoly_1d[2]', 'sqrt_ratpoly_1d[3]', 'sqrt_ratpoly_1d[4]', 'sqrt_ratpoly_1d[5]', 'sqrt_ratpoly_1d[6]', 'cbrt_ratpoly_1d', 'cbrt_ratpoly_1d[1]', 'cbrt_ratpoly_1d[2]', 'cbrt_ratpoly_1d[3]', 'cbrt_ratpoly_1d[4]', 'cbrt_ratpoly_1d[5]', 'cbrt_ratpoly_1d[6]', 'cbrt_ratpoly_1d[7]', 'cbrt_ratpoly_1d[8]', 'cbrt_ratpoly_1d[9]', 'cbrt_ratpoly_1d[10]', 'cbrt_ratpoly_1d[11]', 'ratpoly_1d', 'ratpoly_1d[1]', 'ratpoly_1d[2]', 'ratpoly_1d[3]', 'ratpoly_1d[4]', 'ratpoly_1d[5]', 'ratpoly_1d[6]', 'ratpoly_1d[7]', 'exp', 'exp_rat', 'tanh', 'trig', 'trig', 'trig', 'trig', 'trig', 'sinc_p2', 'affine_trig', 'leaftr_square_poly3', 'leaftr_recip_poly3', 'leaftr_recip_affine_trig']
+[Stage B]  Skipping reciprocal-coordinate alias polylog: closed-under-reciprocal:polylog
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[1]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[2]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[3]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[4]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[5]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias sqrt_ratpoly_1d[6]: closed-under-reciprocal:sqrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[1]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[2]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[3]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[4]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[5]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[6]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[7]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[8]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[9]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[10]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias cbrt_ratpoly_1d[11]: closed-under-reciprocal:cbrt_ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[1]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[2]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[3]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[4]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[5]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[6]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias ratpoly_1d[7]: closed-under-reciprocal:ratpoly_1d
+[Stage B]  Skipping reciprocal-coordinate alias exp_rat: closed-under-reciprocal:exp_rat
+[Stage B] RuleUniNN proposing 108 candidates for NN vars=(1, 2): ['monomial_deg1', 'monomial_deg1[z_inv]', 'monomial_deg2', 'monomial_deg2[z_inv]', 'monomial_deg3', 'monomial_deg3[z_inv]', 'poly', 'poly[z_inv]', 'polylog', 'logshifted', 'logshifted[z_inv]', 'inv_poly', 'inv_poly[z_inv]', 'inv_poly[1]', 'inv_poly[1][z_inv]', 'sqrt_poly', 'sqrt_poly[z_inv]', 'cf_sharedpref_resid', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_combo', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'sqrt_ratpoly_1d', 'sqrt_ratpoly_1d[1]', 'sqrt_ratpoly_1d[2]', 'sqrt_ratpoly_1d[3]', 'sqrt_ratpoly_1d[4]', 'sqrt_ratpoly_1d[5]', 'sqrt_ratpoly_1d[6]', 'sqrt_ratpoly_1d[7]', 'sqrt_ratpoly_1d[8]', 'sqrt_ratpoly_1d[9]', 'sqrt_ratpoly_1d[10]', 'sqrt_ratpoly_1d[11]', 'sqrt_ratpoly_1d[12]', 'sqrt_ratpoly_1d[13]', 'sqrt_ratpoly_1d[14]', 'sqrt_ratpoly_1d[15]', 'cbrt_ratpoly_1d', 'cbrt_ratpoly_1d[1]', 'cbrt_ratpoly_1d[2]', 'cbrt_ratpoly_1d[3]', 'cbrt_ratpoly_1d[4]', 'cbrt_ratpoly_1d[5]', 'cbrt_ratpoly_1d[6]', 'cbrt_ratpoly_1d[7]', 'cbrt_ratpoly_1d[8]', 'cbrt_ratpoly_1d[9]', 'cbrt_ratpoly_1d[10]', 'cbrt_ratpoly_1d[11]', 'cbrt_ratpoly_1d[12]', 'cbrt_ratpoly_1d[13]', 'cbrt_ratpoly_1d[14]', 'cbrt_ratpoly_1d[15]', 'ratpoly_1d', 'ratpoly_1d[1]', 'ratpoly_1d[2]', 'ratpoly_1d[3]', 'ratpoly_1d[4]', 'ratpoly_1d[5]', 'ratpoly_1d[6]', 'ratpoly_1d[7]', 'ratpoly_1d[8]', 'ratpoly_1d[9]', 'ratpoly_1d[10]', 'ratpoly_1d[11]', 'ratpoly_1d[12]', 'exp', 'exp[z_inv]', 'exp_rat', 'tanh', 'tanh[z_inv]', 'trig', 'trig[z_inv]', 'trig[z_inv]', 'trig[z_inv]', 'trig[z_inv]', 'trig[z_inv]', 'trig', 'trig', 'trig', 'trig', 'sinc_p2', 'sinc_p2[z_inv]', 'affine_trig', 'affine_trig[z_inv]', 'leaftr_square_poly3', 'leaftr_square_poly3[z_inv]', 'leaftr_recip_poly3', 'leaftr_recip_poly3[z_inv]', 'leaftr_recip_affine_trig', 'leaftr_recip_affine_trig[z_inv]', 'expm1[z_inv]']
+[Stage B]  Greedy order (108 cands): monomial_deg1(1000p), monomial_deg1[z_inv](1000p), monomial_deg2(1000p), monomial_deg2[z_inv](1000p), monomial_deg3(1000p), monomial_deg3[z_inv](1000p), poly(1001p), poly[z_inv](1001p), polylog(1001p), logshifted(1002p), logshifted[z_inv](1002p), inv_poly(1001p), inv_poly[z_inv](1001p), inv_poly[1](1002p), inv_poly[1][z_inv](1002p), sqrt_poly(1002p), sqrt_poly[z_inv](1002p), cf_sharedpref_resid(1002p), cf_sharedpref_resid[z_inv](1002p), cf_sharedpref_resid[z_inv](1002p), cf_sharedpref_resid[z_inv](1002p), cf_sharedpref_resid[z_inv](1002p), cf_sharedpref_resid[z_inv](1002p), cf_sharedpref_resid[z_inv](1002p), cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_sharedpref_resid(1002p), cf_combo(1002p), cf_combo[z_inv](1002p), cf_combo[z_inv](1001p), cf_combo[z_inv](1002p), cf_combo[z_inv](1001p), cf_combo(1001p), cf_combo(1002p), cf_combo(1001p), cf_combo(1002p), cf_combo(1001p), sqrt_ratpoly_1d(1004p), sqrt_ratpoly_1d[1](1004p), sqrt_ratpoly_1d[2](1005p), sqrt_ratpoly_1d[3](1005p), sqrt_ratpoly_1d[4](1007p), sqrt_ratpoly_1d[5](1008p), sqrt_ratpoly_1d[6](1004p), sqrt_ratpoly_1d[7](1004p), sqrt_ratpoly_1d[8](1004p), sqrt_ratpoly_1d[9](1004p), sqrt_ratpoly_1d[10](1004p), sqrt_ratpoly_1d[11](1005p), sqrt_ratpoly_1d[12](1005p), sqrt_ratpoly_1d[13](1005p), sqrt_ratpoly_1d[14](1007p), sqrt_ratpoly_1d[15](1007p), cbrt_ratpoly_1d(1004p), cbrt_ratpoly_1d[1](1005p), cbrt_ratpoly_1d[2](1006p), cbrt_ratpoly_1d[3](1007p), cbrt_ratpoly_1d[4](1008p), cbrt_ratpoly_1d[5](1009p), cbrt_ratpoly_1d[6](1004p), cbrt_ratpoly_1d[7](1004p), cbrt_ratpoly_1d[8](1004p), cbrt_ratpoly_1d[9](1004p), cbrt_ratpoly_1d[10](1004p), cbrt_ratpoly_1d[11](1005p), cbrt_ratpoly_1d[12](1005p), cbrt_ratpoly_1d[13](1005p), cbrt_ratpoly_1d[14](1006p), cbrt_ratpoly_1d[15](1007p), ratpoly_1d(1003p), ratpoly_1d[1](1004p), ratpoly_1d[2](1004p), ratpoly_1d[3](1004p), ratpoly_1d[4](1004p), ratpoly_1d[5](1005p), ratpoly_1d[6](1005p), ratpoly_1d[7](1006p), ratpoly_1d[8](1006p), ratpoly_1d[9](1006p), ratpoly_1d[10](1007p), ratpoly_1d[11](1008p), ratpoly_1d[12](1009p), exp(1002p), exp[z_inv](1002p), exp_rat(1005p), tanh(1002p), tanh[z_inv](1002p), trig(1002p), trig[z_inv](1002p), trig[z_inv](1002p), trig[z_inv](1002p), trig[z_inv](1002p), trig[z_inv](1002p), trig(1002p), trig(1002p), trig(1002p), trig(1002p), sinc_p2(1002p), sinc_p2[z_inv](1002p), affine_trig(1003p), affine_trig[z_inv](1003p), leaftr_square_poly3(1003p), leaftr_square_poly3[z_inv](1003p), leaftr_recip_poly3(1003p), leaftr_recip_poly3[z_inv](1003p), leaftr_recip_affine_trig(1003p), leaftr_recip_affine_trig[z_inv](1003p), expm1[z_inv](1002p)
+[Stage B]  Trying 1D monomial (c·x^1) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:monomial_deg1: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=385 (trivially separable union)
+Validation patience exceeded at epoch 601/2000, nval_worse=500
+[Stage B]    Candidate (monomial_deg1): params=385, val-loss=2.2283e-03
+[Stage B]    Reject (monomial_deg1): simpler-over-budget(thr=5.856e-10) | loss 5.173e-12->2.228e-03 (Δ+2.23e-03) | params 768->385 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D monomial (c·x^1) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[DBG-roundtrip] pre-fit:monomial_deg1[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 901/2000, nval_worse=500
+[Stage B]    Candidate (monomial_deg1[z_inv]): params=385, val-loss=4.9516e-04
+[Stage B]    Reject (monomial_deg1[z_inv]): simpler-over-budget(thr=5.856e-10) | loss 5.173e-12->4.952e-04 (Δ+4.95e-04) | params 768->385 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D monomial (c·x^2) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:monomial_deg2: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[Stage B]    Candidate (monomial_deg2): params=385, val-loss=7.1371e-03
+[Stage B]    Reject (monomial_deg2): simpler-over-budget(thr=5.856e-10) | loss 5.173e-12->7.137e-03 (Δ+7.14e-03) | params 768->385 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D monomial (c·x^2) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[DBG-roundtrip] pre-fit:monomial_deg2[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 601/2000, nval_worse=500
+[Stage B]    Candidate (monomial_deg2[z_inv]): params=385, val-loss=2.4498e-03
+[Stage B]    Reject (monomial_deg2[z_inv]): simpler-over-budget(thr=5.856e-10) | loss 5.173e-12->2.450e-03 (Δ+2.45e-03) | params 768->385 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D monomial (c·x^3) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:monomial_deg3: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 701/2000, nval_worse=500
+[Stage B]    Candidate (monomial_deg3): params=385, val-loss=1.4422e-02
+[Stage B]    Reject (monomial_deg3): simpler-over-budget(thr=5.856e-10) | loss 5.173e-12->1.442e-02 (Δ+1.44e-02) | params 768->385 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D monomial (c·x^3) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[DBG-roundtrip] pre-fit:monomial_deg3[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 601/2000, nval_worse=500
+[Stage B]    Candidate (monomial_deg3[z_inv]): params=385, val-loss=4.9749e-03
+[Stage B]    Reject (monomial_deg3[z_inv]): simpler-over-budget(thr=5.856e-10) | loss 5.173e-12->4.975e-03 (Δ+4.97e-03) | params 768->385 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D poly rewrite on NN leaf vars (1, 2), degree=1
+[DBG-roundtrip] pre-fit:poly: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=386 (trivially separable union)
+Stopping at epoch 401/2000, lm_opt.state['halt']=True, loss=4.0462e-06, loss_val=6.1082e-06
+[Stage B]    Candidate (poly): params=386, val-loss=6.1082e-06
+[Stage B]    Reject (poly): simpler-over-budget(thr=5.852e-10) | loss 5.173e-12->6.108e-06 (Δ+6.11e-06) | params 768->386 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D poly rewrite on NN leaf vars (1, 2), degree=1 [coord=1/z]
+[DBG-roundtrip] pre-fit:poly[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising PolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 201/2000, lm_opt.state['halt']=True, loss=1.0979e-06, loss_val=1.5826e-06
+[Stage B]    Candidate (poly[z_inv]): params=386, val-loss=1.5826e-06
+[Stage B]    Reject (poly[z_inv]): simpler-over-budget(thr=5.852e-10) | loss 5.173e-12->1.583e-06 (Δ+1.58e-06) | params 768->386 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D polylog rewrite on NN leaf vars (1, 2), degree=1
+[DBG-roundtrip] pre-fit:polylog: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 401/2000, lm_opt.state['halt']=True, loss=2.3338e-06, loss_val=3.3958e-06
+[Stage B]    Candidate (polylog): params=386, val-loss=3.3957e-06
+[Stage B]    Reject (polylog): simpler-over-budget(thr=5.852e-10) | loss 5.173e-12->3.396e-06 (Δ+3.40e-06) | params 768->386 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D shifted-log rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:logshifted: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=387 (trivially separable union)
+Stopping at epoch 301/2000, lm_opt.state['halt']=True, loss=3.0626e-08, loss_val=4.3321e-08
+[Stage B]    Candidate (logshifted): params=387, val-loss=4.3283e-08
+[Stage B]    Reject (logshifted): simpler-over-budget(thr=5.847e-10) | loss 5.173e-12->4.328e-08 (Δ+4.33e-08) | params 768->387 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D shifted-log rewrite on NN leaf vars (1, 2) [coord=1/z]
+[DBG-roundtrip] pre-fit:logshifted[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[Stage B]    Candidate (logshifted[z_inv]): params=387, val-loss=1.5551e-06
+[Stage B]    Reject (logshifted[z_inv]): simpler-over-budget(thr=5.847e-10) | loss 5.173e-12->1.555e-06 (Δ+1.56e-06) | params 768->387 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying inv_poly degree=1 (1/P(x)) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:inv_poly: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init inv-poly] Init on vars (1, 2): degree=1, rel_rms≈9.27e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.672e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.484e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (inv_poly) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying inv_poly degree=1 (1/P(x)) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[DBG-roundtrip] pre-fit:inv_poly[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init inv-poly] Init on vars (1, 2): degree=1, rel_rms≈4.89e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.672e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (inv_poly[z_inv]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying inv_poly degree=2 (1/P(x)) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:inv_poly[1]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init inv-poly] Init on vars (1, 2): degree=2, rel_rms≈4.56e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (inv_poly[1]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying inv_poly degree=2 (1/P(x)) rewrite on NN leaf vars (1, 2) [coord=1/z]
+[DBG-roundtrip] pre-fit:inv_poly[1][z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init inv-poly] Init on vars (1, 2): degree=2, rel_rms≈1.32e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (inv_poly[1][z_inv]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying sqrt/invsqrt(poly) rewrite on NN leaf vars (1, 2), degree=2
+[DBG-roundtrip] pre-fit:sqrt_poly: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_poly) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying sqrt/invsqrt(poly) rewrite on NN leaf vars (1, 2), degree=2 [coord=1/z]
+[DBG-roundtrip] pre-fit:sqrt_poly[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_poly[z_inv]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D compound macro shared-prefactor+residual macro on NN leaf vars [1, 2], pref=arg0, macro=sqrt1p(arg0), screen_r2=1.000, ok_frac=1.000
+[DBG-roundtrip] pre-fit:cf_sharedpref_resid: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 1101/2000, lm_opt.state['halt']=True, loss=1.5080e-07, loss_val=2.5561e-07
+[Stage B]    Candidate (cf_sharedpref_resid): params=387, val-loss=2.5561e-07
+[Stage B]    Reject (cf_sharedpref_resid): simpler-over-budget(thr=5.847e-10) | loss 5.173e-12->2.556e-07 (Δ+2.56e-07) | params 768->387 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D compound macro shared-prefactor+residual macro on NN leaf vars [1, 2], pref=arg0, macro=sqrt1p(arg0), screen_r2=1.000, ok_frac=1.000 [coord=1/z]
+[DBG-roundtrip] pre-fit:cf_sharedpref_resid[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 401/2000, lm_opt.state['halt']=True, loss=7.8058e-07, loss_val=1.1139e-06
+[Stage B]    Candidate (cf_sharedpref_resid[z_inv]): params=387, val-loss=1.1125e-06
+[Stage B]    Reject (cf_sharedpref_resid[z_inv]): simpler-over-budget(thr=5.847e-10) | loss 5.173e-12->1.113e-06 (Δ+1.11e-06) | params 768->387 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Skipping cf_sharedpref_resid[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_sharedpref_resid[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_sharedpref_resid[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_sharedpref_resid[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_sharedpref_resid[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_sharedpref_resid (previously rejected on same target)
+[Stage B]  Skipping cf_sharedpref_resid (previously rejected on same target)
+[Stage B]  Skipping cf_sharedpref_resid (previously rejected on same target)
+[Stage B]  Trying 1D compound macro tier-3 linear combo on NN leaf vars [1, 2], terms=['cos_half_sq *(inv1p(1/arg0^2))', '1/(arg0^2)'], screen_r2=1.000, ok_frac=1.000
+[DBG-roundtrip] pre-fit:cf_combo: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 201/2000, lm_opt.state['halt']=True, loss=3.0023e-07, loss_val=4.4524e-07
+[Stage B]    Candidate (cf_combo): params=387, val-loss=4.4524e-07
+[Stage B]    Reject (cf_combo): simpler-over-budget(thr=5.847e-10) | loss 5.173e-12->4.452e-07 (Δ+4.45e-07) | params 768->387 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D compound macro tier-3 linear combo on NN leaf vars [1, 2], terms=['hypot *(inv1p(arg0))', 'arg0^2'], screen_r2=1.000, ok_frac=1.000 [coord=1/z]
+[DBG-roundtrip] pre-fit:cf_combo[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 301/2000, lm_opt.state['halt']=True, loss=2.7079e-08, loss_val=5.2468e-08
+[Stage B]    Candidate (cf_combo[z_inv]): params=387, val-loss=5.2468e-08
+[Stage B]    Reject (cf_combo[z_inv]): simpler-over-budget(thr=5.847e-10) | loss 5.173e-12->5.247e-08 (Δ+5.25e-08) | params 768->387 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Skipping cf_combo[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_combo[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_combo[z_inv] (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Skipping cf_combo (previously rejected on same target)
+[Stage B]  Trying 1D sqrt-ratpoly (sqrt) deg=(0,3)->(0,3) nnz=(1,4) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(0,3)->(0,3), nnz=(1,4), rel_rms≈3.51e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D sqrt-ratpoly (sqrt) deg=(2,1)->(2,1) nnz=(3,2) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d[1]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(2,1)->(2,1), nnz=(3,2), rel_rms≈5.76e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d[1]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D sqrt-ratpoly (sqrt) deg=(0,4)->(0,4) nnz=(1,5) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d[2]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(0,4)->(0,4), nnz=(1,5), rel_rms≈4.20e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d[2]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D sqrt-ratpoly (sqrt) deg=(4,4)->(2,4) nnz=(2,4) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d[3]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(4,4)->(2,4), nnz=(2,4), rel_rms≈2.96e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d[3]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D sqrt-ratpoly (sqrt) deg=(2,4)->(2,4) nnz=(3,5) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d[4]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(2,4)->(2,4), nnz=(3,5), rel_rms≈3.06e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d[4]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D sqrt-ratpoly (sqrt) deg=(4,3)->(4,3) nnz=(5,4) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d[5]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(4,3)->(4,3), nnz=(5,4), rel_rms≈3.50e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d[5]) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (duplicate-signature) rule=univariate_nn cand=sqrt_ratpoly_1d[6] target=nn#leaf1 vars=(1, 2) sig=(960898949, 1, 1, -1, 4, 1, 1, 1, 1) attempted=6
+[Stage B]  Trying 1D sqrt-ratpoly (inv_sqrt) deg=(1,2)->(1,2) nnz=(2,3) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d[7]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(1,2)->(1,2), nnz=(2,3), rel_rms≈4.38e-06
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d[7]) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (duplicate-signature) rule=univariate_nn cand=sqrt_ratpoly_1d[8] target=nn#leaf1 vars=(1, 2) sig=(960898949, 3, 1, 1, 1, -1, 2, 1, 1) attempted=7
+[Stage B]  Trying 1D sqrt-ratpoly (inv_sqrt) deg=(3,1)->(3,0) nnz=(4,1) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d[9]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(3,1)->(3,0), nnz=(4,1), rel_rms≈3.51e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d[9]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D sqrt-ratpoly (inv_sqrt) deg=(4,3)->(4,0) nnz=(4,1) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d[10]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(4,3)->(4,0), nnz=(4,1), rel_rms≈5.75e-06
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d[10]) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (duplicate-signature) rule=univariate_nn cand=sqrt_ratpoly_1d[11] target=nn#leaf1 vars=(1, 2) sig=(960898949, 1, 1, -1, 5, 1, 1, 1, 1, 1) attempted=9
+[Stage B]  Trying 1D sqrt-ratpoly (inv_sqrt) deg=(1,3)->(1,3) nnz=(2,4) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d[12]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(1,3)->(1,3), nnz=(2,4), rel_rms≈5.31e-06
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d[12]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D sqrt-ratpoly (inv_sqrt) deg=(2,2)->(2,2) nnz=(3,3) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d[13]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(2,2)->(2,2), nnz=(3,3), rel_rms≈8.13e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d[13]) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (duplicate-signature) rule=univariate_nn cand=sqrt_ratpoly_1d[14] target=nn#leaf1 vars=(1, 2) sig=(960898949, 3, 1, 1, 1, -1, 5, 1, 1, 1, 1, 1) attempted=11
+[Stage B]  Trying 1D sqrt-ratpoly (inv_sqrt) deg=(4,2)->(4,2) nnz=(5,3) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:sqrt_ratpoly_1d[15]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(4,2)->(4,2), nnz=(5,3), rel_rms≈1.41e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -3.635e+05, max: 2.673e+04, mean: -1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -3.796e+05, max: 2.871e+04, mean: -1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -3.722e+05, max: 2.811e+04, mean: -1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (sqrt_ratpoly_1d[15]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (cbrt) deg=(0,3)->(0,3) nnz=(1,4) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(0,3)->(0,3), nnz=(1,4), rel_rms≈4.50e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (cbrt) deg=(0,4)->(0,4) nnz=(1,5) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[1]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(0,4)->(0,4), nnz=(1,5), rel_rms≈5.02e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[1]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (cbrt) deg=(1,4)->(1,4) nnz=(2,5) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[2]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(1,4)->(1,4), nnz=(2,5), rel_rms≈5.04e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[2]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (cbrt) deg=(2,4)->(2,4) nnz=(3,5) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[3]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(2,4)->(2,4), nnz=(3,5), rel_rms≈4.99e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[3]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (cbrt) deg=(3,4)->(3,4) nnz=(4,5) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[4]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(3,4)->(3,4), nnz=(4,5), rel_rms≈5.00e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[4]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (cbrt) deg=(4,4)->(4,4) nnz=(5,5) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[5]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(4,4)->(4,4), nnz=(5,5), rel_rms≈5.09e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[5]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (inv_cbrt) deg=(0,3)->(0,3) nnz=(1,4) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[6]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(0,3)->(0,3), nnz=(1,4), rel_rms≈1.51e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[6]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (inv_cbrt) deg=(1,2)->(1,2) nnz=(2,3) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[7]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(1,2)->(1,2), nnz=(2,3), rel_rms≈4.61e-06
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[7]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (inv_cbrt) deg=(2,1)->(2,1) nnz=(3,2) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[8]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(2,1)->(2,1), nnz=(3,2), rel_rms≈4.98e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[8]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (inv_cbrt) deg=(3,1)->(3,0) nnz=(4,1) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[9]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(3,1)->(3,0), nnz=(4,1), rel_rms≈4.50e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[9]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (inv_cbrt) deg=(4,3)->(4,0) nnz=(4,1) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[10]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(4,3)->(4,0), nnz=(4,1), rel_rms≈1.79e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[10]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (inv_cbrt) deg=(0,4)->(0,4) nnz=(1,5) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[11]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(0,4)->(0,4), nnz=(1,5), rel_rms≈1.17e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[11]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (inv_cbrt) deg=(1,3)->(1,3) nnz=(2,4) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[12]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(1,3)->(1,3), nnz=(2,4), rel_rms≈4.84e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[12]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (inv_cbrt) deg=(2,2)->(2,2) nnz=(3,3) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[13]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(2,2)->(2,2), nnz=(3,3), rel_rms≈2.32e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[13]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (inv_cbrt) deg=(1,4)->(1,4) nnz=(2,5) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[14]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(1,4)->(1,4), nnz=(2,5), rel_rms≈7.03e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[14]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D cbrt-ratpoly (inv_cbrt) deg=(2,4)->(2,4) nnz=(3,5) on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:cbrt_ratpoly_1d[15]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(2,4)->(2,4), nnz=(3,5), rel_rms≈5.67e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (cbrt_ratpoly_1d[15]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D ratpoly deg=(0,2)->(0,2) nnz=(1,3) (scale*P_red(x)/Q(x)) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:ratpoly_1d: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(0,2)->(0,2), nnz=(1,3), rel_rms≈1.22e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly_1d) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (duplicate-signature) rule=univariate_nn cand=ratpoly_1d[1] target=nn#leaf1 vars=(1, 2) sig=(960898949, 1, 1, -1, 4, 1, 1, 1, 1) attempted=29
+[Stage B]  Precheck reject (duplicate-signature) rule=univariate_nn cand=ratpoly_1d[2] target=nn#leaf1 vars=(1, 2) sig=(960898949, 2, 1, 1, -1, 3, 1, 1, 1) attempted=29
+[Stage B]  Precheck reject (duplicate-signature) rule=univariate_nn cand=ratpoly_1d[3] target=nn#leaf1 vars=(1, 2) sig=(960898949, 3, 1, 1, 1, -1, 2, 1, 1) attempted=29
+[Stage B]  Trying 1D ratpoly deg=(2,3)->(2,3) nnz=(2,3) (scale*P_red(x)/Q(x)) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:ratpoly_1d[4]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(2,3)->(2,3), nnz=(2,3), rel_rms≈2.57e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly_1d[4]) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (duplicate-signature) rule=univariate_nn cand=ratpoly_1d[5] target=nn#leaf1 vars=(1, 2) sig=(960898949, 1, 1, -1, 5, 1, 1, 1, 1, 1) attempted=30
+[Stage B]  Trying 1D ratpoly deg=(3,1)->(3,1) nnz=(4,2) (scale*P_red(x)/Q(x)) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:ratpoly_1d[6]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(3,1)->(3,1), nnz=(4,2), rel_rms≈1.57e-04
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly_1d[6]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D ratpoly deg=(1,4)->(1,4) nnz=(2,5) (scale*P_red(x)/Q(x)) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:ratpoly_1d[7]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(1,4)->(1,4), nnz=(2,5), rel_rms≈3.00e-07
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly_1d[7]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D ratpoly deg=(3,2)->(3,2) nnz=(4,3) (scale*P_red(x)/Q(x)) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:ratpoly_1d[8]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(3,2)->(3,2), nnz=(4,3), rel_rms≈2.66e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly_1d[8]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying 1D ratpoly deg=(4,1)->(4,1) nnz=(5,2) (scale*P_red(x)/Q(x)) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:ratpoly_1d[9]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(4,1)->(4,1), nnz=(5,2), rel_rms≈5.01e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly_1d[9]) rejected at init (non-finite loss); trying next.
+[Stage B]  Precheck reject (duplicate-signature) rule=univariate_nn cand=ratpoly_1d[10] target=nn#leaf1 vars=(1, 2) sig=(960898949, 5, 1, 1, 1, 1, 1, -1, 3, 1, 1, 1) attempted=34
+[Stage B]  Precheck reject (duplicate-signature) rule=univariate_nn cand=ratpoly_1d[11] target=nn#leaf1 vars=(1, 2) sig=(960898949, 5, 1, 1, 1, 1, 1, -1, 4, 1, 1, 1, 1) attempted=34
+[Stage B]  Trying 1D ratpoly deg=(4,4)->(4,4) nnz=(5,5) (scale*P_red(x)/Q(x)) rewrite on NN leaf vars (1, 2)
+[DBG-roundtrip] pre-fit:ratpoly_1d[12]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1, 2): deg=(4,4)->(4,4), nnz=(5,5), rel_rms≈2.63e-05
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.673e+04, max: 3.635e+05, mean: 1.799e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.871e+04, max: 3.796e+05, mean: 1.934e+04
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.811e+04, max: 3.722e+05, mean: 1.467e+04
+[Stage B] Prediction scale check (attempt 0): pred_median=9.318e+03, true_median=9.826e-02, ratio=9.483e+04
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (ratpoly_1d[12]) rejected at init (non-finite loss); trying next.
+[Stage B]  Trying exp-poly rewrite on NN leaf vars (1, 2), degree=2
+[DBG-roundtrip] pre-fit:exp: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising ExpPolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 201/2000, lm_opt.state['halt']=True, loss=1.2842e-07, loss_val=2.1324e-07
+[Stage B]    Candidate (exp): params=387, val-loss=2.1324e-07
+[Stage B]    Reject (exp): simpler-over-budget(thr=5.847e-10) | loss 5.173e-12->2.132e-07 (Δ+2.13e-07) | params 768->387 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying exp-poly rewrite on NN leaf vars (1, 2), degree=2 [coord=1/z]
+[DBG-roundtrip] pre-fit:exp[z_inv]: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising ExpPolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Stopping at epoch 201/2000, lm_opt.state['halt']=True, loss=4.8806e-09, loss_val=8.6424e-09
+[Stage B]    Candidate (exp[z_inv]): params=387, val-loss=8.6424e-09
+[Stage B]    Reject (exp[z_inv]): simpler-over-budget(thr=5.847e-10) | loss 5.173e-12->8.642e-09 (Δ+8.64e-09) | params 768->387 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying exp-ratpoly rewrite on NN leaf vars (1, 2), degs=2/2
+[DBG-roundtrip] pre-fit:exp_rat: model_med=8.6493e+03 reuse_recon_med=8.6493e+03 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Initialising ExpRationalPolyLeaf for vars (1, 2), tag=leaf1
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=390 (trivially separable union)
+Stopping at epoch 201/2000, lm_opt.state['halt']=True, loss=6.1636e-12, loss_val=3.1129e-12
+[Stage B]    Candidate (exp_rat): params=390, val-loss=3.1129e-12
+[Stage B]    [32mAccepted[0m rewrite (exp_rat, loss-below-floor-simpler)
+[DBG-accept] accept:exp_rat:post-set-state: model_med=1.0100e-01 target_med=1.010e-01
+[DBG-accept] accept:exp_rat:post-renorm: model_med=1.0100e-01 target_med=1.010e-01
+[DBG-accept] accept:exp_rat:post-annotate: model_med=1.0100e-01 target_med=1.010e-01
+[Stage B]    NN metrics: total=1, multivar=0, max_arity=1
+[Stage B]    Current: [35mx0^0.33 * exp_ratpoly0(z=(x1 * x2^-1)) * nn0(x1)[0m
+[Stage B polish] Running subtree:root.left candidate generation in guarded worker (max_seconds=300.0, mem_fraction=0.2).
+[Stage B polish] subtree full-shadow reject root.left: ((x0)**0.333333 * exp_ratpoly((x1 * (x2)**-1))) -> x0**(1/3)*exp_ratpoly(x1/x2); val-loss=3.1129e-12 (local-simpler-but-uncompiled)
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B] monomial_peel_priority shortlist: monomial_deg1[z_inv]@nn#leaf2 vars=(1,) (k=0.606, rel=0.724); monomial_deg2[z_inv]@nn#leaf2 vars=(1,) (k=0.606, rel=0.724); monomial_deg3[z_inv]@nn#leaf2 vars=(1,) (k=0.606, rel=0.724)
+[Stage B] Rule monomial_peel_priority trying 3 globally ranked candidates
+[Stage B]  Greedy order (1 cands): monomial_deg1[z_inv](6p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=monomial_peel_priority cand=monomial_deg1[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Greedy order (1 cands): monomial_deg2[z_inv](6p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=monomial_peel_priority cand=monomial_deg2[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Greedy order (1 cands): monomial_deg3[z_inv](6p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=monomial_peel_priority cand=monomial_deg3[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B] Rule subtree_separability found 0 targets
+[Stage B] Rule last_hard_trig_square found 0 targets
+[Stage B] Rule univariate_nn found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B]  one_minus_cos_over_z2 skip NN vars (1,): phase is not dimensionless for z=x1, dim=(Fraction(0, 1), Fraction(-1, 1), Fraction(0, 1))
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(1,)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.0047 > 0.001, deg=(4,2), vars=(1,)
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(1,)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.0087 > 0.001, deg=(4,4), vars=(1,)
+[Stage B]  one_minus_cos_over_z2 skip NN vars (1,): phase is not dimensionless for z=(x1)**-1, dim=(Fraction(0, 1), Fraction(1, 1), Fraction(0, 1))
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(1,)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.0878 > 0.001, deg=(4,4), vars=(1,)
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(1,)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.0047 > 0.001, deg=(4,4), vars=(1,)
+[Stage B] RuleUniNN proposing 13 candidates for NN vars=(1,): ['monomial_deg1', 'monomial_deg2', 'monomial_deg3', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo']
+[Stage B] RuleUniNN proposing 13 candidates for NN vars=(1,): ['monomial_deg1[z_inv]', 'monomial_deg2[z_inv]', 'monomial_deg3[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]']
+[Stage B]  Exhaustive order (13 cands): monomial_deg1[z_inv](7p), monomial_deg2[z_inv](7p), monomial_deg3[z_inv](7p), cf_combo[z_inv](8p), cf_combo[z_inv](8p), cf_combo[z_inv](8p), cf_sharedpref_resid[z_inv](9p), cf_sharedpref_resid[z_inv](9p), cf_sharedpref_resid[z_inv](9p), cf_combo[z_inv](9p), cf_combo[z_inv](9p), cf_combo[z_inv](9p), cf_combo[z_inv](9p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=monomial_deg1[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=monomial_deg2[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=monomial_deg3[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B] Rule log_ratio found 0 targets
+[Stage B] Rule power_product found 0 targets
+[Stage B] Rule joint_product_monomial_closure found 0 targets
+[Stage B] Rule overlap_prefactor_peel found 0 targets
+[Stage B] Rule overlap_counterterm_peel found 0 targets
+[Stage B] Rule common_prefactor found 0 targets
+[Stage B] Rule additive_gauge_transfer found 0 targets
+[Stage B] Rule multiplicative_homogeneity_transfer found 0 targets
+[Stage B] Rule univariate_mono found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B]  Exhaustive order (3 cands): monomial_deg1[z_inv](6p), monomial_deg2[z_inv](6p), monomial_deg3[z_inv](6p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_mono cand=monomial_deg1[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_mono cand=monomial_deg2[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_mono cand=monomial_deg3[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B] Rule nn_leaf_separability found 0 targets
+[Stage B] Rule counterterm_mul_split found 0 targets
+[Stage B] Rule counterfactor_add_split found 0 targets
+[Stage B] === Phase 1: Searching for separabilities (additive, multiplicative) ===
+[Stage B] Rule nonsense_units_zero_prune found 0 targets
+[Stage B] Rule monomial_peel_priority found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B] monomial_peel_priority shortlist: monomial_deg1[z_inv]@nn#leaf2 vars=(1,) (k=0.606, rel=0.724); monomial_deg2[z_inv]@nn#leaf2 vars=(1,) (k=0.606, rel=0.724); monomial_deg3[z_inv]@nn#leaf2 vars=(1,) (k=0.606, rel=0.724)
+[Stage B] Rule monomial_peel_priority trying 3 globally ranked candidates
+[Stage B]  Greedy order (1 cands): monomial_deg1[z_inv](6p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=monomial_peel_priority cand=monomial_deg1[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Greedy order (1 cands): monomial_deg2[z_inv](6p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=monomial_peel_priority cand=monomial_deg2[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Greedy order (1 cands): monomial_deg3[z_inv](6p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=monomial_peel_priority cand=monomial_deg3[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B] Rule subtree_separability found 0 targets
+[Stage B] Rule last_hard_trig_square found 0 targets
+[Stage B] Rule univariate_nn found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B]  one_minus_cos_over_z2 skip NN vars (1,): phase is not dimensionless for z=x1, dim=(Fraction(0, 1), Fraction(-1, 1), Fraction(0, 1))
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(1,)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.0047 > 0.001, deg=(4,2), vars=(1,)
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(1,)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.0087 > 0.001, deg=(4,4), vars=(1,)
+[Stage B]  one_minus_cos_over_z2 skip NN vars (1,): phase is not dimensionless for z=(x1)**-1, dim=(Fraction(0, 1), Fraction(1, 1), Fraction(0, 1))
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(1,)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.0878 > 0.001, deg=(4,4), vars=(1,)
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(1,)
+[Stage B] ratpoly_1d rejected: best rel_rms=0.0047 > 0.001, deg=(4,4), vars=(1,)
+[Stage B] RuleUniNN proposing 13 candidates for NN vars=(1,): ['monomial_deg1', 'monomial_deg2', 'monomial_deg3', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_sharedpref_resid', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo', 'cf_combo']
+[Stage B] RuleUniNN proposing 13 candidates for NN vars=(1,): ['monomial_deg1[z_inv]', 'monomial_deg2[z_inv]', 'monomial_deg3[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_sharedpref_resid[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]', 'cf_combo[z_inv]']
+[Stage B]  Exhaustive order (13 cands): monomial_deg1[z_inv](7p), monomial_deg2[z_inv](7p), monomial_deg3[z_inv](7p), cf_combo[z_inv](8p), cf_combo[z_inv](8p), cf_combo[z_inv](8p), cf_sharedpref_resid[z_inv](9p), cf_sharedpref_resid[z_inv](9p), cf_sharedpref_resid[z_inv](9p), cf_combo[z_inv](9p), cf_combo[z_inv](9p), cf_combo[z_inv](9p), cf_combo[z_inv](9p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=monomial_deg1[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=monomial_deg2[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=monomial_deg3[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_sharedpref_resid[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_nn cand=cf_combo[z_inv] target=nn#leaf2 vars=(1,) attempted=35
+[Stage B] Rule log_ratio found 0 targets
+[Stage B] Rule power_product found 0 targets
+[Stage B] Rule joint_product_monomial_closure found 0 targets
+[Stage B] Rule overlap_prefactor_peel found 0 targets
+[Stage B] Rule overlap_counterterm_peel found 0 targets
+[Stage B] Rule common_prefactor found 0 targets
+[Stage B] Rule additive_gauge_transfer found 0 targets
+[Stage B] Rule multiplicative_homogeneity_transfer found 0 targets
+[Stage B] Rule univariate_mono found 1 targets
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B]  Exhaustive order (3 cands): monomial_deg1[z_inv](6p), monomial_deg2[z_inv](6p), monomial_deg3[z_inv](6p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_mono cand=monomial_deg1[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_mono cand=monomial_deg2[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=univariate_mono cand=monomial_deg3[z_inv] target=nn#leaf2 vars=(1,) attempted=0
+[Stage B] Rule nn_leaf_separability found 0 targets
+[Stage B] Rule counterterm_mul_split found 0 targets
+[Stage B] Rule counterfactor_add_split found 0 targets
+[Stage B] === Phase 1 complete: No more separabilities found ===
+[Stage B] === Phase 2: Trying specialized patterns (after exhausting separability) ===
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B]  Greedy order (10 cands): cf_sharedpref_resid(9p), cf_sharedpref_resid(9p), cf_combo(9p), cf_combo(8p), cf_combo(9p), cf_combo(8p), cf_combo(9p), cf_combo(8p), cf_combo(9p), cf_combo(8p)
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_sharedpref_resid target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]  Precheck reject (units: fixed-units-mismatch) rule=compound_fn_macros cand=cf_combo target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B] RuleUnivariateMulPeel: detected [k=2] on NN vars=(1,)
+[Stage B]  Greedy order (1 cands): mono_peel_nn_resid(1007p)
+[Stage B]  Trying mono-peel + NN residual (k=2) on NN leaf vars (1,)
+[DBG-roundtrip] pre-fit:mono_peel_nn_resid: model_med=5.9310e+00 reuse_recon_med=5.9310e+00 ratio=1.000e+00 target_med=1.010e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 4.311e+01, max: 1.141e+08, mean: 2.307e+06
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 3.941e+01, max: 1.024e+08, mean: 2.759e+06
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 1.006e+02, max: 8.581e+07, mean: 1.504e+06
+[Stage B] Prediction scale check (attempt 0): pred_median=3.310e+04, true_median=9.826e-02, ratio=3.368e+05
+[Stage B] Warning: init scale_ratio extreme; rejecting candidate.
+[Stage B]    Candidate (mono_peel_nn_resid) rejected at init (non-finite loss); trying next.
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B]  Greedy order (1 cands): precond_fallback_div(1007p)
+[Stage B]  Precheck reject (units: poly leaf with unitful inputs requires homogeneous basis (min_total=degree=1), but got min_total=0) rule=preconditioner_fallback_nn cand=precond_fallback_div target=nn#leaf2 vars=(1,) attempted=0
+[Stage B]   target order (arity-asc): [vars=(1,)(arity=1)]
+[Stage B] ratpoly_1d degree probe: no valid pairs, falling back to unconstrained grid, vars=(1,)
+[Stage B] ratpoly_1d probe: 4 sub-threshold trial(s) for vars=(1,): deg=(2,3)->(2,3) nnz=(2,4) rms=0.0082, deg=(3,2)->(3,2) nnz=(4,2) rms=0.0093, deg=(4,2)->(3,2) nnz=(4,3) rms=0.0082, deg=(4,3)->(4,3) nnz=(4,3) rms=0.0060
+[Stage B] RuleLastHardAtomRescue proposing 4 capped candidate(s) for final NN vars=(1,): ['last_ratpoly_1d', 'last_ratpoly_1d[1]', 'last_ratpoly_1d[2]', 'last_ratpoly_1d[3]']
+[Stage B]  Exhaustive order (4 cands): last_ratpoly_1d(12p), last_ratpoly_1d[1](12p), last_ratpoly_1d[2](13p), last_ratpoly_1d[3](13p)
+[Stage B]  Trying 1D ratpoly deg=(2,3)->(2,3) nnz=(2,4) (scale*P_red(x)/Q(x)) rewrite on NN leaf vars (1,)
+[DBG-roundtrip] pre-fit:last_ratpoly_1d: model_med=5.9310e+00 reuse_recon_med=5.9310e+00 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1,): deg=(2,3)->(2,3), nnz=(2,4), rel_rms≈8.23e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.509e+02, max: 1.807e+01, mean: -1.231e+01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.597e+02, max: 1.927e+01, mean: -1.320e+01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.491e+02, max: 2.042e+01, mean: -1.060e+01
+[Stage B] Prediction scale check (attempt 0): pred_median=6.370e+00, true_median=9.826e-02, ratio=6.483e+01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+[Stage B]    Candidate (last_ratpoly_1d): params=12, val-loss=4.2578e-05
+[DBG-roundtrip] pre-fit:last_ratpoly_1d/trim_num1: model_med=9.8191e-02 reuse_recon_med=3.8630e+00 ratio=3.934e+01 target_med=1.010e-01  <<< REUSE-DOES-NOT-RECONSTRUCT-INCUMBENT
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -1.374e-02, max: -1.142e-04, mean: -1.357e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -1.222e-02, max: -1.125e-04, mean: -1.430e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -1.085e-02, max: -1.362e-04, mean: -1.469e-03
+[Stage B] Prediction scale check (attempt 0): pred_median=9.465e-04, true_median=9.826e-02, ratio=9.633e-03
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=11 (trivially separable union)
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 36
+Stopping at epoch 37/2000, lm_opt.state['halt']=True, loss=9.1435e-02, loss_val=7.2718e-02
+[DBG-roundtrip] pre-fit:last_ratpoly_1d/trim_den1: model_med=9.8191e-02 reuse_recon_med=8.2886e+00 ratio=8.441e+01 target_med=1.010e-01  <<< REUSE-DOES-NOT-RECONSTRUCT-INCUMBENT
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 7.278e-03, max: 3.778e+08, mean: 3.533e+06
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 7.490e-03, max: 4.170e+08, mean: 4.052e+06
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 7.755e-03, max: 3.104e+08, mean: 2.898e+05
+[Stage B] Prediction scale check (attempt 0): pred_median=1.268e-01, true_median=9.826e-02, ratio=1.291e+00
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+Validation patience exceeded at epoch 601/2000, nval_worse=500
+[DBG-roundtrip] pre-fit:last_ratpoly_1d/trim_den2: model_med=9.8191e-02 reuse_recon_med=1.3898e+01 ratio=1.415e+02 target_med=1.010e-01  <<< REUSE-DOES-NOT-RECONSTRUCT-INCUMBENT
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: 1.415e-01, max: 4.058e+10, mean: 2.729e+09
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: 1.367e-01, max: 4.190e+10, mean: 2.899e+09
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 1.457e-01, max: 3.966e+10, mean: 2.591e+09
+[Stage B] Prediction scale check (attempt 0): pred_median=1.498e+00, true_median=9.826e-02, ratio=1.525e+01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[nestynet.optimizer] [LM] **** Too many rejects at lam_max; halting. self.lam_max=1000000000000.0 lam_new=1000000000000.0, iteration 61
+Stopping at epoch 62/2000, lm_opt.state['halt']=True, loss=9.1435e-02, loss_val=7.2718e-02
+[Stage B]    Reject (last_ratpoly_1d): simpler-over-budget(thr=8.846e-10) | loss 3.113e-12->4.258e-05 (Δ+4.26e-05) | params 390->12 | cx (0, 0, 0)->(0, 0, 0)
+[Stage B]  Trying 1D ratpoly deg=(3,2)->(3,2) nnz=(4,2) (scale*P_red(x)/Q(x)) rewrite on NN leaf vars (1,)
+[DBG-roundtrip] pre-fit:last_ratpoly_1d[1]: model_med=5.9310e+00 reuse_recon_med=5.9310e+00 ratio=1.000e+00 target_med=1.010e-01
+[Stage B custom_init ratpoly_1d] Init on vars (1,): deg=(3,2)->(3,2), nnz=(4,2), rel_rms≈9.31e-03
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -2.513e+02, max: 1.739e+01, mean: -1.223e+01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -2.601e+02, max: 1.841e+01, mean: -1.314e+01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: -2.494e+02, max: 1.937e+01, mean: -1.062e+01
+[Stage B] Prediction scale check (attempt 0): pred_median=6.535e+00, true_median=9.826e-02, ratio=6.651e+01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=12 (trivially separable union)
+[Stage B]    Candidate (last_ratpoly_1d[1]): params=12, val-loss=1.1321e-04
+[DBG-roundtrip] pre-fit:last_ratpoly_1d[1]/trim_num0: model_med=1.0330e-01 reuse_recon_med=1.9659e+01 ratio=1.903e+02 target_med=1.010e-01  <<< REUSE-DOES-NOT-RECONSTRUCT-INCUMBENT
+[Stage B] Post-custom-init validation (attempt 0), batch 0, finite: 2000/2000, min: -1.134e-02, max: 1.071e+00, mean: 1.508e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 1, finite: 2000/2000, min: -4.376e-03, max: 1.058e+00, mean: 1.585e-01
+[Stage B] Post-custom-init validation (attempt 0), batch 2, finite: 2000/2000, min: 6.832e-03, max: 1.025e+00, mean: 1.521e-01
+[Stage B] Prediction scale check (attempt 0): pred_median=9.247e-02, true_median=9.826e-02, ratio=9.411e-01
+[info] dataloader for provider ASTCompositeAdaptor yields 3 batches (equivalent to a single batch up to floating-point roundoff; minor Python-loop overhead per batch).
+[LM][bucket] solving P=11 (trivially separable union)

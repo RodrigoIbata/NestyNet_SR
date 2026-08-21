@@ -1,0 +1,89 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Data files
+data/*.csv
+
+# Symbolic regression output directories
+results/
+models/
+models_sep/
+
+# Local scratch space
+tmp/
+
+# LaTeX build artifacts in paper/
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.nav
+paper/*.out
+paper/*.pdf
+paper/*.snm
+paper/*.synctex.gz
+paper/*.toc
+paper/*.vrb
+
+# Keep source figure PDFs under version control
+!paper/figures_paper1/*.pdf
+
+# Sphinx build output (rebuild with: pip install -e ".[docs]" && cd docs && make html)
+docs/build/
+docs/_build/
+
+# --- Bulk / regenerable benchmark data and run outputs ---
+# Regenerate datasets via data/generate_data.py and the *_benchmark.txt specs.
+# Small text specs and per-equation metadata (data/*.txt, *.meta.txt,
+# *.ground_truth) stay tracked; only the heavy subdirectories are ignored.
+data/*/
+examples/**/data/
+results_ref/
+AI_Feynman.results
+changes.tgz
+
+# Generated example plots
+examples/**/*.png
+
+# Large binaries / checkpoints
+*.pt
+*.pth
+*.npy
+*.npz
+*.fits
+*.h5
+*.hdf5
+
+# Extra tool caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Internal design / planning notes (kept on disk, out of version control)
+/NOTES.md
+/de_coe_upgrade_plan.md
+/factorized_search_*.md
+examples/**/PHASE*.md
+examples/**/METHOD_ATTRIBUTION.md
+examples/**/PROJECT_PLAN.md
+examples/**/FRIEND_UPDATE_DRAFT*.md
+
+# Generated run logs from the Kepler ephemeris example
+examples/kepler_ephemeris_real/*.log
+
+# Compiled example note (rebuild with pdflatex; shipped in the public bundle)
+examples/jacobi_tidal/jacobi_tidal_note.pdf
+# Regenerable vignette figures (make_figures.py / make_paper_figure.py)
+examples/sparc_carrier/figures/

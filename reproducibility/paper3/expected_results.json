@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "comment": "Frozen per-cell expectations for Paper III Table 'full-noisy'. Cells are frozen one at a time as the campaign fills; the validation gate skips 'pending' cells. Counts are the measured aggregates of the recorded runs; case-level outcomes at fixed code are platform- and scheduling-sensitive (knife-edge population), so reruns reproduce totals at the +-few-case level, not per-case marks. Arm membership is recorded per capsule in campaign_manifest.json:arm_signature, read from the runs themselves rather than inferred from directory names. Note that the sealed audit partition for the statistical decisions is drawn from the full dataset and is much larger than the training split. Structural verdicts come from scripts/_structural_verdict.py, shared with the factorized-search oracle audit so both benchmark tables use one definition.",
+  "n_problems": 120,
+  "cells": {
+    "noise0.000_ndata2k": {
+      "status": "frozen",
+      "exact": 120,
+      "structural_wins": 120,
+      "notes": "noiseless, 2k/2k fixed protocol",
+      "timing": {
+        "note": "per-problem wall time, one thread per problem, campaign run with JOBS=8 so timings include contention",
+        "median_minutes": 6.3,
+        "mean_minutes": 19.2,
+        "p90_hours": 1.05,
+        "max_hours": 2.62,
+        "total_hours": 38.4
+      }
+    },
+    "noise0.001_ndata2k": {
+      "status": "frozen",
+      "exact": 105,
+      "structural_wins": 105
+    },
+    "noise0.010_ndata2k": {
+      "status": "frozen",
+      "exact": 94,
+      "structural_wins": 94
+    },
+    "noise0.100_ndata2k": {
+      "status": "frozen",
+      "exact": 53,
+      "structural_wins": 56
+    },
+    "noise0.000_stat": {
+      "status": "frozen",
+      "exact": 120,
+      "structural_wins": 120,
+      "notes": "noiseless, statistical-selection arm"
+    },
+    "noise0.001_stat": {
+      "status": "frozen",
+      "exact": 101,
+      "structural_wins": 103
+    },
+    "noise0.010_stat": {
+      "status": "frozen",
+      "exact": 87,
+      "structural_wins": 91
+    },
+    "noise0.100_stat": {
+      "status": "frozen",
+      "exact": 46,
+      "structural_wins": 54,
+      "notes": "campaign completed 2026-08-19, 87.0 CPU-h; 119 problems at NestyNet_SR b92a873 and one at e181ad1 (a capsule-tooling commit that does not touch the SR pipeline)"
+    },
+    "noise0.000_coe_pareto": {
+      "status": "frozen",
+      "exact": 120,
+      "structural_wins": 120,
+      "notes": "HPC campaign at NestyNet_SR 44520a2 (dirty tree), 297.6 CPU-h; arm signature from the reports: ndata_train/val 2000, committee mode reservoir_discovery but NOT authoritative (proposal/diagnostic layer), selection authority = statistical_selection, sealed audit partition 20000 rows, alpha 0.05"
+    },
+    "noise0.001_coe_pareto": {
+      "status": "frozen",
+      "exact": 105,
+      "structural_wins": 110,
+      "notes": "HPC campaign at NestyNet_SR 44520a2, 453.4 CPU-h, complete at 120/120; committee enabled but not authoritative, statistical selection is the authority"
+    },
+    "noise0.010_coe_pareto": {
+      "status": "frozen",
+      "exact": 86,
+      "structural_wins": 89,
+      "notes": "HPC campaign at NestyNet_SR 44520a2, 495.9 CPU-h, complete at 120/120; committee enabled but not authoritative, statistical selection is the authority"
+    },
+    "noise0.100_coe_pareto": {
+      "status": "frozen",
+      "exact": 54,
+      "structural_wins": 62,
+      "notes": "HPC campaign at NestyNet_SR 44520a2 (dirty tree), 428.0 CPU-h; arm signature from the reports: ndata_train/val 2000, committee mode reservoir_discovery but NOT authoritative (proposal/diagnostic layer), selection authority = statistical_selection, sealed audit partition 20000 rows, alpha 0.05"
+    }
+  },
+  "arms": {
+    "ndata2k": "2k/2k, no statistical selection, no committee; feeds the parenthesised column",
+    "stat": "2k/2k with Pareto-front statistical selection as the selection authority (sealed 20000-row audit partition), no committee",
+    "coe_pareto": "2k/2k with the committee as proposal/diagnostic layer AND Pareto-front statistical selection as the authority; the current HPC arm"
+  }
+}
